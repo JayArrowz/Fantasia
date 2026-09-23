@@ -1,0 +1,70 @@
+{
+  "bed": {
+    "file": "bed.glb",
+    "job_id": "cb332a2f-3549-4309-8edd-b0a7b074503a"
+  },
+  "table": {
+    "file": "table.glb",
+    "job_id": "3d973435-6bd1-436e-a16b-1e783be5088f"
+  },
+  "chair": {
+    "file": "chair.glb",
+    "job_id": "515ac1a5-3069-462f-9c0d-0b966dd920c2"
+  },
+  "stool": {
+    "file": "stool.glb",
+    "job_id": "06e41567-be4c-4254-a8dc-baebb50f32d2"
+  },
+  "bookshelf": {
+    "file": "bookshelf.glb",
+    "job_id": "535324fe-d801-4049-983d-07a5deb6239b"
+  },
+  "fireplace": {
+    "file": "fireplace.glb",
+    "job_id": "e7b85b40-58f7-4ee8-9b2e-d96aa21e4dd1"
+  },
+  "counter": {
+    "file": "counter.glb",
+    "job_id": "026869f1-8f8b-4bf3-adb9-7e74918544b1"
+  },
+  "furnace": {
+    "file": "furnace.glb",
+    "job_id": "047119cd-5285-44dc-83ef-4da9d8aa4b7b"
+  },
+  "weapon_rack": {
+    "file": "weapon_rack.glb",
+    "job_id": "a0981970-eccc-46d0-a54e-478f8a3738b3"
+  },
+  "armor_stand": {
+    "file": "armor_stand.glb",
+    "job_id": "158cb0f9-d57f-4c69-8ed1-724e8b961695"
+  },
+  "keg": {
+    "file": "keg.glb",
+    "job_id": "1597c2e3-9be4-4c77-bee8-75cf36b76347"
+  },
+  "shelf_potions": {
+    "file": "shelf_potions.glb",
+    "job_id": "0c6e04c8-fc79-46b7-999d-316e6fd18af4"
+  },
+  "rug": {
+    "file": "rug.glb",
+    "job_id": "d5b60ee5-a783-4b3f-87b5-7022449ecdd4"
+  },
+  "candelabra": {
+    "file": "candelabra.glb",
+    "job_id": "4c127b27-29fd-4c42-9348-985f5ba899b4"
+  },
+  "throne_royal": {
+    "file": "throne_royal.glb",
+    "job_id": "69c0e640-ff91-41f4-a3c6-4c3a799ae71a"
+  },
+  "long_table": {
+    "file": "long_table.glb",
+    "job_id": "0ad2d263-05b6-4fa3-a4e8-62e77a1ccc5e"
+  },
+  "wardrobe": {
+    "file": "wardrobe.glb",
+    "job_id": "2f90f284-a00f-455c-9da6-056bc3be5eaf"
+  }
+}

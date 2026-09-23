@@ -1,0 +1,183 @@
+[
+  {
+    "id": "inn",
+    "name": "The Gilded Tankard",
+    "stock": [
+      "bread",
+      "roast_perch",
+      "grilled_trout",
+      "salmon_fillet",
+      "venison_stew"
+    ]
+  },
+  {
+    "id": "general",
+    "name": "Aldmoor General Store",
+    "stock": [
+      "bread",
+      "roast_perch",
+      "grilled_trout",
+      "salmon_fillet",
+      "leather_boots",
+      "leather_gloves",
+      "red_cape",
+      "blue_cape",
+      "wooden_shield",
+      "bronze_dagger",
+      "hammer",
+      "needle",
+      "bronze_pickaxe",
+      "bronze_hatchet",
+      "fishing_net",
+      "fishing_rod",
+      "fishing_bait",
+      "watering_can"
+    ]
+  },
+  {
+    "id": "farm",
+    "name": "Hob's Seeds & Supplies",
+    "stock": [
+      "potato_seed",
+      "onion_seed",
+      "cabbage_seed",
+      "wheat_seed",
+      "strawberry_seed",
+      "compost",
+      "plant_cure",
+      "watering_can",
+      "raw_chicken",
+      "feather"
+    ]
+  },
+  {
+    "id": "fishing",
+    "name": "Maren's Tackle",
+    "stock": [
+      "fishing_net",
+      "fishing_rod",
+      "fishing_bait",
+      "harpoon",
+      "raw_perch"
+    ]
+  },
+  {
+    "id": "weaver",
+    "name": "Ilse's Silks",
+    "stock": [
+      "needle",
+      "silk_thread",
+      "silk_cloth",
+      "silk_gloves",
+      "silk_hood",
+      "silk_skirt",
+      "silk_robe"
+    ]
+  },
+  {
+    "id": "woodsman",
+    "name": "Gerd's Lodge",
+    "stock": [
+      "bronze_hatchet",
+      "iron_hatchet",
+      "steel_hatchet",
+      "arrow_shafts",
+      "feather",
+      "pine_log"
+    ]
+  },
+  {
+    "id": "mining",
+    "name": "Durgan's Prospecting",
+    "stock": [
+      "bronze_pickaxe",
+      "iron_pickaxe",
+      "steel_pickaxe",
+      "cobalt_pickaxe",
+      "hammer",
+      "coal"
+    ]
+  },
+  {
+    "id": "smith",
+    "name": "Brom's Forge",
+    "stock": [
+      "bronze_sword",
+      "bronze_sabre",
+      "bronze_warhammer",
+      "bronze_greatsword",
+      "bronze_helm",
+      "bronze_chestplate",
+      "bronze_legguards",
+      "bronze_heater",
+      "iron_sword",
+      "iron_sabre",
+      "iron_warhammer",
+      "iron_greatsword",
+      "iron_helm",
+      "iron_chestplate",
+      "iron_legguards",
+      "iron_heater",
+      "steel_sword",
+      "steel_sabre",
+      "steel_warhammer",
+      "steel_greatsword",
+      "steel_helm",
+      "steel_chestplate",
+      "steel_legguards",
+      "steel_heater",
+      "cobalt_sword",
+      "cobalt_sabre",
+      "cobalt_helm",
+      "cobalt_chestplate",
+      "cobalt_legguards",
+      "cobalt_heater",
+      "verdite_sabre",
+      "verdite_helm",
+      "verdite_chestplate"
+    ]
+  },
+  {
+    "id": "archery",
+    "name": "Lyra's Bows & Fletchings",
+    "stock": [
+      "shortbow",
+      "ash_shortbow",
+      "elm_shortbow",
+      "hornbeam_shortbow",
+      "elder_longbow",
+      "bronze_arrow",
+      "iron_arrow",
+      "steel_arrow",
+      "cobalt_arrow",
+      "verdite_arrow",
+      "leather_hood",
+      "leather_jerkin",
+      "leather_leggings",
+      "leather_bracers"
+    ]
+  },
+  {
+    "id": "magic",
+    "name": "Elara's Sigil Shop",
+    "stock": [
+      "gale_sigil",
+      "tide_sigil",
+      "stone_sigil",
+      "ember_sigil",
+      "focus_sigil",
+      "storm_sigil",
+      "void_sigil",
+      "staff",
+      "gale_staff",
+      "tide_staff",
+      "stone_staff",
+      "ember_staff",
+      "essence_stone",
+      "apprentice_hat",
+      "apprentice_robe",
+      "apprentice_skirt",
+      "sapphire_pendant"
+    ]
+  }
+]

@@ -1,0 +1,25 @@
+# Animation clips (Meshy meshy_rigging on char_player mesh, 1.8 m). Skeleton identical to assets/models/RIG_BONES.txt (24 joints: Hips, Spine02, Spine01, Spine, neck, Head, L/R Shoulder/Arm/ForeArm/Hand, L/R UpLeg/Leg/Foot/ToeBase, head_end, headfront).
+# Bone translations are in centimetres (Armature node carries 0.01 scale). Every clip has translation channels on ALL joints; 'hips root motion' below = range of the Hips translation over the clip (x=lateral, y=up, z=forward, cm).
+# name | file | action_id | internal animation name | duration s | hips translation range xyz (cm) | root translation?
+
+idle | idle.glb | 251 | Armature|Idle_11|baselayer | 1.933 | [0.6, 0.9, 1.4] (end-start [0.0, -0.0, -0.0]) | in place (calm breathing stance; replaced the wide-stance look-around Idle, id 0)
+walk | walk.glb | 613 | Armature|Casual_Walk_inplace|baselayer | 4.233 | [8.3, 4.1, 2.7] (end-start [-0.1, 1.2, -0.1]) | vertical/in-place only (small sway)
+run | run.glb | 657 | Armature|run_fast_10_inplace|baselayer | 0.833 | [5.8, 8.7, 2.5] (end-start [-0.0, 0.0, 0.0]) | vertical/in-place only (small sway)
+slash | slash.glb | 97 | Armature|Left_Slash|baselayer | 3.200 | [10.7, 10.7, 16.9] (end-start [0.0, 0.1, -0.0]) | moderate horizontal shift
+stab | stab.glb | 4 | Armature|Attack|baselayer | 2.833 | [28.5, 33.5, 50.5] (end-start [-0.0, 0.0, 0.1]) | yes - large horizontal travel
+heavy | heavy.glb | 128 | Armature|Heavy_Hammer_Swing|baselayer | 1.867 | [11.1, 26.3, 22.1] (end-start [-9.8, -10.7, 7.8]) | moderate horizontal shift
+shoot | shoot.glb | 224 | Armature|Archery_Shot|baselayer | 5.033 | [3.5, 6.1, 11.4] (end-start [-0.0, -0.0, -0.0]) | vertical/in-place only (small sway)
+cast | cast.glb | 125 | Armature|Charged_Spell_Cast|baselayer | 2.700 | [8.0, 40.5, 18.0] (end-start [-0.1, 0.5, -0.0]) | moderate horizontal shift
+hit | hit.glb | 178 | Armature|Hit_Reaction|baselayer | 1.667 | [118.8, 6.0, 13.1] (end-start [118.4, -0.0, -0.0]) | yes - large horizontal travel
+death | death.glb | 8 | Armature|Dead|baselayer | 3.000 | [21.8, 79.4, 109.0] (end-start [20.4, -61.6, 76.2]) | yes - large horizontal travel
+pickup | pickup.glb | 276 | Armature|Male_Bend_Over_Pick_Up|baselayer | 7.233 | [9.9, 15.2, 20.6] (end-start [-0.0, 0.0, 0.0]) | moderate horizontal shift
+combat_idle | combat_idle.glb | 89 | Armature|Combat_Stance|baselayer | 1.700 | [1.7, 3.3, 1.2] (end-start [-0.0, -0.0, 0.0]) | vertical/in-place only (small sway)
+block | block.glb | 147 | Armature|Sword_Parry|baselayer | 1.900 | [0.6, 2.7, 1.9] (end-start [0.0, -0.0, 0.0]) | vertical/in-place only (small sway)
+
+Notes:
+- hit: Hips drifts ~118 cm sideways (+x) and does not return -> strip/zero Hips x/z translation or use root-motion if played in place.
+- death: Hips ends ~76 cm forward and ~62 cm lower (body falls to ground) - vertical drop is desired; consider zeroing horizontal x/z.
+- stab (Attack): lunge with up to ~50 cm forward Hips travel, returns to start at end.
+- walk/run are the *_inplace variants (no forward travel). idle/combat_idle/block/shoot are in place.
+- Each anim GLB also contains the char_player mesh + skin; only the animation is meant to be used.
+chop | chop.glb | 242 | Armature|Charged_Slash|baselayer | ~1.8 | in place | woodcutting swing (hatchet)

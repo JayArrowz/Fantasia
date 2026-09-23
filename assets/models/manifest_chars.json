@@ -1,0 +1,62 @@
+{
+  "char_player": {
+    "file": "char_player.glb",
+    "height": 1.8,
+    "rigged": true,
+    "job_id": "a54aa60b-5495-474b-8acd-568c06e41bdb"
+  },
+  "npc_goblin": {
+    "file": "npc_goblin.glb",
+    "height": 1.2,
+    "rigged": true,
+    "job_id": "a7bcf7e2-ff63-4680-877c-aedf961aea89"
+  },
+  "npc_guard": {
+    "file": "npc_guard.glb",
+    "height": 1.85,
+    "rigged": true,
+    "job_id": "0b91ab9d-61fe-4741-8af4-43371f58bad6"
+  },
+  "npc_skeleton": {
+    "file": "npc_skeleton.glb",
+    "height": 1.8,
+    "rigged": true,
+    "job_id": "9243ffd6-7c8f-46c8-82f1-088c38a2b8b2"
+  },
+  "npc_zombie": {
+    "file": "npc_zombie.glb",
+    "height": 1.75,
+    "rigged": true,
+    "job_id": "59feb2e0-abf8-4442-8a4b-fa7e9474d601"
+  },
+  "npc_dark_wizard": {
+    "file": "npc_dark_wizard.glb",
+    "height": 1.8,
+    "rigged": true,
+    "job_id": "f7b7f9c5-c10f-4719-a25e-67a496416258"
+  },
+  "npc_barbarian": {
+    "file": "npc_barbarian.glb",
+    "height": 1.9,
+    "rigged": true,
+    "job_id": "253bff21-3e63-4a15-bf61-312ecb68df7b"
+  },
+  "npc_bandit": {
+    "file": "npc_bandit.glb",
+    "height": 1.8,
+    "rigged": true,
+    "job_id": "7f67693c-7790-4474-9162-caf8ffde30c5"
+  },
+  "npc_warlord": {
+    "file": "npc_warlord.glb",
+    "height": 2.4,
+    "rigged": true,
+    "job_id": "74827623-e8ed-4447-ad71-6e3a09c6ca16"
+  },
+  "npc_merchant": {
+    "file": "npc_merchant.glb",
+    "height": 1.75,
+    "rigged": true,
+    "job_id": "d5ba589e-ffb3-4a3c-8205-fdfe27e0d94a"
+  }
+}

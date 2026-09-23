@@ -1,0 +1,797 @@
+{
+  "overworld": {
+    "name": "Kingdom of Aldmoor",
+    "spawn": [
+      80,
+      104
+    ],
+    "pvpZone": [
+      0,
+      0,
+      160,
+      28
+    ],
+    "skyTop": [
+      0.3,
+      0.5,
+      0.85
+    ],
+    "skyHorizon": [
+      0.85,
+      0.8,
+      0.7
+    ],
+    "ambient": [
+      0.6,
+      0.58,
+      0.55
+    ],
+    "fog": [
+      0.78,
+      0.76,
+      0.7
+    ],
+    "fogDensity": 0.0022,
+    "labels": [
+      {
+        "text": "Aldmoor",
+        "x": 80,
+        "z": 96
+      },
+      {
+        "text": "Castle",
+        "x": 79,
+        "z": 86
+      },
+      {
+        "text": "Inn",
+        "x": 66,
+        "z": 111
+      },
+      {
+        "text": "Darkwood Forest",
+        "x": 60,
+        "z": 45
+      },
+      {
+        "text": "Goblin Camp",
+        "x": 29,
+        "z": 72
+      },
+      {
+        "text": "Farm",
+        "x": 42,
+        "z": 100
+      },
+      {
+        "text": "Stone Circle",
+        "x": 134,
+        "z": 44
+      },
+      {
+        "text": "Graveyard",
+        "x": 140,
+        "z": 92
+      },
+      {
+        "text": "Skarn Hold",
+        "x": 81,
+        "z": 138
+      },
+      {
+        "text": "Bandit Camp",
+        "x": 139,
+        "z": 128
+      },
+      {
+        "text": "Lake Mirren",
+        "x": 28,
+        "z": 136
+      },
+      {
+        "text": "THE BLOODMARCH",
+        "x": 80,
+        "z": 12
+      },
+      {
+        "text": "River Aln",
+        "x": 118,
+        "z": 72
+      },
+      {
+        "text": "Quarry",
+        "x": 104,
+        "z": 60
+      },
+      {
+        "text": "Allotments",
+        "x": 32,
+        "z": 105
+      },
+      {
+        "text": "Weaver",
+        "x": 108,
+        "z": 101
+      },
+      {
+        "text": "Woodsman's Lodge",
+        "x": 65,
+        "z": 59
+      }
+    ],
+    "lore": [
+      "A Traveller's Guide to Aldmoor: 'Mind the goblin raiders west of the farms, and never cross the northern stones into the Bloodmarch unprepared.'",
+      "Herblore for Beginners: 'Salmon and venison stew will restore far more vitality than a crust of bread.'",
+      "On Sigils: 'A staff of the right element will supply that element's sigil without end.'",
+      "The Saga of Skarn: 'The raiders of the south fear nothing but the cold and the crypt.'",
+      "Recipes of the Gilded Tankard, page 3: 'Royal feast pie. Serves one very hungry knight.'",
+      "A worn diary: 'Heard scratching beneath the graveyard again. The priests say it is only rats.'"
+    ],
+    "texts": {
+      "castle_archives": "The Chronicle of Aldmoor: '...and the Fallen King was sealed beneath the graveyard east of the Aln, his crown of bone still upon his brow.'",
+      "magic_tomes": "Gale, Tide, Stone and Ember: the four sigils of the elements. Focus binds them, Storm unleashes them, Void ends them.",
+      "town_sign": "North: Darkwood Forest & the Bloodmarch. West: Hob's Farm & the Goblin Camp. East: River Aln & the Graveyard. South: Skarn Hold.",
+      "farm_sign": "Farmer Hob's fields. Please don't anger the cows.",
+      "graveyard_sign": "Here lie the honoured dead of Aldmoor. Disturb not the Fallen King.",
+      "bloodmarch_sign": "BEWARE! Beyond lies the Bloodmarch, a lawless land. Other adventurers may attack you there.",
+      "quarry_sign": "Aldmoor Quarry. Copper and tin for beginners; iron, coal, silver and gold for the seasoned. Mind the essence rocks: they hum.",
+      "allotments_sign": "Aldmoor Allotments. Plant seeds, water each stage, harvest when ripe. Crops keep growing while you're away. Seeds from Farmer Hob."
+    },
+    "spawns": {
+      "town": [
+        {
+          "npc": "king",
+          "x": 79,
+          "z": 83
+        },
+        {
+          "npc": "guard",
+          "x": 76,
+          "z": 84
+        },
+        {
+          "npc": "guard",
+          "x": 81,
+          "z": 84
+        },
+        {
+          "npc": "banker",
+          "x": 96,
+          "z": 88
+        },
+        {
+          "npc": "banker",
+          "x": 97,
+          "z": 88
+        },
+        {
+          "npc": "mage_elara",
+          "x": 64,
+          "z": 83
+        },
+        {
+          "npc": "weaponsmith",
+          "x": 66,
+          "z": 102
+        },
+        {
+          "npc": "innkeeper",
+          "x": 64,
+          "z": 108
+        },
+        {
+          "npc": "villager",
+          "x": 63,
+          "z": 113
+        },
+        {
+          "npc": "villager",
+          "x": 69,
+          "z": 112
+        },
+        {
+          "npc": "shopkeeper",
+          "x": 96,
+          "z": 103
+        },
+        {
+          "npc": "bowyer",
+          "x": 86,
+          "z": 112
+        },
+        {
+          "npc": "guide",
+          "x": 82,
+          "z": 104
+        },
+        {
+          "npc": "captain",
+          "x": 64,
+          "z": 99
+        },
+        {
+          "npc": "guard",
+          "x": 70,
+          "z": 97
+        },
+        {
+          "npc": "guard",
+          "x": 90,
+          "z": 97
+        },
+        {
+          "npc": "guard",
+          "x": 80,
+          "z": 112
+        },
+        {
+          "npc": "guard",
+          "x": 92,
+          "z": 84
+        },
+        {
+          "npc": "villager",
+          "x": 76,
+          "z": 101
+        },
+        {
+          "npc": "villager",
+          "x": 85,
+          "z": 104
+        }
+      ],
+      "farm.cows": [
+        {
+          "npc": "cow",
+          "area": [
+            34,
+            90,
+            14,
+            12
+          ],
+          "count": 7
+        }
+      ],
+      "farm.chickens": [
+        {
+          "npc": "chicken",
+          "area": [
+            40,
+            110,
+            7,
+            5
+          ],
+          "count": 6
+        }
+      ],
+      "farm.rats": [
+        {
+          "npc": "farmer",
+          "x": 54,
+          "z": 103
+        },
+        {
+          "npc": "rat",
+          "area": [
+            50,
+            100,
+            8,
+            12
+          ],
+          "count": 3
+        }
+      ],
+      "goblin_camp": [
+        {
+          "npc": "goblin",
+          "area": [
+            19,
+            64,
+            20,
+            15
+          ],
+          "count": 9
+        }
+      ],
+      "stone_circle": [
+        {
+          "npc": "hexer",
+          "area": [
+            130,
+            48,
+            9,
+            9
+          ],
+          "count": 5
+        }
+      ],
+      "barbarian_village": [
+        {
+          "npc": "skarn_chief",
+          "x": 81,
+          "z": 129
+        },
+        {
+          "npc": "barbarian",
+          "area": [
+            72,
+            130,
+            20,
+            12
+          ],
+          "count": 7
+        }
+      ],
+      "bandit_camp": [
+        {
+          "npc": "bandit",
+          "area": [
+            130,
+            132,
+            18,
+            12
+          ],
+          "count": 6
+        }
+      ],
+      "bloodmarch": [
+        {
+          "npc": "pit_fiend",
+          "area": [
+            40,
+            4,
+            40,
+            18
+          ],
+          "count": 4
+        },
+        {
+          "npc": "moss_drake",
+          "area": [
+            128,
+            4,
+            25,
+            18
+          ],
+          "count": 4
+        },
+        {
+          "npc": "bandit",
+          "area": [
+            85,
+            8,
+            25,
+            16
+          ],
+          "count": 3
+        }
+      ],
+      "skilling": [
+        {
+          "npc": "prospector",
+          "x": 101,
+          "z": 67
+        },
+        {
+          "npc": "weaver",
+          "x": 107,
+          "z": 106
+        },
+        {
+          "npc": "woodsman",
+          "x": 67,
+          "z": 67
+        },
+        {
+          "npc": "fisher",
+          "x": 41,
+          "z": 133
+        }
+      ],
+      "forest": [
+        {
+          "npc": "wolf",
+          "area": [
+            40,
+            32,
+            45,
+            25
+          ],
+          "count": 7
+        },
+        {
+          "npc": "bear",
+          "area": [
+            95,
+            34,
+            18,
+            22
+          ],
+          "count": 3
+        }
+      ],
+      "countryside": [
+        {
+          "npc": "chicken",
+          "area": [
+            96,
+            120,
+            14,
+            10
+          ],
+          "count": 3
+        },
+        {
+          "npc": "rat",
+          "area": [
+            100,
+            118,
+            14,
+            30
+          ],
+          "count": 3
+        }
+      ],
+      "extra": []
+    },
+    "quarryRocks": [
+      {
+        "x": 98,
+        "z": 62,
+        "res": "rock_copper"
+      },
+      {
+        "x": 100,
+        "z": 62,
+        "res": "rock_copper"
+      },
+      {
+        "x": 98,
+        "z": 64,
+        "res": "rock_copper"
+      },
+      {
+        "x": 101,
+        "z": 65,
+        "res": "rock_copper"
+      },
+      {
+        "x": 103,
+        "z": 62,
+        "res": "rock_tin"
+      },
+      {
+        "x": 105,
+        "z": 62,
+        "res": "rock_tin"
+      },
+      {
+        "x": 104,
+        "z": 64,
+        "res": "rock_tin"
+      },
+      {
+        "x": 106,
+        "z": 65,
+        "res": "rock_tin"
+      },
+      {
+        "x": 108,
+        "z": 62,
+        "res": "rock_iron"
+      },
+      {
+        "x": 109,
+        "z": 64,
+        "res": "rock_iron"
+      },
+      {
+        "x": 107,
+        "z": 67,
+        "res": "rock_iron"
+      },
+      {
+        "x": 109,
+        "z": 69,
+        "res": "rock_iron"
+      },
+      {
+        "x": 98,
+        "z": 70,
+        "res": "rock_coal"
+      },
+      {
+        "x": 100,
+        "z": 72,
+        "res": "rock_coal"
+      },
+      {
+        "x": 98,
+        "z": 74,
+        "res": "rock_coal"
+      },
+      {
+        "x": 103,
+        "z": 74,
+        "res": "rock_silver"
+      },
+      {
+        "x": 106,
+        "z": 74,
+        "res": "rock_silver"
+      },
+      {
+        "x": 109,
+        "z": 72,
+        "res": "rock_gold"
+      },
+      {
+        "x": 102,
+        "z": 69,
+        "res": "rock_essence"
+      },
+      {
+        "x": 104,
+        "z": 70,
+        "res": "rock_essence"
+      }
+    ],
+    "circleRocks": [
+      {
+        "x": 127,
+        "z": 47,
+        "res": "rock_essence"
+      },
+      {
+        "x": 141,
+        "z": 58,
+        "res": "rock_essence"
+      },
+      {
+        "x": 128,
+        "z": 58,
+        "res": "rock_essence"
+      }
+    ],
+    "allotments": [
+      [
+        29,
+        108
+      ],
+      [
+        33,
+        108
+      ],
+      [
+        29,
+        113
+      ],
+      [
+        33,
+        113
+      ]
+    ],
+    "mulberries": [
+      [
+        104,
+        111
+      ],
+      [
+        107,
+        112
+      ],
+      [
+        110,
+        111
+      ],
+      [
+        113,
+        113
+      ],
+      [
+        105,
+        115
+      ],
+      [
+        108,
+        116
+      ],
+      [
+        111,
+        117
+      ],
+      [
+        114,
+        116
+      ],
+      [
+        103,
+        118
+      ],
+      [
+        107,
+        119
+      ]
+    ],
+    "fishingGroups": [
+      {
+        "group": "lake_net",
+        "res": "fish_net",
+        "area": [
+          17,
+          125,
+          28,
+          147
+        ],
+        "count": 5
+      },
+      {
+        "group": "lake_bait",
+        "res": "fish_bait",
+        "area": [
+          29,
+          125,
+          40,
+          147
+        ],
+        "count": 5
+      },
+      {
+        "group": "river_net",
+        "res": "fish_net",
+        "area": [
+          108,
+          100,
+          126,
+          114
+        ],
+        "count": 4
+      },
+      {
+        "group": "river_bait",
+        "res": "fish_bait",
+        "area": [
+          108,
+          78,
+          126,
+          93
+        ],
+        "count": 5
+      },
+      {
+        "group": "river_harpoon",
+        "res": "fish_harpoon",
+        "area": [
+          108,
+          36,
+          126,
+          58
+        ],
+        "count": 5
+      },
+      {
+        "group": "bloodmarch_deep",
+        "res": "fish_deep",
+        "area": [
+          108,
+          2,
+          130,
+          26
+        ],
+        "count": 5
+      }
+    ]
+  },
+  "dungeons": [
+    {
+      "id": "goblin_caves",
+      "name": "Goblin Caves",
+      "width": 64,
+      "height": 64,
+      "seed": 1337,
+      "theme": "Goblin",
+      "rooms": 9,
+      "music": "cave",
+      "ambient": [
+        0.32,
+        0.26,
+        0.2
+      ],
+      "fog": [
+        0.08,
+        0.06,
+        0.04
+      ],
+      "fogDensity": 0.03,
+      "exit": [
+        24,
+        64
+      ],
+      "monsters": [
+        "cave_goblin",
+        "cave_goblin",
+        "goblin_archer",
+        "cave_bat",
+        "rat",
+        "giant_spider"
+      ],
+      "ores": [
+        "rock_coal",
+        "rock_cobalt",
+        "rock_iron",
+        "rock_verdite",
+        "rock_gold",
+        "rock_cobalt",
+        "rock_silver"
+      ],
+      "boss": [
+        {
+          "npc": "goblin_chieftain",
+          "x": 0,
+          "z": 0
+        },
+        {
+          "npc": "goblin_archer",
+          "x": -2,
+          "z": 1
+        },
+        {
+          "npc": "cave_goblin",
+          "x": 2,
+          "z": 1
+        }
+      ],
+      "bossLabel": "Chieftain's Lair"
+    },
+    {
+      "id": "crypt",
+      "name": "Crypt of the Fallen King",
+      "width": 72,
+      "height": 72,
+      "seed": 4242,
+      "theme": "Crypt",
+      "rooms": 11,
+      "music": "crypt",
+      "ambient": [
+        0.2,
+        0.24,
+        0.3
+      ],
+      "fog": [
+        0.03,
+        0.05,
+        0.06
+      ],
+      "fogDensity": 0.035,
+      "exit": [
+        143,
+        105
+      ],
+      "monsters": [
+        "skeleton",
+        "skeleton",
+        "zombie",
+        "zombie",
+        "ghost",
+        "giant_spider",
+        "mossback_ogre"
+      ],
+      "ores": [
+        "rock_azurite",
+        "rock_gold",
+        "rock_silver",
+        "rock_verdite",
+        "rock_coal",
+        "rock_azurite"
+      ],
+      "boss": [
+        {
+          "npc": "skeletal_warlord",
+          "x": 0,
+          "z": 0
+        }
+      ],
+      "bossLabel": "Throne of the Warlord"
+    }
+  ]
+}

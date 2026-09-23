@@ -1,0 +1,70 @@
+{
+  "item_pickaxe": {
+    "file": "item_pickaxe.glb",
+    "job_id": "8bb46f0b-2e8e-4e0f-bce1-5c96b2f8b86a"
+  },
+  "item_hatchet": {
+    "file": "item_hatchet.glb",
+    "job_id": "47432bf0-52eb-4ac4-a346-92a77fd9428e"
+  },
+  "item_fishing_rod": {
+    "file": "item_fishing_rod.glb",
+    "job_id": "f0e51f37-d370-4f70-b3e6-dc484c434386"
+  },
+  "item_fishing_net": {
+    "file": "item_fishing_net.glb",
+    "job_id": "31df570f-3f8d-4af2-9cc6-932305c46f4b"
+  },
+  "item_harpoon": {
+    "file": "item_harpoon.glb",
+    "job_id": "f2908591-9c4c-4447-8bbe-24df24dc7f1a"
+  },
+  "item_hammer": {
+    "file": "item_hammer.glb",
+    "job_id": "bf97d4bd-32ef-4cfe-94da-b5c0fd44dc75"
+  },
+  "item_log": {
+    "file": "item_log.glb",
+    "job_id": "23deb673-ffbb-45b7-a139-3077dfe7e89c"
+  },
+  "item_ore": {
+    "file": "item_ore.glb",
+    "job_id": "fae2ac10-6c8a-4d64-b91f-e1438f5526d1"
+  },
+  "item_bar": {
+    "file": "item_bar.glb",
+    "job_id": "da17c965-a9b8-4fef-8727-66a97c335f36"
+  },
+  "item_gem": {
+    "file": "item_gem.glb",
+    "job_id": "43ae3262-cecc-4c5e-9b29-4f7939868cbc"
+  },
+  "item_scroll": {
+    "file": "item_scroll.glb",
+    "job_id": "857c2340-6bda-4b11-bd13-aef6370ae70f"
+  },
+  "item_silk": {
+    "file": "item_silk.glb",
+    "job_id": "0a050417-0a03-4903-8e30-dd1cde9cfc62"
+  },
+  "spinning_wheel": {
+    "file": "spinning_wheel.glb",
+    "job_id": "270af0dd-6687-4705-94e5-0bc7baaf627b"
+  },
+  "loom": {
+    "file": "loom.glb",
+    "job_id": "ba743d47-03a0-410d-a0a6-c6e7c9b071d2"
+  },
+  "ore_rock": {
+    "file": "ore_rock.glb",
+    "job_id": "61da99d1-f2c5-44d1-b159-378be428b000"
+  },
+  "enchanting_table": {
+    "file": "enchanting_table.glb",
+    "job_id": "82fdbfc2-6505-468e-aea8-3aa7afcfbd21"
+  },
+  "workbench": {
+    "file": "workbench.glb",
+    "job_id": "e453f57f-bacc-4e39-8a5a-6fe1e43e9360"
+  }
+}

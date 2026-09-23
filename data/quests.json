@@ -1,0 +1,690 @@
+[
+  {
+    "id": "hobs_harvest",
+    "name": "Hob's Harvest",
+    "giver": "farmer",
+    "summary": "Farmer Hob needs help bringing in a crop. He'll lend seeds and a watering can.",
+    "offer": [
+      "Them rats ate my seed potatoes, and my back's too sore to dig.",
+      "Here's some seed and my old watering can. Plant 'em in the allotments west of the coop.",
+      "Water each stage for a bigger crop, and use compost if you've got it: keeps the blight off."
+    ],
+    "after": [
+      "My wife's cabbage soup recipe is yours now. Don't tell her I gave it away!",
+      "I sell seeds and supplies if you want to keep farming."
+    ],
+    "startItems": [
+      {
+        "item": "potato_seed",
+        "count": 6
+      },
+      {
+        "item": "onion_seed",
+        "count": 4
+      },
+      {
+        "item": "watering_can",
+        "count": 1
+      },
+      {
+        "item": "compost",
+        "count": 2
+      }
+    ],
+    "stages": [
+      {
+        "items": [
+          {
+            "item": "potato",
+            "count": 5
+          },
+          {
+            "item": "onion",
+            "count": 3
+          }
+        ],
+        "journal": "Grow and bring Farmer Hob 5 potatoes and 3 onions from the allotments.",
+        "remind": [
+          "Five taters and three onions, that's all I ask. The allotments are just west of the hen coop.",
+          "Right-click an allotment to plant, water and harvest."
+        ],
+        "done": [
+          "Ha! Fat, healthy spuds. You've the knack for it."
+        ]
+      }
+    ],
+    "xpReward": [
+      {
+        "skill": "Farming",
+        "xp": 800
+      },
+      {
+        "skill": "Cooking",
+        "xp": 200
+      }
+    ],
+    "itemReward": [
+      {
+        "item": "cabbage_seed",
+        "count": 6
+      },
+      {
+        "item": "wheat_seed",
+        "count": 6
+      },
+      {
+        "item": "compost",
+        "count": 3
+      },
+      {
+        "item": "coins",
+        "count": 150
+      }
+    ],
+    "unlocks": [
+      "cabbage_soup"
+    ]
+  },
+  {
+    "id": "fishy_favour",
+    "name": "A Fishy Favour",
+    "giver": "innkeeper",
+    "summary": "Marta's fish supplier has vanished and the Gilded Tankard's regulars are hungry.",
+    "offer": [
+      "My fishmonger's run off with a bard, and the dinner crowd's getting restless.",
+      "Could you catch and cook some fish for me? Old Maren down at Lake Mirren sells nets and rods."
+    ],
+    "after": [
+      "Take my grandmother's fisherman's pie recipe. It needs swordfish, so you'll want that harpoon."
+    ],
+    "stages": [
+      {
+        "items": [
+          {
+            "item": "roast_perch",
+            "count": 5
+          }
+        ],
+        "journal": "Bring Marta 5 roast perch.",
+        "remind": [
+          "Five roast perch to start. Net them in the shallows, cook them on a fire."
+        ],
+        "done": [
+          "Lovely! That'll keep them quiet for an hour."
+        ]
+      },
+      {
+        "items": [
+          {
+            "item": "grilled_trout",
+            "count": 5
+          },
+          {
+            "item": "salmon_fillet",
+            "count": 2
+          }
+        ],
+        "journal": "Bring Marta 5 grilled trout and 2 salmon fillets.",
+        "remind": [
+          "Now something grander: five grilled trout and two salmon fillets. You'll need a rod and bait."
+        ],
+        "done": [
+          "Oh, these are perfect. The regulars will weep."
+        ]
+      }
+    ],
+    "xpReward": [
+      {
+        "skill": "Fishing",
+        "xp": 2000
+      },
+      {
+        "skill": "Cooking",
+        "xp": 2000
+      }
+    ],
+    "itemReward": [
+      {
+        "item": "coins",
+        "count": 600
+      },
+      {
+        "item": "harpoon",
+        "count": 1
+      }
+    ],
+    "unlocks": [
+      "fishermans_pie"
+    ]
+  },
+  {
+    "id": "smiths_apprentice",
+    "name": "The Smith's Apprentice",
+    "giver": "weaponsmith",
+    "summary": "Brom will teach you the forge if you prove you can smelt and hammer.",
+    "offer": [
+      "Want to learn the forge? Hah! Everyone does till they burn their eyebrows off.",
+      "Take this hammer and pickaxe. Mine copper and tin at the Aldmoor Quarry north-east of town, smelt them here."
+    ],
+    "after": [
+      "My greatsword notes are yours. They'll work for any metal you can smith."
+    ],
+    "startItems": [
+      {
+        "item": "hammer",
+        "count": 1
+      },
+      {
+        "item": "bronze_pickaxe",
+        "count": 1
+      }
+    ],
+    "stages": [
+      {
+        "items": [
+          {
+            "item": "bronze_bar",
+            "count": 5
+          }
+        ],
+        "journal": "Smelt and bring Brom 5 bronze bars.",
+        "remind": [
+          "Five bronze bars. One copper and one tin make a bar, at my furnace."
+        ],
+        "done": [
+          "Decent bars. Not too many bubbles."
+        ]
+      },
+      {
+        "items": [
+          {
+            "item": "bronze_sword",
+            "count": 1
+          }
+        ],
+        "journal": "Forge a bronze longsword at an anvil and show it to Brom.",
+        "remind": [
+          "Now forge me a bronze longsword at the anvil. Hammer in your pack, mind."
+        ],
+        "done": [
+          "Balanced, sharp... you've the makings of a smith."
+        ]
+      }
+    ],
+    "xpReward": [
+      {
+        "skill": "Smithing",
+        "xp": 2500
+      },
+      {
+        "skill": "Mining",
+        "xp": 1200
+      }
+    ],
+    "itemReward": [
+      {
+        "item": "iron_pickaxe",
+        "count": 1
+      },
+      {
+        "item": "coins",
+        "count": 300
+      }
+    ],
+    "unlocks": [
+      "greatswords"
+    ]
+  },
+  {
+    "id": "threads_of_fortune",
+    "name": "Threads of Fortune",
+    "giver": "weaver",
+    "summary": "Ilse the Weaver has a noble's order to fill and no one to help her.",
+    "reqs": [
+      {
+        "skill": "Silkweaving",
+        "level": 10
+      }
+    ],
+    "offer": [
+      "A baroness wants a whole wardrobe by the new moon and my fingers are raw!",
+      "Gather cocoons from my mulberry grove, spin them at my wheel and weave them at my loom."
+    ],
+    "after": [
+      "My dyer's handbook and my spidersilk patterns are yours. Madder dyes crimson, woad dyes azure."
+    ],
+    "startItems": [
+      {
+        "item": "needle",
+        "count": 1
+      }
+    ],
+    "stages": [
+      {
+        "items": [
+          {
+            "item": "silk_cloth",
+            "count": 3
+          }
+        ],
+        "journal": "Bring Ilse 3 bolts of silk cloth.",
+        "remind": [
+          "Three bolts of silk cloth. Three threads to a bolt, three cocoons to... no, one cocoon to a thread."
+        ],
+        "done": [
+          "Smooth and even. Now for something daring."
+        ]
+      },
+      {
+        "items": [
+          {
+            "item": "spider_silk",
+            "count": 5
+          }
+        ],
+        "journal": "Bring Ilse 5 spider silk from the giant spiders below Aldmoor.",
+        "remind": [
+          "Five strands of giant spider silk. The spiders lurk in the Goblin Caves and the Crypt. Their webs can be harvested too, if you're skilled."
+        ],
+        "done": [
+          "You brave soul! The baroness will be dressed like a queen."
+        ]
+      }
+    ],
+    "xpReward": [
+      {
+        "skill": "Silkweaving",
+        "xp": 4000
+      },
+      {
+        "skill": "Fortitude",
+        "xp": 1000
+      }
+    ],
+    "itemReward": [
+      {
+        "item": "coins",
+        "count": 800
+      },
+      {
+        "item": "madder_seed",
+        "count": 4
+      },
+      {
+        "item": "woad_seed",
+        "count": 4
+      }
+    ],
+    "unlocks": [
+      "dyeing",
+      "spidersilk"
+    ]
+  },
+  {
+    "id": "sigils_of_the_circle",
+    "name": "Sigils of the Circle",
+    "giver": "mage_elara",
+    "summary": "Archmage Elara suspects the hexers at the stone circle are stealing the ley-power.",
+    "reqs": [
+      {
+        "skill": "Sorcery",
+        "level": 10
+      },
+      {
+        "skill": "Enchanting",
+        "level": 10
+      }
+    ],
+    "offer": [
+      "The ley lines are weakening. The Ashen Circle's hexers are draining the stones.",
+      "First, prove you understand sigilcraft. Then deal with them."
+    ],
+    "after": [
+      "The Tome of Storms is yours. Carve storm sigils at my table, or at the dark altar for twice the yield... if you dare."
+    ],
+    "stages": [
+      {
+        "items": [
+          {
+            "item": "gale_sigil",
+            "count": 40
+          },
+          {
+            "item": "sapphire",
+            "count": 1
+          }
+        ],
+        "journal": "Carve and bring Elara 40 gale sigils and a sapphire.",
+        "remind": [
+          "Forty gale sigils, carved from essence at my enchanting table, and a sapphire from the quarry."
+        ],
+        "done": [
+          "Clean work. Now for the hexers."
+        ]
+      },
+      {
+        "kind": "Kill",
+        "npcs": [
+          "hexer"
+        ],
+        "count": 6,
+        "journal": "Defeat 6 hexers at the stone circle.",
+        "remind": [
+          "Six hexers at the stone circle, east beyond the river. Mind their curses."
+        ],
+        "done": [
+          "The stones feel lighter already. Thank you."
+        ]
+      }
+    ],
+    "xpReward": [
+      {
+        "skill": "Enchanting",
+        "xp": 4000
+      },
+      {
+        "skill": "Sorcery",
+        "xp": 3000
+      }
+    ],
+    "itemReward": [
+      {
+        "item": "storm_sigil",
+        "count": 50
+      },
+      {
+        "item": "essence_stone",
+        "count": 100
+      }
+    ],
+    "unlocks": [
+      "storm_sigils"
+    ]
+  },
+  {
+    "id": "timber_for_the_town",
+    "name": "Timber for the Town",
+    "giver": "woodsman",
+    "summary": "Gerd the Woodsman needs timber to repair Aldmoor's palisade.",
+    "offer": [
+      "The palisade's rotting and the goblins know it. I need good timber, fast.",
+      "Ash and elm grow all around Darkwood's edge. Bring me the logs."
+    ],
+    "after": [
+      "Take my elder longbow design. Elder trees grow deep in Darkwood, near the bears."
+    ],
+    "startItems": [
+      {
+        "item": "bronze_hatchet",
+        "count": 1
+      }
+    ],
+    "stages": [
+      {
+        "items": [
+          {
+            "item": "ash_log",
+            "count": 8
+          },
+          {
+            "item": "elm_log",
+            "count": 5
+          }
+        ],
+        "journal": "Bring Gerd 8 ash logs and 5 elm logs.",
+        "remind": [
+          "Eight ash logs and five elm logs. Ash trees at level 10, elm at 20."
+        ],
+        "done": [
+          "Straight grain, no rot. Good."
+        ]
+      },
+      {
+        "items": [
+          {
+            "item": "elm_shortbow",
+            "count": 1
+          }
+        ],
+        "journal": "Carve an elmwood shortbow at a workbench and bring it to Gerd.",
+        "remind": [
+          "One more thing: the watch needs bows. Carve me an elmwood shortbow at my workbench. You'll need silk thread for the string."
+        ],
+        "done": [
+          "A fine bow. The watch will be glad of it."
+        ]
+      }
+    ],
+    "xpReward": [
+      {
+        "skill": "Woodcutting",
+        "xp": 3000
+      },
+      {
+        "skill": "Archery",
+        "xp": 1500
+      }
+    ],
+    "itemReward": [
+      {
+        "item": "steel_hatchet",
+        "count": 1
+      },
+      {
+        "item": "coins",
+        "count": 400
+      }
+    ],
+    "unlocks": [
+      "elder_bows"
+    ]
+  },
+  {
+    "id": "goblin_menace",
+    "name": "The Goblin Menace",
+    "giver": "captain",
+    "summary": "Captain Hale wants the goblin raids on the farms stopped for good.",
+    "offer": [
+      "Goblins raid Hob's farm every other night. My guards can't be everywhere.",
+      "Thin their numbers at the camp to the north-west, then take the fight to their chieftain in the caves."
+    ],
+    "after": [
+      "The farms sleep easy now. Come back if you want work."
+    ],
+    "stages": [
+      {
+        "kind": "Kill",
+        "npcs": [
+          "goblin"
+        ],
+        "count": 10,
+        "journal": "Defeat 10 goblins at the goblin camp.",
+        "remind": [
+          "Ten goblins. Their camp's north-west, past the farm."
+        ],
+        "done": [
+          "That'll give them pause."
+        ]
+      },
+      {
+        "kind": "Kill",
+        "npcs": [
+          "goblin_chieftain"
+        ],
+        "count": 1,
+        "journal": "Slay Goblin Chieftain Grukk in the Goblin Caves.",
+        "remind": [
+          "Now the chieftain. Grukk lairs at the far end of the Goblin Caves."
+        ],
+        "done": [
+          "Grukk's dead? Aldmoor owes you, friend."
+        ]
+      }
+    ],
+    "xpReward": [
+      {
+        "skill": "Prowess",
+        "xp": 3000
+      },
+      {
+        "skill": "Might",
+        "xp": 3000
+      },
+      {
+        "skill": "Fortitude",
+        "xp": 2000
+      }
+    ],
+    "itemReward": [
+      {
+        "item": "coins",
+        "count": 1500
+      },
+      {
+        "item": "ruby",
+        "count": 1
+      },
+      {
+        "item": "steel_heater",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "id": "kings_feast",
+    "name": "A Feast for the King",
+    "giver": "king",
+    "summary": "King Aldric is hosting the northern jarls and wants a feast worth remembering.",
+    "reqs": [
+      {
+        "skill": "Cooking",
+        "level": 25
+      }
+    ],
+    "offer": [
+      "The jarls of Skarn dine with me at the new moon. Diplomacy is won at the table.",
+      "My cooks are... uninspired. Would you prepare the courses?"
+    ],
+    "after": [
+      "My royal cook's feast pie recipe is yours. Few are trusted with it."
+    ],
+    "stages": [
+      {
+        "items": [
+          {
+            "item": "venison_stew",
+            "count": 2
+          },
+          {
+            "item": "salmon_fillet",
+            "count": 3
+          },
+          {
+            "item": "berry_pie",
+            "count": 1
+          }
+        ],
+        "journal": "Bring King Aldric 2 venison stews, 3 salmon fillets and a berry pie.",
+        "remind": [
+          "Two venison stews, three salmon fillets and a berry pie. Stews need meat, potato and onion."
+        ],
+        "done": [
+          "Magnificent! The jarls will sing of this."
+        ]
+      }
+    ],
+    "xpReward": [
+      {
+        "skill": "Cooking",
+        "xp": 5000
+      },
+      {
+        "skill": "Farming",
+        "xp": 2000
+      },
+      {
+        "skill": "Vitality",
+        "xp": 1500
+      }
+    ],
+    "itemReward": [
+      {
+        "item": "coins",
+        "count": 2500
+      }
+    ],
+    "unlocks": [
+      "feast_pie"
+    ]
+  },
+  {
+    "id": "rest_for_the_fallen",
+    "name": "Rest for the Fallen King",
+    "giver": "king",
+    "summary": "The Skeletal Warlord must be destroyed before he raises an army of the dead.",
+    "reqs": [
+      {
+        "skill": "Prowess",
+        "level": 40
+      },
+      {
+        "skill": "Fortitude",
+        "level": 40
+      }
+    ],
+    "offer": [
+      "The Fallen King was my great-grandfather. His bones will not rest.",
+      "Enter the Crypt beyond the river and end him. Aldmoor's finest smiths will reward you."
+    ],
+    "after": [
+      "Brom has shared the old emberforge schematics with you. Forge weapons worthy of a hero."
+    ],
+    "stages": [
+      {
+        "kind": "Kill",
+        "npcs": [
+          "skeletal_warlord"
+        ],
+        "count": 1,
+        "journal": "Destroy the Skeletal Warlord in the Crypt of the Fallen King.",
+        "remind": [
+          "The Skeletal Warlord waits in the deepest chamber of the Crypt, east past the graveyard."
+        ],
+        "done": [
+          "It is done? Then he rests at last. Thank you."
+        ]
+      }
+    ],
+    "xpReward": [
+      {
+        "skill": "Prowess",
+        "xp": 8000
+      },
+      {
+        "skill": "Might",
+        "xp": 8000
+      },
+      {
+        "skill": "Fortitude",
+        "xp": 8000
+      },
+      {
+        "skill": "Smithing",
+        "xp": 5000
+      }
+    ],
+    "itemReward": [
+      {
+        "item": "coins",
+        "count": 10000
+      },
+      {
+        "item": "mantle_of_heroes",
+        "count": 1
+      }
+    ],
+    "unlocks": [
+      "emberforged_smithing"
+    ]
+  }
+]

@@ -1,0 +1,412 @@
+[
+  {
+    "id": "tree_pine",
+    "name": "Pine tree",
+    "verb": "Chop",
+    "skill": "Woodcutting",
+    "tool": "Hatchet",
+    "yields": [
+      {
+        "item": "pine_log",
+        "level": 1,
+        "xp": 25
+      }
+    ],
+    "depleteChance": 0.2,
+    "respawnTicks": 20
+  },
+  {
+    "id": "tree_ash",
+    "name": "Ash tree",
+    "verb": "Chop",
+    "skill": "Woodcutting",
+    "tool": "Hatchet",
+    "yields": [
+      {
+        "item": "ash_log",
+        "level": 10,
+        "xp": 37.5
+      }
+    ],
+    "depleteChance": 0.15,
+    "respawnTicks": 30
+  },
+  {
+    "id": "tree_elm",
+    "name": "Elm tree",
+    "verb": "Chop",
+    "skill": "Woodcutting",
+    "tool": "Hatchet",
+    "yields": [
+      {
+        "item": "elm_log",
+        "level": 20,
+        "xp": 50
+      }
+    ],
+    "depleteChance": 0.12,
+    "respawnTicks": 40
+  },
+  {
+    "id": "tree_willow",
+    "name": "Willow tree",
+    "verb": "Chop",
+    "skill": "Woodcutting",
+    "tool": "Hatchet",
+    "yields": [
+      {
+        "item": "willow_log",
+        "level": 30,
+        "xp": 67.5
+      }
+    ],
+    "depleteChance": 0.1,
+    "respawnTicks": 40
+  },
+  {
+    "id": "tree_hornbeam",
+    "name": "Hornbeam tree",
+    "verb": "Chop",
+    "skill": "Woodcutting",
+    "tool": "Hatchet",
+    "yields": [
+      {
+        "item": "hornbeam_log",
+        "level": 35,
+        "xp": 85
+      }
+    ],
+    "depleteChance": 0.1,
+    "respawnTicks": 60
+  },
+  {
+    "id": "tree_elder",
+    "name": "Elder tree",
+    "verb": "Chop",
+    "skill": "Woodcutting",
+    "tool": "Hatchet",
+    "yields": [
+      {
+        "item": "elder_log",
+        "level": 45,
+        "xp": 120
+      }
+    ],
+    "depleteChance": 0.08,
+    "respawnTicks": 90
+  },
+  {
+    "id": "tree_moonwood",
+    "name": "Moonwood tree",
+    "verb": "Chop",
+    "skill": "Woodcutting",
+    "tool": "Hatchet",
+    "yields": [
+      {
+        "item": "moonwood_log",
+        "level": 60,
+        "xp": 175
+      }
+    ],
+    "depleteChance": 0.07,
+    "respawnTicks": 150
+  },
+  {
+    "id": "rock_copper",
+    "name": "Copper rock",
+    "verb": "Mine",
+    "skill": "Mining",
+    "tool": "Pickaxe",
+    "yields": [
+      {
+        "item": "copper_ore",
+        "level": 1,
+        "xp": 17.5
+      }
+    ],
+    "depleteChance": 1,
+    "respawnTicks": 4,
+    "tint": "#d98047"
+  },
+  {
+    "id": "rock_tin",
+    "name": "Tin rock",
+    "verb": "Mine",
+    "skill": "Mining",
+    "tool": "Pickaxe",
+    "yields": [
+      {
+        "item": "tin_ore",
+        "level": 1,
+        "xp": 17.5
+      }
+    ],
+    "depleteChance": 1,
+    "respawnTicks": 4,
+    "tint": "#ccd1d1"
+  },
+  {
+    "id": "rock_iron",
+    "name": "Iron rock",
+    "verb": "Mine",
+    "skill": "Mining",
+    "tool": "Pickaxe",
+    "yields": [
+      {
+        "item": "iron_ore",
+        "level": 15,
+        "xp": 35
+      }
+    ],
+    "depleteChance": 1,
+    "respawnTicks": 9,
+    "tint": "#9e6657"
+  },
+  {
+    "id": "rock_silver",
+    "name": "Silver rock",
+    "verb": "Mine",
+    "skill": "Mining",
+    "tool": "Pickaxe",
+    "yields": [
+      {
+        "item": "silver_ore",
+        "level": 20,
+        "xp": 40
+      }
+    ],
+    "depleteChance": 1,
+    "respawnTicks": 60,
+    "tint": "#ebf0fa"
+  },
+  {
+    "id": "rock_coal",
+    "name": "Coal rock",
+    "verb": "Mine",
+    "skill": "Mining",
+    "tool": "Pickaxe",
+    "yields": [
+      {
+        "item": "coal",
+        "level": 30,
+        "xp": 50
+      }
+    ],
+    "depleteChance": 1,
+    "respawnTicks": 40,
+    "tint": "#333338"
+  },
+  {
+    "id": "rock_gold",
+    "name": "Gold rock",
+    "verb": "Mine",
+    "skill": "Mining",
+    "tool": "Pickaxe",
+    "yields": [
+      {
+        "item": "gold_ore",
+        "level": 40,
+        "xp": 65
+      }
+    ],
+    "depleteChance": 1,
+    "respawnTicks": 80,
+    "tint": "#ffcc40"
+  },
+  {
+    "id": "rock_cobalt",
+    "name": "Cobalt rock",
+    "verb": "Mine",
+    "skill": "Mining",
+    "tool": "Pickaxe",
+    "yields": [
+      {
+        "item": "cobalt_ore",
+        "level": 45,
+        "xp": 80
+      }
+    ],
+    "depleteChance": 1,
+    "respawnTicks": 120,
+    "tint": "#4c61e6"
+  },
+  {
+    "id": "rock_verdite",
+    "name": "Verdite rock",
+    "verb": "Mine",
+    "skill": "Mining",
+    "tool": "Pickaxe",
+    "yields": [
+      {
+        "item": "verdite_ore",
+        "level": 55,
+        "xp": 95
+      }
+    ],
+    "depleteChance": 1,
+    "respawnTicks": 160,
+    "tint": "#4cb259"
+  },
+  {
+    "id": "rock_azurite",
+    "name": "Azurite rock",
+    "verb": "Mine",
+    "skill": "Mining",
+    "tool": "Pickaxe",
+    "yields": [
+      {
+        "item": "azurite_ore",
+        "level": 65,
+        "xp": 125
+      }
+    ],
+    "depleteChance": 1,
+    "respawnTicks": 250,
+    "tint": "#4cd9ff"
+  },
+  {
+    "id": "rock_ember",
+    "name": "Ember rock",
+    "verb": "Mine",
+    "skill": "Mining",
+    "tool": "Pickaxe",
+    "yields": [
+      {
+        "item": "ember_ore",
+        "level": 80,
+        "xp": 180
+      }
+    ],
+    "depleteChance": 1,
+    "respawnTicks": 400,
+    "tint": "#ff4c1f"
+  },
+  {
+    "id": "rock_essence",
+    "name": "Essence rock",
+    "verb": "Mine",
+    "skill": "Mining",
+    "tool": "Pickaxe",
+    "yields": [
+      {
+        "item": "essence_stone",
+        "level": 1,
+        "xp": 5
+      }
+    ],
+    "baseChance": 0.85,
+    "tint": "#bfa6ff"
+  },
+  {
+    "id": "fish_net",
+    "name": "Fishing spot",
+    "verb": "Net",
+    "skill": "Fishing",
+    "tool": "Net",
+    "yields": [
+      {
+        "item": "raw_herring",
+        "level": 10,
+        "xp": 20
+      },
+      {
+        "item": "raw_perch",
+        "level": 1,
+        "xp": 10
+      }
+    ],
+    "baseChance": 0.4
+  },
+  {
+    "id": "fish_bait",
+    "name": "Fishing spot",
+    "verb": "Bait",
+    "skill": "Fishing",
+    "tool": "Rod",
+    "bait": "fishing_bait",
+    "yields": [
+      {
+        "item": "raw_salmon",
+        "level": 30,
+        "xp": 70
+      },
+      {
+        "item": "raw_pike",
+        "level": 25,
+        "xp": 60
+      },
+      {
+        "item": "raw_trout",
+        "level": 15,
+        "xp": 50
+      }
+    ],
+    "baseChance": 0.35
+  },
+  {
+    "id": "fish_harpoon",
+    "name": "Fishing spot",
+    "verb": "Harpoon",
+    "skill": "Fishing",
+    "tool": "Harpoon",
+    "yields": [
+      {
+        "item": "raw_swordfish",
+        "level": 45,
+        "xp": 100
+      }
+    ],
+    "baseChance": 0.25
+  },
+  {
+    "id": "fish_deep",
+    "name": "Deep-water spot",
+    "verb": "Harpoon",
+    "skill": "Fishing",
+    "tool": "Harpoon",
+    "yields": [
+      {
+        "item": "raw_moonfin",
+        "level": 60,
+        "xp": 150
+      },
+      {
+        "item": "raw_swordfish",
+        "level": 45,
+        "xp": 100
+      }
+    ],
+    "baseChance": 0.25
+  },
+  {
+    "id": "mulberry",
+    "name": "Mulberry tree",
+    "verb": "Gather",
+    "skill": "Silkweaving",
+    "yields": [
+      {
+        "item": "silk_cocoon",
+        "level": 1,
+        "xp": 10
+      }
+    ],
+    "baseChance": 0.4,
+    "depleteChance": 0.2,
+    "respawnTicks": 30
+  },
+  {
+    "id": "spider_web",
+    "name": "Giant web",
+    "verb": "Collect",
+    "skill": "Silkweaving",
+    "yields": [
+      {
+        "item": "spider_silk",
+        "level": 40,
+        "xp": 40
+      }
+    ],
+    "depleteChance": 0.33,
+    "respawnTicks": 60
+  }
+]

@@ -1,0 +1,1467 @@
+[
+  {
+    "id": "banker",
+    "name": "Banker",
+    "examine": "A clerk of the Aldmoor Treasury.",
+    "wanderRadius": 0,
+    "attackable": false,
+    "options": [
+      "Bank",
+      "Talk"
+    ],
+    "dialogue": [
+      "Good day! How may I help you?",
+      "Your valuables are safe in the vaults of the Aldmoor Treasury."
+    ],
+    "model": "npc_merchant",
+    "tint": "#ccccff"
+  },
+  {
+    "id": "shopkeeper",
+    "name": "Shopkeeper",
+    "examine": "Runs the general store.",
+    "wanderRadius": 1,
+    "attackable": false,
+    "options": [
+      "Trade",
+      "Talk"
+    ],
+    "shopId": "general",
+    "dialogue": [
+      "Can I interest you in my wares?"
+    ],
+    "model": "npc_merchant"
+  },
+  {
+    "id": "weaponsmith",
+    "name": "Brom the Smith",
+    "examine": "His arms are like tree trunks.",
+    "wanderRadius": 1,
+    "attackable": false,
+    "options": [
+      "Trade",
+      "Talk"
+    ],
+    "shopId": "smith",
+    "dialogue": [
+      "Finest steel in the kingdom, forged right here.",
+      "Mithril? Adamant? Only for proven warriors."
+    ],
+    "model": "npc_barbarian",
+    "tint": "#e6d9cc"
+  },
+  {
+    "id": "bowyer",
+    "name": "Lyra the Bowyer",
+    "examine": "Keen eyes.",
+    "wanderRadius": 1,
+    "attackable": false,
+    "options": [
+      "Trade",
+      "Talk"
+    ],
+    "shopId": "archery",
+    "dialogue": [
+      "A good bow and a steady hand. That's all you need."
+    ],
+    "model": "npc_bandit",
+    "tint": "#ccffcc"
+  },
+  {
+    "id": "mage_elara",
+    "name": "Archmage Elara",
+    "examine": "Sparks dance at her fingertips.",
+    "wanderRadius": 1,
+    "attackable": false,
+    "options": [
+      "Trade",
+      "Talk"
+    ],
+    "shopId": "magic",
+    "dialogue": [
+      "Sigils are the alphabet of power. Learn to spell with them.",
+      "Beware the crypt beyond the river. The Fallen King stirs."
+    ],
+    "model": "npc_dark_wizard",
+    "tint": [
+      0.7,
+      0.8,
+      1.3
+    ]
+  },
+  {
+    "id": "guide",
+    "name": "Old Tobin",
+    "examine": "He's seen a thing or two.",
+    "wanderRadius": 2,
+    "attackable": false,
+    "options": [
+      "Talk"
+    ],
+    "dialogue": [
+      "Welcome to Aldmoor, adventurer!",
+      "Click the ground to move, or click folk and foes to act. Right-click for every action.",
+      "Your pack, gear, skills and spellbook are in the panel at the lower right. Doors are open: step inside and look around!",
+      "The hens and cattle on Hob's farm are easy practice. Goblin raiders camp to the north-west.",
+      "Stronger folk delve the Goblin Caves near their camp... and the bravest, the Crypt beyond the river.",
+      "North of Darkwood lies the Bloodmarch. Lawless land: other adventurers may fight you there."
+    ],
+    "model": "npc_merchant",
+    "tint": "#ffe6cc"
+  },
+  {
+    "id": "king",
+    "name": "King Aldric",
+    "examine": "The weary but kindly ruler of Aldmoor.",
+    "wanderRadius": 0,
+    "attackable": false,
+    "options": [
+      "Talk"
+    ],
+    "dialogue": [
+      "Welcome to my hall, traveller.",
+      "The Fallen King stirs in his crypt beyond the river. My knights will not go near it.",
+      "Bring me news of his defeat, and Aldmoor will sing your name."
+    ],
+    "model": "npc_king",
+    "height": 1.85
+  },
+  {
+    "id": "innkeeper",
+    "name": "Marta the Innkeeper",
+    "examine": "She runs the Gilded Tankard.",
+    "wanderRadius": 1,
+    "attackable": false,
+    "options": [
+      "Trade",
+      "Talk"
+    ],
+    "shopId": "inn",
+    "dialogue": [
+      "Welcome to the Gilded Tankard! Hot stew and a warm fire.",
+      "Heard tell the goblins have a chieftain now. Nasty business."
+    ],
+    "model": "npc_merchant",
+    "tint": "#ffd9cc"
+  },
+  {
+    "id": "villager",
+    "name": "Villager",
+    "examine": "A resident of Aldmoor.",
+    "wanderRadius": 2,
+    "attackable": false,
+    "options": [
+      "Talk"
+    ],
+    "dialogue": [
+      "Lovely day, isn't it?",
+      "Mind the goblins if you head west."
+    ],
+    "model": "npc_merchant",
+    "tint": "#d9f2ff"
+  },
+  {
+    "id": "farmer",
+    "name": "Farmer Hob",
+    "examine": "He smells of hay.",
+    "wanderRadius": 2,
+    "attackable": false,
+    "options": [
+      "Talk",
+      "Trade"
+    ],
+    "shopId": "farm",
+    "dialogue": [
+      "Them rats keep getting into my grain.",
+      "Help yourself to some practice on the hens, just don't scare the cows."
+    ],
+    "model": "npc_merchant",
+    "tint": "#e6ffcc"
+  },
+  {
+    "id": "skarn_chief",
+    "name": "Jarl Hrafna",
+    "examine": "Chieftain of Skarn Hold.",
+    "wanderRadius": 1,
+    "attackable": false,
+    "options": [
+      "Talk"
+    ],
+    "dialogue": [
+      "Hah! A southerner in my longhall.",
+      "Prove your strength against my raiders outside, if you dare."
+    ],
+    "model": "npc_barbarian",
+    "height": 2,
+    "tint": "#ffe6d9"
+  },
+  {
+    "id": "weaver",
+    "name": "Ilse the Weaver",
+    "examine": "Her fingers never stop moving.",
+    "wanderRadius": 1,
+    "attackable": false,
+    "options": [
+      "Talk",
+      "Trade"
+    ],
+    "shopId": "weaver",
+    "dialogue": [
+      "Silk starts as a cocoon in my mulberry grove. Spin it, weave it, sew it.",
+      "A good silk robe is worth more than steel to a sorcerer."
+    ],
+    "model": "npc_merchant",
+    "tint": "#ffd9f2"
+  },
+  {
+    "id": "woodsman",
+    "name": "Gerd the Woodsman",
+    "examine": "Smells of pine sap.",
+    "wanderRadius": 2,
+    "attackable": false,
+    "options": [
+      "Talk",
+      "Trade"
+    ],
+    "shopId": "woodsman",
+    "dialogue": [
+      "Pine for beginners, ash and elm for the keen. Elder grows deep in Darkwood, where the bears are.",
+      "Watch for bird's nests when a tree shakes. Seeds, gems... I once found a ring in one."
+    ],
+    "model": "npc_barbarian",
+    "tint": "#d9ffcc"
+  },
+  {
+    "id": "fisher",
+    "name": "Old Maren",
+    "examine": "Weathered as driftwood.",
+    "wanderRadius": 2,
+    "attackable": false,
+    "options": [
+      "Talk",
+      "Trade"
+    ],
+    "shopId": "fishing",
+    "dialogue": [
+      "Nets for the shallows, rod and bait for trout and salmon, harpoons for the big ones.",
+      "When the water churns gold, drop everything: a frenzied shoal bites twice as fast. Some say golden carp swim in them.",
+      "The shoals wander. If your spot goes quiet, look along the bank."
+    ],
+    "model": "npc_merchant",
+    "tint": "#cce6ff"
+  },
+  {
+    "id": "prospector",
+    "name": "Durgan the Prospector",
+    "examine": "Covered in rock dust.",
+    "wanderRadius": 2,
+    "attackable": false,
+    "options": [
+      "Talk",
+      "Trade"
+    ],
+    "shopId": "mining",
+    "dialogue": [
+      "Copper and tin for bronze. Iron's finicky to smelt till you've practice. Coal makes steel.",
+      "Keep swinging: every rock hides the odd gem.",
+      "The best ore's in dangerous places. Cobalt and verdite in the Goblin Caves, azurite in the Crypt, and ember ore... in the Bloodmarch."
+    ],
+    "model": "npc_barbarian",
+    "height": 1.6,
+    "tint": "#ffe6bf"
+  },
+  {
+    "id": "captain",
+    "name": "Captain Hale",
+    "examine": "Captain of the Aldmoor watch.",
+    "wanderRadius": 1,
+    "attackable": false,
+    "options": [
+      "Talk"
+    ],
+    "dialogue": [
+      "Keep your blade sharp and your eyes open."
+    ],
+    "model": "npc_guard",
+    "tint": "#fff2d9"
+  },
+  {
+    "id": "guard",
+    "name": "Guard",
+    "examine": "A member of the Aldmoor watch.",
+    "combatLevel": 21,
+    "hitpoints": 22,
+    "attack": 19,
+    "strength": 18,
+    "defence": 20,
+    "defMelee": 18,
+    "defRanged": 18,
+    "maxHit": 4,
+    "attackSpeed": 5,
+    "wanderRadius": 3,
+    "respawnTicks": 40,
+    "drops": [
+      {
+        "item": "bones"
+      },
+      {
+        "item": "coins",
+        "min": 10,
+        "max": 40,
+        "chance": 0.6
+      },
+      {
+        "item": "iron_sword",
+        "chance": 0.05
+      },
+      {
+        "item": "iron_helm",
+        "chance": 0.04
+      },
+      {
+        "item": "bread",
+        "chance": 0.15
+      }
+    ],
+    "model": "npc_guard",
+    "weaponModel": "item_sword",
+    "weaponTint": "#8c8c94"
+  },
+  {
+    "id": "chicken",
+    "name": "Chicken",
+    "examine": "A plump farmyard hen.",
+    "combatLevel": 1,
+    "hitpoints": 3,
+    "wanderRadius": 5,
+    "respawnTicks": 20,
+    "drops": [
+      {
+        "item": "bones"
+      },
+      {
+        "item": "raw_chicken"
+      },
+      {
+        "item": "feather",
+        "min": 5,
+        "max": 15
+      },
+      {
+        "item": "potato_seed",
+        "max": 3,
+        "chance": 0.05
+      }
+    ],
+    "body": "Bird",
+    "model": "chicken",
+    "height": 0.6
+  },
+  {
+    "id": "cow",
+    "name": "Cow",
+    "examine": "A placid dairy cow.",
+    "combatLevel": 2,
+    "hitpoints": 8,
+    "wanderRadius": 5,
+    "respawnTicks": 25,
+    "drops": [
+      {
+        "item": "bones"
+      },
+      {
+        "item": "raw_meat"
+      },
+      {
+        "item": "leather_jerkin",
+        "chance": 0.03
+      },
+      {
+        "item": "leather_boots",
+        "chance": 0.05
+      },
+      {
+        "item": "compost",
+        "chance": 0.1
+      }
+    ],
+    "body": "Quadruped",
+    "model": "cow",
+    "height": 1.5
+  },
+  {
+    "id": "rat",
+    "name": "Giant rat",
+    "examine": "A rat the size of a dog.",
+    "combatLevel": 3,
+    "hitpoints": 5,
+    "attack": 2,
+    "strength": 2,
+    "defence": 2,
+    "respawnTicks": 20,
+    "drops": [
+      {
+        "item": "bones"
+      },
+      {
+        "item": "coins",
+        "max": 5,
+        "chance": 0.3
+      },
+      {
+        "item": "potato_seed",
+        "max": 2,
+        "chance": 0.08
+      },
+      {
+        "item": "onion_seed",
+        "max": 2,
+        "chance": 0.05
+      }
+    ],
+    "body": "Quadruped",
+    "model": "rat",
+    "height": 0.55
+  },
+  {
+    "id": "goblin",
+    "name": "Goblin",
+    "examine": "A sneering, green-skinned raider.",
+    "combatLevel": 5,
+    "hitpoints": 7,
+    "attack": 5,
+    "strength": 5,
+    "defence": 4,
+    "maxHit": 2,
+    "wanderRadius": 5,
+    "respawnTicks": 25,
+    "drops": [
+      {
+        "item": "bones"
+      },
+      {
+        "item": "coins",
+        "max": 15,
+        "chance": 0.5
+      },
+      {
+        "item": "bronze_dagger",
+        "chance": 0.06
+      },
+      {
+        "item": "bronze_helm",
+        "chance": 0.04
+      },
+      {
+        "item": "bronze_arrow",
+        "min": 5,
+        "max": 15,
+        "chance": 0.1
+      },
+      {
+        "item": "focus_sigil",
+        "min": 3,
+        "max": 8,
+        "chance": 0.1
+      },
+      {
+        "item": "gale_sigil",
+        "min": 5,
+        "max": 12,
+        "chance": 0.1
+      },
+      {
+        "item": "onion_seed",
+        "max": 3,
+        "chance": 0.08
+      },
+      {
+        "item": "cabbage_seed",
+        "max": 3,
+        "chance": 0.06
+      },
+      {
+        "item": "copper_ore",
+        "chance": 0.06
+      },
+      {
+        "item": "fishing_bait",
+        "min": 5,
+        "max": 15,
+        "chance": 0.1
+      }
+    ],
+    "model": "npc_goblin",
+    "height": 1.2,
+    "weaponModel": "item_dagger",
+    "weaponTint": "#b87333"
+  },
+  {
+    "id": "barbarian",
+    "name": "Skarn raider",
+    "examine": "A raider from Skarn Hold, eager for a scrap.",
+    "combatLevel": 12,
+    "hitpoints": 20,
+    "attack": 12,
+    "strength": 12,
+    "defence": 8,
+    "maxHit": 3,
+    "attackSpeed": 5,
+    "drops": [
+      {
+        "item": "bones"
+      },
+      {
+        "item": "coins",
+        "min": 5,
+        "max": 30,
+        "chance": 0.6
+      },
+      {
+        "item": "iron_warhammer",
+        "chance": 0.05
+      },
+      {
+        "item": "iron_legguards",
+        "chance": 0.03
+      },
+      {
+        "item": "bread",
+        "chance": 0.2
+      },
+      {
+        "item": "raw_meat",
+        "chance": 0.3
+      },
+      {
+        "item": "wheat_seed",
+        "max": 3,
+        "chance": 0.06
+      },
+      {
+        "item": "iron_ore",
+        "max": 2,
+        "chance": 0.08
+      }
+    ],
+    "model": "npc_barbarian",
+    "weaponModel": "item_warhammer",
+    "weaponTint": "#8c8c94"
+  },
+  {
+    "id": "wolf",
+    "name": "Grey wolf",
+    "examine": "A lean, hungry wolf.",
+    "combatLevel": 14,
+    "hitpoints": 20,
+    "attack": 14,
+    "strength": 13,
+    "defence": 10,
+    "maxHit": 3,
+    "aggressive": true,
+    "aggroRange": 3,
+    "wanderRadius": 5,
+    "drops": [
+      {
+        "item": "bones"
+      },
+      {
+        "item": "leather_gloves",
+        "chance": 0.05
+      },
+      {
+        "item": "raw_meat",
+        "chance": 0.8
+      }
+    ],
+    "body": "Quadruped",
+    "model": "wolf",
+    "height": 1
+  },
+  {
+    "id": "bear",
+    "name": "Brown bear",
+    "examine": "A hulking brown bear.",
+    "combatLevel": 21,
+    "hitpoints": 30,
+    "attack": 18,
+    "strength": 20,
+    "defence": 16,
+    "maxHit": 4,
+    "attackSpeed": 5,
+    "respawnTicks": 35,
+    "drops": [
+      {
+        "item": "bones"
+      },
+      {
+        "item": "grilled_trout",
+        "chance": 0.3
+      },
+      {
+        "item": "raw_meat",
+        "max": 2
+      },
+      {
+        "item": "strawberry_seed",
+        "max": 2,
+        "chance": 0.06
+      },
+      {
+        "item": "scroll_hunters_roast",
+        "chance": 0.03
+      }
+    ],
+    "body": "Quadruped",
+    "model": "bear",
+    "height": 1.6
+  },
+  {
+    "id": "bandit",
+    "name": "Bandit",
+    "examine": "A masked highwayman.",
+    "combatLevel": 25,
+    "hitpoints": 30,
+    "attack": 22,
+    "strength": 22,
+    "defence": 20,
+    "defMelee": 10,
+    "maxHit": 4,
+    "aggressive": true,
+    "respawnTicks": 35,
+    "drops": [
+      {
+        "item": "bones"
+      },
+      {
+        "item": "coins",
+        "min": 20,
+        "max": 90,
+        "chance": 0.8
+      },
+      {
+        "item": "steel_sabre",
+        "chance": 0.05
+      },
+      {
+        "item": "steel_arrow",
+        "min": 5,
+        "max": 20,
+        "chance": 0.1
+      },
+      {
+        "item": "salmon_fillet",
+        "chance": 0.1
+      },
+      {
+        "item": "sapphire",
+        "chance": 0.03
+      },
+      {
+        "item": "emerald",
+        "chance": 0.015
+      },
+      {
+        "item": "madder_seed",
+        "max": 2,
+        "chance": 0.05
+      },
+      {
+        "item": "woad_seed",
+        "max": 2,
+        "chance": 0.04
+      },
+      {
+        "item": "scroll_greatswords",
+        "chance": 0.01
+      }
+    ],
+    "model": "npc_bandit",
+    "weaponModel": "item_scimitar",
+    "weaponTint": "#c7ccd6"
+  },
+  {
+    "id": "hexer",
+    "name": "Hexer",
+    "examine": "A cultist of the Ashen Circle, muttering curses.",
+    "combatLevel": 22,
+    "hitpoints": 24,
+    "defence": 12,
+    "magic": 25,
+    "defMagic": 15,
+    "style": "Magic",
+    "maxHit": 5,
+    "attackSpeed": 5,
+    "attackRange": 7,
+    "aggressive": true,
+    "aggroRange": 5,
+    "wanderRadius": 3,
+    "drops": [
+      {
+        "item": "bones"
+      },
+      {
+        "item": "focus_sigil",
+        "min": 5,
+        "max": 20,
+        "chance": 0.4
+      },
+      {
+        "item": "storm_sigil",
+        "min": 2,
+        "max": 8,
+        "chance": 0.2
+      },
+      {
+        "item": "ember_sigil",
+        "min": 5,
+        "max": 20,
+        "chance": 0.3
+      },
+      {
+        "item": "apprentice_hat",
+        "chance": 0.05
+      },
+      {
+        "item": "apprentice_robe",
+        "chance": 0.04
+      },
+      {
+        "item": "ember_staff",
+        "chance": 0.01
+      },
+      {
+        "item": "essence_stone",
+        "min": 5,
+        "max": 20,
+        "chance": 0.25
+      },
+      {
+        "item": "moonpetal_seed",
+        "chance": 0.03
+      },
+      {
+        "item": "scroll_storm_sigils",
+        "chance": 0.015
+      }
+    ],
+    "model": "npc_dark_wizard",
+    "projectileColor": "#a040ff",
+    "weaponModel": "item_staff",
+    "weaponTint": "#4c3366"
+  },
+  {
+    "id": "pit_fiend",
+    "name": "Pit fiend",
+    "examine": "A horned brute from the burning pits.",
+    "combatLevel": 82,
+    "hitpoints": 80,
+    "attack": 68,
+    "strength": 70,
+    "defence": 71,
+    "defMelee": 30,
+    "defRanged": 30,
+    "maxHit": 8,
+    "aggressive": true,
+    "respawnTicks": 50,
+    "drops": [
+      {
+        "item": "bones"
+      },
+      {
+        "item": "coins",
+        "min": 100,
+        "max": 500,
+        "chance": 0.9
+      },
+      {
+        "item": "azurite_helm",
+        "chance": 0.03
+      },
+      {
+        "item": "cobalt_chestplate",
+        "chance": 0.04
+      },
+      {
+        "item": "storm_sigil",
+        "min": 10,
+        "max": 30,
+        "chance": 0.2
+      },
+      {
+        "item": "void_sigil",
+        "min": 5,
+        "max": 15,
+        "chance": 0.1
+      },
+      {
+        "item": "salmon_fillet",
+        "chance": 0.2
+      },
+      {
+        "item": "ember_ore",
+        "max": 2,
+        "chance": 0.1
+      },
+      {
+        "item": "emberbloom_seed",
+        "chance": 0.04
+      },
+      {
+        "item": "ruby",
+        "chance": 0.04
+      },
+      {
+        "item": "scroll_crimson_sigils",
+        "chance": 0.03
+      },
+      {
+        "item": "scroll_azurite_smithing",
+        "chance": 0.02
+      },
+      {
+        "item": "scroll_emberforged_smithing",
+        "chance": 0.005
+      }
+    ],
+    "body": "Winged",
+    "model": "pit_fiend",
+    "height": 2.6
+  },
+  {
+    "id": "moss_drake",
+    "name": "Moss drake",
+    "examine": "A drake whose scales are overgrown with moss.",
+    "combatLevel": 79,
+    "hitpoints": 75,
+    "attack": 68,
+    "strength": 68,
+    "defence": 68,
+    "defMelee": 40,
+    "defRanged": 40,
+    "defMagic": 30,
+    "maxHit": 8,
+    "aggressive": true,
+    "aggroRange": 5,
+    "wanderRadius": 3,
+    "respawnTicks": 60,
+    "drops": [
+      {
+        "item": "bones",
+        "min": 2,
+        "max": 3
+      },
+      {
+        "item": "drakehide_jerkin",
+        "chance": 0.05
+      },
+      {
+        "item": "drakehide_leggings",
+        "chance": 0.08
+      },
+      {
+        "item": "drakehide_bracers",
+        "chance": 0.1
+      },
+      {
+        "item": "verdite_legguards",
+        "chance": 0.03
+      },
+      {
+        "item": "azurite_arrow",
+        "min": 10,
+        "max": 30,
+        "chance": 0.1
+      },
+      {
+        "item": "coins",
+        "min": 100,
+        "max": 400,
+        "chance": 0.7
+      },
+      {
+        "item": "moonpetal_seed",
+        "max": 2,
+        "chance": 0.06
+      },
+      {
+        "item": "emberbloom_seed",
+        "chance": 0.03
+      },
+      {
+        "item": "diamond",
+        "chance": 0.02
+      },
+      {
+        "item": "scroll_azurite_smithing",
+        "chance": 0.04
+      },
+      {
+        "item": "scroll_moonwood_bows",
+        "chance": 0.03
+      }
+    ],
+    "body": "Dragon",
+    "model": "moss_drake",
+    "height": 3.2
+  },
+  {
+    "id": "cave_bat",
+    "name": "Cave bat",
+    "examine": "It shrieks and flutters in the dark.",
+    "combatLevel": 8,
+    "attack": 8,
+    "strength": 6,
+    "defence": 6,
+    "maxHit": 2,
+    "aggressive": true,
+    "aggroRange": 3,
+    "wanderRadius": 5,
+    "respawnTicks": 25,
+    "drops": [
+      {
+        "item": "bones",
+        "chance": 0.5
+      }
+    ],
+    "body": "Floating",
+    "model": "cave_bat",
+    "height": 0.8
+  },
+  {
+    "id": "cave_goblin",
+    "name": "Cave goblin",
+    "examine": "Pale goblins that shun the daylight.",
+    "combatLevel": 13,
+    "hitpoints": 16,
+    "attack": 12,
+    "strength": 11,
+    "defence": 10,
+    "maxHit": 3,
+    "aggressive": true,
+    "aggroRange": 3,
+    "respawnTicks": 25,
+    "drops": [
+      {
+        "item": "bones"
+      },
+      {
+        "item": "coins",
+        "min": 5,
+        "max": 30,
+        "chance": 0.6
+      },
+      {
+        "item": "iron_sabre",
+        "chance": 0.05
+      },
+      {
+        "item": "iron_arrow",
+        "min": 5,
+        "max": 20,
+        "chance": 0.15
+      },
+      {
+        "item": "stone_sigil",
+        "min": 5,
+        "max": 15,
+        "chance": 0.15
+      },
+      {
+        "item": "grilled_trout",
+        "chance": 0.1
+      },
+      {
+        "item": "coal",
+        "max": 3,
+        "chance": 0.1
+      },
+      {
+        "item": "wheat_seed",
+        "max": 3,
+        "chance": 0.06
+      },
+      {
+        "item": "strawberry_seed",
+        "max": 2,
+        "chance": 0.04
+      }
+    ],
+    "model": "npc_goblin",
+    "height": 1.3,
+    "tint": "#ccffb2",
+    "weaponModel": "item_scimitar",
+    "weaponTint": "#8c8c94"
+  },
+  {
+    "id": "goblin_archer",
+    "name": "Goblin archer",
+    "examine": "A goblin with a crude shortbow.",
+    "combatLevel": 16,
+    "hitpoints": 16,
+    "defence": 10,
+    "ranged": 18,
+    "style": "Ranged",
+    "maxHit": 3,
+    "attackSpeed": 5,
+    "attackRange": 6,
+    "aggressive": true,
+    "aggroRange": 5,
+    "wanderRadius": 3,
+    "respawnTicks": 25,
+    "drops": [
+      {
+        "item": "bones"
+      },
+      {
+        "item": "iron_arrow",
+        "min": 5,
+        "max": 25,
+        "chance": 0.4
+      },
+      {
+        "item": "ash_shortbow",
+        "chance": 0.05
+      },
+      {
+        "item": "leather_hood",
+        "chance": 0.05
+      },
+      {
+        "item": "leather_bracers",
+        "chance": 0.05
+      }
+    ],
+    "model": "npc_goblin",
+    "height": 1.25,
+    "tint": "#ffe6b2",
+    "weaponModel": "item_shortbow"
+  },
+  {
+    "id": "goblin_chieftain",
+    "name": "Goblin Chieftain Grukk",
+    "examine": "The scarred warlord of the goblin clans.",
+    "combatLevel": 38,
+    "hitpoints": 80,
+    "attack": 32,
+    "strength": 34,
+    "defence": 28,
+    "defMelee": 20,
+    "maxHit": 7,
+    "attackSpeed": 5,
+    "aggressive": true,
+    "aggroRange": 6,
+    "wanderRadius": 2,
+    "respawnTicks": 100,
+    "drops": [
+      {
+        "item": "bones"
+      },
+      {
+        "item": "coins",
+        "min": 150,
+        "max": 400
+      },
+      {
+        "item": "steel_greatsword",
+        "chance": 0.15
+      },
+      {
+        "item": "cobalt_sabre",
+        "chance": 0.08
+      },
+      {
+        "item": "cobalt_helm",
+        "chance": 0.08
+      },
+      {
+        "item": "elm_shortbow",
+        "chance": 0.1
+      },
+      {
+        "item": "ruby_pendant",
+        "chance": 0.05
+      },
+      {
+        "item": "salmon_fillet",
+        "max": 3,
+        "chance": 0.5
+      },
+      {
+        "item": "scroll_greatswords",
+        "chance": 0.1
+      },
+      {
+        "item": "cobalt_ore",
+        "min": 2,
+        "max": 5,
+        "chance": 0.4
+      },
+      {
+        "item": "sapphire",
+        "chance": 0.2
+      }
+    ],
+    "model": "npc_goblin",
+    "height": 2,
+    "tint": [
+      1.1,
+      0.8,
+      0.7
+    ],
+    "weaponModel": "item_greatsword",
+    "weaponTint": "#c7ccd6",
+    "boss": true
+  },
+  {
+    "id": "skeleton",
+    "name": "Skeleton",
+    "examine": "Rattling bones bound by a dark will.",
+    "combatLevel": 22,
+    "hitpoints": 24,
+    "attack": 20,
+    "strength": 18,
+    "defence": 18,
+    "defRanged": 20,
+    "maxHit": 3,
+    "aggressive": true,
+    "drops": [
+      {
+        "item": "bones"
+      },
+      {
+        "item": "coins",
+        "min": 10,
+        "max": 60,
+        "chance": 0.5
+      },
+      {
+        "item": "steel_sword",
+        "chance": 0.05
+      },
+      {
+        "item": "steel_helm",
+        "chance": 0.04
+      },
+      {
+        "item": "storm_sigil",
+        "min": 2,
+        "max": 6,
+        "chance": 0.1
+      },
+      {
+        "item": "grilled_trout",
+        "chance": 0.1
+      },
+      {
+        "item": "silver_ore",
+        "max": 2,
+        "chance": 0.06
+      },
+      {
+        "item": "scroll_moonsilk",
+        "chance": 0.005
+      }
+    ],
+    "model": "npc_skeleton",
+    "weaponModel": "item_sword",
+    "weaponTint": "#736659"
+  },
+  {
+    "id": "zombie",
+    "name": "Zombie",
+    "examine": "It shambles hungrily towards you.",
+    "combatLevel": 18,
+    "hitpoints": 26,
+    "attack": 16,
+    "strength": 16,
+    "defence": 12,
+    "maxHit": 3,
+    "attackSpeed": 5,
+    "aggressive": true,
+    "aggroRange": 3,
+    "wanderRadius": 3,
+    "drops": [
+      {
+        "item": "bones"
+      },
+      {
+        "item": "coins",
+        "min": 5,
+        "max": 40,
+        "chance": 0.4
+      },
+      {
+        "item": "iron_chestplate",
+        "chance": 0.03
+      },
+      {
+        "item": "bread",
+        "chance": 0.1
+      },
+      {
+        "item": "moonpetal_seed",
+        "chance": 0.03
+      },
+      {
+        "item": "compost",
+        "max": 2,
+        "chance": 0.15
+      }
+    ],
+    "model": "npc_zombie"
+  },
+  {
+    "id": "ghost",
+    "name": "Ghost",
+    "examine": "A cold, whispering shade.",
+    "combatLevel": 30,
+    "hitpoints": 28,
+    "defence": 25,
+    "magic": 30,
+    "defMelee": 30,
+    "defMagic": 5,
+    "style": "Magic",
+    "maxHit": 5,
+    "attackSpeed": 5,
+    "attackRange": 6,
+    "aggressive": true,
+    "aggroRange": 5,
+    "respawnTicks": 35,
+    "drops": [
+      {
+        "item": "void_sigil",
+        "min": 2,
+        "max": 6,
+        "chance": 0.1
+      },
+      {
+        "item": "storm_sigil",
+        "min": 3,
+        "max": 10,
+        "chance": 0.25
+      },
+      {
+        "item": "arcanist_hat",
+        "chance": 0.02
+      },
+      {
+        "item": "scroll_moonsilk",
+        "chance": 0.015
+      },
+      {
+        "item": "scroll_void_sigils",
+        "chance": 0.02
+      },
+      {
+        "item": "scroll_void_staff",
+        "chance": 0.008
+      },
+      {
+        "item": "essence_stone",
+        "min": 5,
+        "max": 15,
+        "chance": 0.3
+      }
+    ],
+    "body": "Floating",
+    "model": "ghost",
+    "height": 1.9,
+    "projectileColor": "#80ffd0"
+  },
+  {
+    "id": "giant_spider",
+    "name": "Giant spider",
+    "examine": "Its fangs drip with venom.",
+    "combatLevel": 27,
+    "hitpoints": 33,
+    "attack": 25,
+    "strength": 24,
+    "defence": 20,
+    "maxHit": 4,
+    "aggressive": true,
+    "drops": [
+      {
+        "item": "coins",
+        "min": 10,
+        "max": 50,
+        "chance": 0.3
+      },
+      {
+        "item": "spider_silk",
+        "max": 3,
+        "chance": 0.7
+      },
+      {
+        "item": "scroll_spidersilk",
+        "chance": 0.02
+      }
+    ],
+    "body": "Spider",
+    "model": "giant_spider",
+    "height": 1.2
+  },
+  {
+    "id": "mossback_ogre",
+    "name": "Mossback ogre",
+    "examine": "Moss and toadstools sprout from its hide.",
+    "combatLevel": 42,
+    "hitpoints": 60,
+    "attack": 30,
+    "strength": 30,
+    "defence": 30,
+    "defMelee": 10,
+    "maxHit": 6,
+    "attackSpeed": 6,
+    "aggressive": true,
+    "aggroRange": 3,
+    "wanderRadius": 3,
+    "respawnTicks": 45,
+    "drops": [
+      {
+        "item": "bones",
+        "min": 2,
+        "max": 2
+      },
+      {
+        "item": "coins",
+        "min": 40,
+        "max": 200,
+        "chance": 0.8
+      },
+      {
+        "item": "cobalt_sword",
+        "chance": 0.05
+      },
+      {
+        "item": "steel_heater",
+        "chance": 0.05
+      },
+      {
+        "item": "storm_sigil",
+        "min": 5,
+        "max": 15,
+        "chance": 0.15
+      },
+      {
+        "item": "salmon_fillet",
+        "chance": 0.2
+      },
+      {
+        "item": "hornbeam_shortbow",
+        "chance": 0.03
+      },
+      {
+        "item": "elder_log",
+        "max": 3,
+        "chance": 0.2
+      },
+      {
+        "item": "scroll_elder_bows",
+        "chance": 0.03
+      },
+      {
+        "item": "emerald",
+        "chance": 0.04
+      }
+    ],
+    "model": "mossback_ogre",
+    "height": 3.4
+  },
+  {
+    "id": "skeletal_warlord",
+    "name": "Skeletal Warlord",
+    "examine": "The Fallen King, risen in bone and hatred.",
+    "combatLevel": 96,
+    "hitpoints": 220,
+    "attack": 80,
+    "strength": 85,
+    "defence": 75,
+    "magic": 70,
+    "defMelee": 60,
+    "defRanged": 50,
+    "defMagic": 40,
+    "maxHit": 14,
+    "attackSpeed": 5,
+    "aggressive": true,
+    "aggroRange": 8,
+    "wanderRadius": 2,
+    "respawnTicks": 150,
+    "drops": [
+      {
+        "item": "bones",
+        "min": 3,
+        "max": 3
+      },
+      {
+        "item": "coins",
+        "min": 1000,
+        "max": 5000
+      },
+      {
+        "item": "azurite_chestplate",
+        "chance": 0.1
+      },
+      {
+        "item": "azurite_greatsword",
+        "chance": 0.1
+      },
+      {
+        "item": "emberforged_sabre",
+        "chance": 0.04
+      },
+      {
+        "item": "ring_of_the_warlord",
+        "chance": 0.05
+      },
+      {
+        "item": "shadowweave_robe",
+        "chance": 0.04
+      },
+      {
+        "item": "mantle_of_heroes",
+        "chance": 0.02
+      },
+      {
+        "item": "void_sigil",
+        "min": 10,
+        "max": 40,
+        "chance": 0.5
+      },
+      {
+        "item": "feast_pie",
+        "min": 2,
+        "max": 4,
+        "chance": 0.6
+      },
+      {
+        "item": "scroll_emberforged_smithing",
+        "chance": 0.08
+      },
+      {
+        "item": "scroll_pyromancy",
+        "chance": 0.05
+      },
+      {
+        "item": "scroll_moonsilk",
+        "chance": 0.05
+      },
+      {
+        "item": "azurite_ore",
+        "min": 3,
+        "max": 6,
+        "chance": 0.5
+      },
+      {
+        "item": "diamond",
+        "chance": 0.1
+      }
+    ],
+    "model": "npc_warlord",
+    "height": 2.6,
+    "projectileColor": "#40ff80",
+    "weaponModel": "item_greatsword",
+    "weaponTint": "#261f26",
+    "boss": true
+  }
+]

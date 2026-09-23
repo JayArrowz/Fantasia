@@ -1,0 +1,63 @@
+file: /mnt/SSD2/repos/Fantasia/assets/models/char_player.glb
+meshes: 1, nodes: 26, skins: 1, animations: 1
+triangles: 8270
+
+nodes (index: name [children]):
+  0: LeftToeBase children=[] mesh=None skin=None
+  1: LeftFoot children=[0] mesh=None skin=None
+  2: LeftLeg children=[1] mesh=None skin=None
+  3: LeftUpLeg children=[2] mesh=None skin=None
+  4: RightToeBase children=[] mesh=None skin=None
+  5: RightFoot children=[4] mesh=None skin=None
+  6: RightLeg children=[5] mesh=None skin=None
+  7: RightUpLeg children=[6] mesh=None skin=None
+  8: LeftHand children=[] mesh=None skin=None
+  9: LeftForeArm children=[8] mesh=None skin=None
+  10: LeftArm children=[9] mesh=None skin=None
+  11: LeftShoulder children=[10] mesh=None skin=None
+  12: RightHand children=[] mesh=None skin=None
+  13: RightForeArm children=[12] mesh=None skin=None
+  14: RightArm children=[13] mesh=None skin=None
+  15: RightShoulder children=[14] mesh=None skin=None
+  16: head_end children=[] mesh=None skin=None
+  17: headfront children=[] mesh=None skin=None
+  18: Head children=[16, 17] mesh=None skin=None
+  19: neck children=[18] mesh=None skin=None
+  20: Spine children=[11, 15, 19] mesh=None skin=None
+  21: Spine01 children=[20] mesh=None skin=None
+  22: Spine02 children=[21] mesh=None skin=None
+  23: Hips children=[3, 7, 22] mesh=None skin=None
+  24: char1 children=[] mesh=0 skin=0
+  25: Armature children=[24, 23] mesh=None skin=None
+
+skin 0: name=Armature skeleton_root=None joints (24):
+  Hips  (parent: Armature)
+  LeftUpLeg  (parent: Hips)
+  LeftLeg  (parent: LeftUpLeg)
+  LeftFoot  (parent: LeftLeg)
+  LeftToeBase  (parent: LeftFoot)
+  RightUpLeg  (parent: Hips)
+  RightLeg  (parent: RightUpLeg)
+  RightFoot  (parent: RightLeg)
+  RightToeBase  (parent: RightFoot)
+  Spine02  (parent: Hips)
+  Spine01  (parent: Spine02)
+  Spine  (parent: Spine01)
+  LeftShoulder  (parent: Spine)
+  LeftArm  (parent: LeftShoulder)
+  LeftForeArm  (parent: LeftArm)
+  LeftHand  (parent: LeftForeArm)
+  RightShoulder  (parent: Spine)
+  RightArm  (parent: RightShoulder)
+  RightForeArm  (parent: RightArm)
+  RightHand  (parent: RightForeArm)
+  neck  (parent: Spine)
+  Head  (parent: neck)
+  head_end  (parent: Head)
+  headfront  (parent: Head)
+
+animation: Armature|clip0|baselayer duration=0.300s channels=72
+  translation channels on: Hips, LeftUpLeg, LeftLeg, LeftFoot, LeftToeBase, RightUpLeg, RightLeg, RightFoot, RightToeBase, Spine02, Spine01, Spine, LeftShoulder, LeftArm, LeftForeArm, LeftHand, RightShoulder, RightArm, RightForeArm, RightHand, neck, Head, head_end, headfront
+
+Notes: Meshy auto-rig (biped, 24 joints). Rest pose A-pose. Generated with meshy_v7_image_to_3d model_type=standard, remesh target 8000 tris, rigging_height 1.8m.
+The embedded 'Armature|clip0|baselayer' (0.3s) is a static/bind-pose clip that Meshy includes by default, not a real motion.

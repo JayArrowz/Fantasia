@@ -1,0 +1,402 @@
+{
+  "tree_oak": {
+    "file": "tree_oak.glb",
+    "textured": true,
+    "job_id": "d553b171-61df-40ea-bca6-b7d21e4c5922"
+  },
+  "item_sword": {
+    "file": "item_sword.glb",
+    "textured": false,
+    "job_id": "fa133a2e-408e-4d3c-877d-92f09d145fdf"
+  },
+  "tree_pine": {
+    "file": "tree_pine.glb",
+    "textured": true,
+    "job_id": "657ff0e2-f382-4264-834a-0e9563b9b7b6"
+  },
+  "tree_dead": {
+    "file": "tree_dead.glb",
+    "textured": true,
+    "job_id": "66c5b002-9798-4f17-ac0f-651c01ab1eb1"
+  },
+  "tree_willow": {
+    "file": "tree_willow.glb",
+    "textured": true,
+    "job_id": "20f000ef-098a-4537-bc93-b626ea665221"
+  },
+  "bush": {
+    "file": "bush.glb",
+    "textured": true,
+    "job_id": "c1637e0e-64f5-45e5-87b3-095c737187ac"
+  },
+  "rock_large": {
+    "file": "rock_large.glb",
+    "textured": true,
+    "job_id": "a5489cc0-e912-482a-a6fc-779d3729dd44"
+  },
+  "rock_small": {
+    "file": "rock_small.glb",
+    "textured": true,
+    "job_id": "1da5f5dd-11d7-4b73-9ed3-83618349bb4f"
+  },
+  "house_timber": {
+    "file": "house_timber.glb",
+    "textured": true,
+    "job_id": "44b00f78-3dc4-4297-b977-76f074b51963"
+  },
+  "house_stone": {
+    "file": "house_stone.glb",
+    "textured": true,
+    "job_id": "db3d3a3e-3dc0-4ae0-bbc9-5c6543c6c8b5"
+  },
+  "castle_keep": {
+    "file": "castle_keep.glb",
+    "textured": true,
+    "job_id": "c77d46ae-32ee-40a0-b077-c93b41d5649f"
+  },
+  "castle_tower": {
+    "file": "castle_tower.glb",
+    "textured": true,
+    "job_id": "2bee156e-31fc-4a4c-bb0f-4d12480bd48a"
+  },
+  "market_stall": {
+    "file": "market_stall.glb",
+    "textured": true,
+    "job_id": "88eec07f-e96a-4e12-a869-e43cd17b18d8"
+  },
+  "bank_booth": {
+    "file": "bank_booth.glb",
+    "textured": true,
+    "job_id": "9ee9f072-5800-48a0-a90d-611eca4fb549"
+  },
+  "well": {
+    "file": "well.glb",
+    "textured": true,
+    "job_id": "c20ed52d-0a38-4207-8ef2-db5d3b7c5b62"
+  },
+  "fence": {
+    "file": "fence.glb",
+    "textured": true,
+    "job_id": "25abf569-c45c-4787-b47c-4bb4c1954a6c"
+  },
+  "barrel": {
+    "file": "barrel.glb",
+    "textured": true,
+    "job_id": "81c565bf-8d8a-4c74-9e2e-99a43cbeb15b"
+  },
+  "crate": {
+    "file": "crate.glb",
+    "textured": true,
+    "job_id": "e0af16ef-fb6e-4e49-9d08-d74e13335de8"
+  },
+  "haystack": {
+    "file": "haystack.glb",
+    "textured": true,
+    "job_id": "cb02571c-2fe0-483a-bc1f-ed323505bcf8"
+  },
+  "torch_post": {
+    "file": "torch_post.glb",
+    "textured": true,
+    "job_id": "fad98946-1cc2-435a-8809-5a79988f1f96"
+  },
+  "brazier": {
+    "file": "brazier.glb",
+    "textured": true,
+    "job_id": "cb85be3e-558a-460b-9672-67e3f6a983c5"
+  },
+  "tent": {
+    "file": "tent.glb",
+    "textured": true,
+    "job_id": "0b9fcf5c-4a2e-4722-9262-ead52f4933e9"
+  },
+  "cave_entrance": {
+    "file": "cave_entrance.glb",
+    "textured": true,
+    "job_id": "927a04b3-12bd-4ca5-9c11-506f7b5c743f"
+  },
+  "mausoleum": {
+    "file": "mausoleum.glb",
+    "textured": true,
+    "job_id": "e9e4ffd5-6f32-4ba3-ae92-655db36a3d98"
+  },
+  "gravestone": {
+    "file": "gravestone.glb",
+    "textured": true,
+    "job_id": "fff82089-2be6-40f5-a645-e0fba53372c2"
+  },
+  "standing_stone": {
+    "file": "standing_stone.glb",
+    "textured": true,
+    "job_id": "54087876-241d-4281-a4e1-203114359edb"
+  },
+  "ladder": {
+    "file": "ladder.glb",
+    "textured": true,
+    "job_id": "5f2ee224-d471-498b-863a-1caa742f6a59"
+  },
+  "anvil": {
+    "file": "anvil.glb",
+    "textured": true,
+    "job_id": "6bfee967-3b92-47d2-9455-c4a4a04a650e"
+  },
+  "cart": {
+    "file": "cart.glb",
+    "textured": true,
+    "job_id": "4192395a-5261-4e20-ac70-5c2760371976"
+  },
+  "fountain": {
+    "file": "fountain.glb",
+    "textured": true,
+    "job_id": "55a47407-7a1d-4295-934f-5bc6bf1f9bed"
+  },
+  "statue_knight": {
+    "file": "statue_knight.glb",
+    "textured": true,
+    "job_id": "91e1c66d-9adf-4892-b731-70dbfce63991"
+  },
+  "altar": {
+    "file": "altar.glb",
+    "textured": true,
+    "job_id": "efb7a340-7c29-43d8-b734-19a2eca51d3d"
+  },
+  "bones_pile": {
+    "file": "bones_pile.glb",
+    "textured": true,
+    "job_id": "e3bc563d-72cc-4535-a9aa-e0cbe2202c07"
+  },
+  "dungeon_pillar": {
+    "file": "dungeon_pillar.glb",
+    "textured": true,
+    "job_id": "9fd548b0-916e-432f-8052-4a0aaa514194"
+  },
+  "chest": {
+    "file": "chest.glb",
+    "textured": true,
+    "job_id": "0bdb77e7-bfcb-4065-9214-2d543b42e2a1"
+  },
+  "throne": {
+    "file": "throne.glb",
+    "textured": true,
+    "job_id": "89d0561e-67ff-4bbc-8fe2-c6d4bd0892cb"
+  },
+  "campfire": {
+    "file": "campfire.glb",
+    "textured": true,
+    "job_id": "9d74d0c8-7694-4ee3-97b0-e9423170bc42"
+  },
+  "cauldron": {
+    "file": "cauldron.glb",
+    "textured": true,
+    "job_id": "b8a339ec-21df-455f-ab2b-3a4374785462"
+  },
+  "signpost": {
+    "file": "signpost.glb",
+    "textured": true,
+    "job_id": "176ad7b0-7e0f-410b-9ae4-57d41524f22d"
+  },
+  "banner": {
+    "file": "banner.glb",
+    "textured": true,
+    "job_id": "4f2b9c48-034d-469c-9011-e24b10dcc6bb"
+  },
+  "bridge": {
+    "file": "bridge.glb",
+    "textured": true,
+    "job_id": "be0f3d50-987a-4939-9bbd-fbb18c99a217"
+  },
+  "cow": {
+    "file": "cow.glb",
+    "textured": true,
+    "job_id": "5c03a1f4-3b04-467d-a28a-2a7a5b02a66d"
+  },
+  "rat": {
+    "file": "rat.glb",
+    "textured": true,
+    "job_id": "9c7ee4e2-50b3-4820-97a2-89a0d7af8013"
+  },
+  "wolf": {
+    "file": "wolf.glb",
+    "textured": true,
+    "job_id": "24096b3d-cd59-402e-9a19-3d1d570d538b"
+  },
+  "bear": {
+    "file": "bear.glb",
+    "textured": true,
+    "job_id": "de7db64b-8af8-4096-97d1-1c0870706dac"
+  },
+  "giant_spider": {
+    "file": "giant_spider.glb",
+    "textured": true,
+    "job_id": "c817e7ec-3ebe-4b4f-b403-f037e24b33a0"
+  },
+  "chicken": {
+    "file": "chicken.glb",
+    "textured": true,
+    "job_id": "3ac0e7f7-e83b-4439-9a02-b39e2cdadc13"
+  },
+  "moss_giant": {
+    "file": "moss_giant.glb",
+    "textured": true,
+    "job_id": "7c97ddcc-8ec8-4db7-b554-56c072e095ec"
+  },
+  "lesser_demon": {
+    "file": "lesser_demon.glb",
+    "textured": true,
+    "job_id": "76daad8d-4a0c-4c33-b988-10debcfcc32f"
+  },
+  "cave_bat": {
+    "file": "cave_bat.glb",
+    "textured": true,
+    "job_id": "ee1ec076-b900-4660-9961-b87363975753"
+  },
+  "ghost": {
+    "file": "ghost.glb",
+    "textured": true,
+    "job_id": "0987dbba-1e79-4809-b7a1-8a14109fc7fa"
+  },
+  "green_dragon": {
+    "file": "green_dragon.glb",
+    "textured": true,
+    "job_id": "f6621f33-67dd-4ae3-9f6c-e9cc623eb38e"
+  },
+  "item_scimitar": {
+    "file": "item_scimitar.glb",
+    "textured": false,
+    "job_id": "95247688-f900-46c2-8425-5e17b8354914"
+  },
+  "item_warhammer": {
+    "file": "item_warhammer.glb",
+    "textured": false,
+    "job_id": "a3f97d1b-db5f-4601-8a80-27bfa1781432"
+  },
+  "item_greatsword": {
+    "file": "item_greatsword.glb",
+    "textured": false,
+    "job_id": "b4956d4b-fd22-436c-b283-d158fe87e236"
+  },
+  "item_dagger": {
+    "file": "item_dagger.glb",
+    "textured": false,
+    "job_id": "29e33023-1bbf-4518-b087-16d05c77cb44"
+  },
+  "item_kiteshield": {
+    "file": "item_kiteshield.glb",
+    "textured": false,
+    "job_id": "d3d56cd8-f730-4590-93df-9ffd2b5664ef"
+  },
+  "item_fullhelm": {
+    "file": "item_fullhelm.glb",
+    "textured": false,
+    "job_id": "1bc1e437-497f-45ce-b27e-aca39f526b2a"
+  },
+  "item_platebody": {
+    "file": "item_platebody.glb",
+    "textured": false,
+    "job_id": "68a9ec07-7b7a-48aa-983f-ab2029c9bbb5"
+  },
+  "item_platelegs": {
+    "file": "item_platelegs.glb",
+    "textured": false,
+    "job_id": "ba8b2cce-c65a-4924-bfd7-a5f244a0f993"
+  },
+  "item_roundshield": {
+    "file": "item_roundshield.glb",
+    "textured": true,
+    "job_id": "dfbd2291-b5bb-4a37-8c33-22e486756410"
+  },
+  "item_shortbow": {
+    "file": "item_shortbow.glb",
+    "textured": true,
+    "job_id": "b3580ffa-854b-4670-9379-983d53ae8859"
+  },
+  "item_longbow": {
+    "file": "item_longbow.glb",
+    "textured": true,
+    "job_id": "5b7c225d-7ed3-4207-b699-82d57d437130"
+  },
+  "item_staff": {
+    "file": "item_staff.glb",
+    "textured": true,
+    "job_id": "687a84e6-6986-4305-8173-b2a16762360e"
+  },
+  "item_battlestaff": {
+    "file": "item_battlestaff.glb",
+    "textured": true,
+    "job_id": "3fe12450-9a58-4c38-9025-1c2402ebb0b1"
+  },
+  "item_wizard_hat": {
+    "file": "item_wizard_hat.glb",
+    "textured": true,
+    "job_id": "442d0a15-73cd-410e-8923-ca00f1eeb666"
+  },
+  "item_robe": {
+    "file": "item_robe.glb",
+    "textured": true,
+    "job_id": "73cfea56-abcf-4514-9ccb-18d161ca2a57"
+  },
+  "item_leather_body": {
+    "file": "item_leather_body.glb",
+    "textured": true,
+    "job_id": "afcc2ef4-8459-4c81-afe6-289fa9ac1e45"
+  },
+  "item_coif": {
+    "file": "item_coif.glb",
+    "textured": true,
+    "job_id": "2a23576a-9ec0-4adb-a537-37aa01efb60f"
+  },
+  "item_boots": {
+    "file": "item_boots.glb",
+    "textured": true,
+    "job_id": "e5bdd335-c529-4cda-8111-5f0602410a76"
+  },
+  "item_gloves": {
+    "file": "item_gloves.glb",
+    "textured": true,
+    "job_id": "34382c71-a051-4722-80ca-d7ebd579d03d"
+  },
+  "item_cape": {
+    "file": "item_cape.glb",
+    "textured": true,
+    "job_id": "1df7ff46-5fcc-4972-8421-7dfbfd68a4fa"
+  },
+  "item_amulet": {
+    "file": "item_amulet.glb",
+    "textured": true,
+    "job_id": "e7989050-2387-4251-8569-04eee47841cf"
+  },
+  "item_ring": {
+    "file": "item_ring.glb",
+    "textured": true,
+    "job_id": "002d61d4-09e2-48be-bbb0-11ed6dcbcf83"
+  },
+  "item_arrows": {
+    "file": "item_arrows.glb",
+    "textured": true,
+    "job_id": "0812fd9d-e18b-41e0-a573-5d00178f8b46"
+  },
+  "item_rune": {
+    "file": "item_rune.glb",
+    "textured": true,
+    "job_id": "6ea4de82-9609-451d-af54-adae1015fcc4"
+  },
+  "item_coins": {
+    "file": "item_coins.glb",
+    "textured": true,
+    "job_id": "1cf4e07b-7a54-46b1-8b8f-c71bac6ae7d0"
+  },
+  "item_fish": {
+    "file": "item_fish.glb",
+    "textured": true,
+    "job_id": "f52b1910-ed87-4c98-b062-826b2eebe52d"
+  },
+  "item_bread": {
+    "file": "item_bread.glb",
+    "textured": true,
+    "job_id": "a41af902-af02-4d68-8a20-bc192ad34261"
+  },
+  "item_bones": {
+    "file": "item_bones.glb",
+    "textured": true,
+    "job_id": "d390525d-7bed-49d6-a88a-b5faf9d1f306"
+  }
+}

@@ -1,0 +1,3220 @@
+{
+  "stations": {
+    "smelt": "Furnace",
+    "smith": "Anvil",
+    "cook": "Cooking",
+    "spin": "Spinning wheel",
+    "weave": "Loom",
+    "sew": "Sewing",
+    "enchant": "Enchanting",
+    "workbench": "Workbench"
+  },
+  "unlocks": [
+    {
+      "key": "greatswords",
+      "name": "Greatsword forging",
+      "scroll": "Brom's greatsword notes",
+      "hint": "Quest: The Smith's Apprentice, or Goblin Chieftain Grukk.",
+      "value": 800,
+      "color": "#ccccd9"
+    },
+    {
+      "key": "azurite_smithing",
+      "name": "Azurite smelting & smithing",
+      "scroll": "Azurite schematic",
+      "hint": "Dropped by moss drakes and pit fiends in the Bloodmarch.",
+      "value": 5000,
+      "color": "#ccccd9"
+    },
+    {
+      "key": "emberforged_smithing",
+      "name": "Emberforged smelting & smithing",
+      "scroll": "Emberforge schematic",
+      "hint": "Quest: Rest for the Fallen King, or the Skeletal Warlord.",
+      "value": 20000,
+      "color": "#ccccd9"
+    },
+    {
+      "key": "hunters_roast",
+      "name": "Hunter's roast",
+      "scroll": "Recipe: Hunter's roast",
+      "hint": "Dropped by brown bears.",
+      "value": 600,
+      "color": "#ffe6b2"
+    },
+    {
+      "key": "fishermans_pie",
+      "name": "Fisherman's pie",
+      "scroll": "Recipe: Fisherman's pie",
+      "hint": "Quest: A Fishy Favour.",
+      "value": 1500,
+      "color": "#ffe6b2"
+    },
+    {
+      "key": "feast_pie",
+      "name": "Royal feast pie",
+      "scroll": "Recipe: Royal feast pie",
+      "hint": "Quest: A Feast for the King.",
+      "value": 4000,
+      "color": "#ffe6b2"
+    },
+    {
+      "key": "dyeing",
+      "name": "Silk dyeing (crimson & azure)",
+      "scroll": "Dyer's handbook",
+      "hint": "Quest: Threads of Fortune.",
+      "value": 1200,
+      "color": "#ffcce6"
+    },
+    {
+      "key": "spidersilk",
+      "name": "Spidersilk spinning, weaving & sewing",
+      "scroll": "Pattern: Spidersilk",
+      "hint": "Quest: Threads of Fortune, or giant spiders.",
+      "value": 3000,
+      "color": "#ffcce6"
+    },
+    {
+      "key": "moonsilk",
+      "name": "Moonsilk spinning, weaving & sewing",
+      "scroll": "Pattern: Moonsilk",
+      "hint": "Dropped by ghosts and the Skeletal Warlord.",
+      "value": 12000,
+      "color": "#ffcce6"
+    },
+    {
+      "key": "storm_sigils",
+      "name": "Storm sigil carving",
+      "scroll": "Tome of storms",
+      "hint": "Quest: Sigils of the Circle, or hexers.",
+      "value": 2500,
+      "color": "#99b2ff"
+    },
+    {
+      "key": "void_sigils",
+      "name": "Void sigil carving",
+      "scroll": "Tome of the void",
+      "hint": "Dropped by ghosts in the Crypt.",
+      "value": 6000,
+      "color": "#99b2ff"
+    },
+    {
+      "key": "crimson_sigils",
+      "name": "Crimson sigil carving",
+      "scroll": "Tome of blood",
+      "hint": "Dropped by pit fiends in the Bloodmarch.",
+      "value": 15000,
+      "color": "#99b2ff"
+    },
+    {
+      "key": "elder_bows",
+      "name": "Elder longbow carving",
+      "scroll": "Bowyer's elder design",
+      "hint": "Quest: Timber for the Town, or mossback ogres.",
+      "value": 2000,
+      "color": "#ffe6b2"
+    },
+    {
+      "key": "moonwood_bows",
+      "name": "Moonwood longbow carving",
+      "scroll": "Bowyer's moonwood design",
+      "hint": "Dropped by moss drakes.",
+      "value": 8000,
+      "color": "#ffe6b2"
+    },
+    {
+      "key": "pyromancy",
+      "name": "Pyromancer's staff",
+      "scroll": "Tome of pyromancy",
+      "hint": "Dropped by the Skeletal Warlord.",
+      "value": 15000,
+      "color": "#99b2ff"
+    },
+    {
+      "key": "void_staff",
+      "name": "Staff of the Void",
+      "scroll": "Tome of the abyss",
+      "hint": "Dropped by ghosts in the Crypt.",
+      "value": 20000,
+      "color": "#99b2ff"
+    },
+    {
+      "key": "cabbage_soup",
+      "name": "Hob's cabbage soup",
+      "scroll": "Recipe: Hob's cabbage soup",
+      "hint": "Quest: Hob's Harvest.",
+      "value": 200,
+      "color": "#ffe6b2"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "smelt:bronze_bar",
+      "skill": "Smithing",
+      "level": 1,
+      "xp": 6,
+      "station": "smelt",
+      "in": [
+        {
+          "item": "copper_ore",
+          "count": 1
+        },
+        {
+          "item": "tin_ore",
+          "count": 1
+        }
+      ],
+      "out": "bronze_bar",
+      "group": "Bars"
+    },
+    {
+      "id": "smelt:iron_bar",
+      "skill": "Smithing",
+      "level": 15,
+      "xp": 12,
+      "station": "smelt",
+      "in": [
+        {
+          "item": "iron_ore",
+          "count": 1
+        }
+      ],
+      "out": "iron_bar",
+      "group": "Bars",
+      "failChance": 0.5
+    },
+    {
+      "id": "smelt:silver_bar",
+      "skill": "Smithing",
+      "level": 20,
+      "xp": 14,
+      "station": "smelt",
+      "in": [
+        {
+          "item": "silver_ore",
+          "count": 1
+        }
+      ],
+      "out": "silver_bar",
+      "group": "Bars"
+    },
+    {
+      "id": "smelt:steel_bar",
+      "skill": "Smithing",
+      "level": 30,
+      "xp": 18,
+      "station": "smelt",
+      "in": [
+        {
+          "item": "iron_ore",
+          "count": 1
+        },
+        {
+          "item": "coal",
+          "count": 2
+        }
+      ],
+      "out": "steel_bar",
+      "group": "Bars"
+    },
+    {
+      "id": "smelt:gold_bar",
+      "skill": "Smithing",
+      "level": 40,
+      "xp": 22,
+      "station": "smelt",
+      "in": [
+        {
+          "item": "gold_ore",
+          "count": 1
+        }
+      ],
+      "out": "gold_bar",
+      "group": "Bars"
+    },
+    {
+      "id": "smelt:cobalt_bar",
+      "skill": "Smithing",
+      "level": 45,
+      "xp": 30,
+      "station": "smelt",
+      "in": [
+        {
+          "item": "cobalt_ore",
+          "count": 1
+        },
+        {
+          "item": "coal",
+          "count": 3
+        }
+      ],
+      "out": "cobalt_bar",
+      "group": "Bars"
+    },
+    {
+      "id": "smelt:verdite_bar",
+      "skill": "Smithing",
+      "level": 55,
+      "xp": 38,
+      "station": "smelt",
+      "in": [
+        {
+          "item": "verdite_ore",
+          "count": 1
+        },
+        {
+          "item": "coal",
+          "count": 4
+        }
+      ],
+      "out": "verdite_bar",
+      "group": "Bars"
+    },
+    {
+      "id": "smelt:azurite_bar",
+      "skill": "Smithing",
+      "level": 65,
+      "xp": 50,
+      "station": "smelt",
+      "in": [
+        {
+          "item": "azurite_ore",
+          "count": 1
+        },
+        {
+          "item": "coal",
+          "count": 6
+        }
+      ],
+      "out": "azurite_bar",
+      "unlock": "azurite_smithing",
+      "group": "Bars"
+    },
+    {
+      "id": "smelt:emberforged_bar",
+      "skill": "Smithing",
+      "level": 80,
+      "xp": 80,
+      "station": "smelt",
+      "in": [
+        {
+          "item": "ember_ore",
+          "count": 1
+        },
+        {
+          "item": "azurite_bar",
+          "count": 1
+        },
+        {
+          "item": "coal",
+          "count": 8
+        }
+      ],
+      "out": "emberforged_bar",
+      "unlock": "emberforged_smithing",
+      "group": "Bars"
+    },
+    {
+      "id": "smith:bronze_dagger",
+      "skill": "Smithing",
+      "level": 1,
+      "xp": 12.5,
+      "station": "smith",
+      "in": [
+        {
+          "item": "bronze_bar",
+          "count": 1
+        }
+      ],
+      "out": "bronze_dagger",
+      "group": "Bronze"
+    },
+    {
+      "id": "smith:bronze_hatchet",
+      "skill": "Smithing",
+      "level": 2,
+      "xp": 12.5,
+      "station": "smith",
+      "in": [
+        {
+          "item": "bronze_bar",
+          "count": 1
+        }
+      ],
+      "out": "bronze_hatchet",
+      "group": "Bronze"
+    },
+    {
+      "id": "smith:bronze_arrowheads",
+      "skill": "Smithing",
+      "level": 3,
+      "xp": 12.5,
+      "station": "smith",
+      "in": [
+        {
+          "item": "bronze_bar",
+          "count": 1
+        }
+      ],
+      "out": "bronze_arrowheads",
+      "outCount": 15,
+      "group": "Bronze"
+    },
+    {
+      "id": "smith:bronze_pickaxe",
+      "skill": "Smithing",
+      "level": 4,
+      "xp": 25,
+      "station": "smith",
+      "in": [
+        {
+          "item": "bronze_bar",
+          "count": 2
+        }
+      ],
+      "out": "bronze_pickaxe",
+      "group": "Bronze"
+    },
+    {
+      "id": "smith:bronze_sword",
+      "skill": "Smithing",
+      "level": 5,
+      "xp": 25,
+      "station": "smith",
+      "in": [
+        {
+          "item": "bronze_bar",
+          "count": 2
+        }
+      ],
+      "out": "bronze_sword",
+      "group": "Bronze"
+    },
+    {
+      "id": "smith:bronze_sabre",
+      "skill": "Smithing",
+      "level": 6,
+      "xp": 25,
+      "station": "smith",
+      "in": [
+        {
+          "item": "bronze_bar",
+          "count": 2
+        }
+      ],
+      "out": "bronze_sabre",
+      "group": "Bronze"
+    },
+    {
+      "id": "smith:bronze_helm",
+      "skill": "Smithing",
+      "level": 7,
+      "xp": 25,
+      "station": "smith",
+      "in": [
+        {
+          "item": "bronze_bar",
+          "count": 2
+        }
+      ],
+      "out": "bronze_helm",
+      "group": "Bronze"
+    },
+    {
+      "id": "smith:bronze_warhammer",
+      "skill": "Smithing",
+      "level": 9,
+      "xp": 37.5,
+      "station": "smith",
+      "in": [
+        {
+          "item": "bronze_bar",
+          "count": 3
+        }
+      ],
+      "out": "bronze_warhammer",
+      "group": "Bronze"
+    },
+    {
+      "id": "smith:bronze_legguards",
+      "skill": "Smithing",
+      "level": 10,
+      "xp": 37.5,
+      "station": "smith",
+      "in": [
+        {
+          "item": "bronze_bar",
+          "count": 3
+        }
+      ],
+      "out": "bronze_legguards",
+      "group": "Bronze"
+    },
+    {
+      "id": "smith:bronze_heater",
+      "skill": "Smithing",
+      "level": 11,
+      "xp": 37.5,
+      "station": "smith",
+      "in": [
+        {
+          "item": "bronze_bar",
+          "count": 3
+        }
+      ],
+      "out": "bronze_heater",
+      "group": "Bronze"
+    },
+    {
+      "id": "smith:bronze_greatsword",
+      "skill": "Smithing",
+      "level": 12,
+      "xp": 37.5,
+      "station": "smith",
+      "in": [
+        {
+          "item": "bronze_bar",
+          "count": 3
+        }
+      ],
+      "out": "bronze_greatsword",
+      "unlock": "greatswords",
+      "group": "Bronze"
+    },
+    {
+      "id": "smith:bronze_chestplate",
+      "skill": "Smithing",
+      "level": 14,
+      "xp": 62.5,
+      "station": "smith",
+      "in": [
+        {
+          "item": "bronze_bar",
+          "count": 5
+        }
+      ],
+      "out": "bronze_chestplate",
+      "group": "Bronze"
+    },
+    {
+      "id": "smith:iron_dagger",
+      "skill": "Smithing",
+      "level": 15,
+      "xp": 25,
+      "station": "smith",
+      "in": [
+        {
+          "item": "iron_bar",
+          "count": 1
+        }
+      ],
+      "out": "iron_dagger",
+      "group": "Iron"
+    },
+    {
+      "id": "smith:iron_hatchet",
+      "skill": "Smithing",
+      "level": 16,
+      "xp": 25,
+      "station": "smith",
+      "in": [
+        {
+          "item": "iron_bar",
+          "count": 1
+        }
+      ],
+      "out": "iron_hatchet",
+      "group": "Iron"
+    },
+    {
+      "id": "smith:iron_arrowheads",
+      "skill": "Smithing",
+      "level": 17,
+      "xp": 25,
+      "station": "smith",
+      "in": [
+        {
+          "item": "iron_bar",
+          "count": 1
+        }
+      ],
+      "out": "iron_arrowheads",
+      "outCount": 15,
+      "group": "Iron"
+    },
+    {
+      "id": "smith:iron_pickaxe",
+      "skill": "Smithing",
+      "level": 18,
+      "xp": 50,
+      "station": "smith",
+      "in": [
+        {
+          "item": "iron_bar",
+          "count": 2
+        }
+      ],
+      "out": "iron_pickaxe",
+      "group": "Iron"
+    },
+    {
+      "id": "smith:iron_sword",
+      "skill": "Smithing",
+      "level": 19,
+      "xp": 50,
+      "station": "smith",
+      "in": [
+        {
+          "item": "iron_bar",
+          "count": 2
+        }
+      ],
+      "out": "iron_sword",
+      "group": "Iron"
+    },
+    {
+      "id": "smith:iron_sabre",
+      "skill": "Smithing",
+      "level": 20,
+      "xp": 50,
+      "station": "smith",
+      "in": [
+        {
+          "item": "iron_bar",
+          "count": 2
+        }
+      ],
+      "out": "iron_sabre",
+      "group": "Iron"
+    },
+    {
+      "id": "smith:iron_helm",
+      "skill": "Smithing",
+      "level": 21,
+      "xp": 50,
+      "station": "smith",
+      "in": [
+        {
+          "item": "iron_bar",
+          "count": 2
+        }
+      ],
+      "out": "iron_helm",
+      "group": "Iron"
+    },
+    {
+      "id": "smith:iron_warhammer",
+      "skill": "Smithing",
+      "level": 23,
+      "xp": 75,
+      "station": "smith",
+      "in": [
+        {
+          "item": "iron_bar",
+          "count": 3
+        }
+      ],
+      "out": "iron_warhammer",
+      "group": "Iron"
+    },
+    {
+      "id": "smith:iron_legguards",
+      "skill": "Smithing",
+      "level": 24,
+      "xp": 75,
+      "station": "smith",
+      "in": [
+        {
+          "item": "iron_bar",
+          "count": 3
+        }
+      ],
+      "out": "iron_legguards",
+      "group": "Iron"
+    },
+    {
+      "id": "smith:iron_heater",
+      "skill": "Smithing",
+      "level": 25,
+      "xp": 75,
+      "station": "smith",
+      "in": [
+        {
+          "item": "iron_bar",
+          "count": 3
+        }
+      ],
+      "out": "iron_heater",
+      "group": "Iron"
+    },
+    {
+      "id": "smith:iron_greatsword",
+      "skill": "Smithing",
+      "level": 26,
+      "xp": 75,
+      "station": "smith",
+      "in": [
+        {
+          "item": "iron_bar",
+          "count": 3
+        }
+      ],
+      "out": "iron_greatsword",
+      "unlock": "greatswords",
+      "group": "Iron"
+    },
+    {
+      "id": "smith:iron_chestplate",
+      "skill": "Smithing",
+      "level": 28,
+      "xp": 125,
+      "station": "smith",
+      "in": [
+        {
+          "item": "iron_bar",
+          "count": 5
+        }
+      ],
+      "out": "iron_chestplate",
+      "group": "Iron"
+    },
+    {
+      "id": "smith:steel_dagger",
+      "skill": "Smithing",
+      "level": 30,
+      "xp": 37.5,
+      "station": "smith",
+      "in": [
+        {
+          "item": "steel_bar",
+          "count": 1
+        }
+      ],
+      "out": "steel_dagger",
+      "group": "Steel"
+    },
+    {
+      "id": "smith:steel_hatchet",
+      "skill": "Smithing",
+      "level": 31,
+      "xp": 37.5,
+      "station": "smith",
+      "in": [
+        {
+          "item": "steel_bar",
+          "count": 1
+        }
+      ],
+      "out": "steel_hatchet",
+      "group": "Steel"
+    },
+    {
+      "id": "smith:steel_arrowheads",
+      "skill": "Smithing",
+      "level": 32,
+      "xp": 37.5,
+      "station": "smith",
+      "in": [
+        {
+          "item": "steel_bar",
+          "count": 1
+        }
+      ],
+      "out": "steel_arrowheads",
+      "outCount": 15,
+      "group": "Steel"
+    },
+    {
+      "id": "smith:steel_pickaxe",
+      "skill": "Smithing",
+      "level": 33,
+      "xp": 75,
+      "station": "smith",
+      "in": [
+        {
+          "item": "steel_bar",
+          "count": 2
+        }
+      ],
+      "out": "steel_pickaxe",
+      "group": "Steel"
+    },
+    {
+      "id": "smith:steel_sword",
+      "skill": "Smithing",
+      "level": 34,
+      "xp": 75,
+      "station": "smith",
+      "in": [
+        {
+          "item": "steel_bar",
+          "count": 2
+        }
+      ],
+      "out": "steel_sword",
+      "group": "Steel"
+    },
+    {
+      "id": "smith:steel_sabre",
+      "skill": "Smithing",
+      "level": 35,
+      "xp": 75,
+      "station": "smith",
+      "in": [
+        {
+          "item": "steel_bar",
+          "count": 2
+        }
+      ],
+      "out": "steel_sabre",
+      "group": "Steel"
+    },
+    {
+      "id": "smith:steel_helm",
+      "skill": "Smithing",
+      "level": 36,
+      "xp": 75,
+      "station": "smith",
+      "in": [
+        {
+          "item": "steel_bar",
+          "count": 2
+        }
+      ],
+      "out": "steel_helm",
+      "group": "Steel"
+    },
+    {
+      "id": "smith:steel_warhammer",
+      "skill": "Smithing",
+      "level": 38,
+      "xp": 112.5,
+      "station": "smith",
+      "in": [
+        {
+          "item": "steel_bar",
+          "count": 3
+        }
+      ],
+      "out": "steel_warhammer",
+      "group": "Steel"
+    },
+    {
+      "id": "smith:steel_legguards",
+      "skill": "Smithing",
+      "level": 39,
+      "xp": 112.5,
+      "station": "smith",
+      "in": [
+        {
+          "item": "steel_bar",
+          "count": 3
+        }
+      ],
+      "out": "steel_legguards",
+      "group": "Steel"
+    },
+    {
+      "id": "smith:steel_heater",
+      "skill": "Smithing",
+      "level": 40,
+      "xp": 112.5,
+      "station": "smith",
+      "in": [
+        {
+          "item": "steel_bar",
+          "count": 3
+        }
+      ],
+      "out": "steel_heater",
+      "group": "Steel"
+    },
+    {
+      "id": "smith:steel_greatsword",
+      "skill": "Smithing",
+      "level": 41,
+      "xp": 112.5,
+      "station": "smith",
+      "in": [
+        {
+          "item": "steel_bar",
+          "count": 3
+        }
+      ],
+      "out": "steel_greatsword",
+      "unlock": "greatswords",
+      "group": "Steel"
+    },
+    {
+      "id": "smith:steel_chestplate",
+      "skill": "Smithing",
+      "level": 43,
+      "xp": 187.5,
+      "station": "smith",
+      "in": [
+        {
+          "item": "steel_bar",
+          "count": 5
+        }
+      ],
+      "out": "steel_chestplate",
+      "group": "Steel"
+    },
+    {
+      "id": "smith:cobalt_dagger",
+      "skill": "Smithing",
+      "level": 45,
+      "xp": 50,
+      "station": "smith",
+      "in": [
+        {
+          "item": "cobalt_bar",
+          "count": 1
+        }
+      ],
+      "out": "cobalt_dagger",
+      "group": "Cobalt"
+    },
+    {
+      "id": "smith:cobalt_hatchet",
+      "skill": "Smithing",
+      "level": 46,
+      "xp": 50,
+      "station": "smith",
+      "in": [
+        {
+          "item": "cobalt_bar",
+          "count": 1
+        }
+      ],
+      "out": "cobalt_hatchet",
+      "group": "Cobalt"
+    },
+    {
+      "id": "smith:cobalt_arrowheads",
+      "skill": "Smithing",
+      "level": 47,
+      "xp": 50,
+      "station": "smith",
+      "in": [
+        {
+          "item": "cobalt_bar",
+          "count": 1
+        }
+      ],
+      "out": "cobalt_arrowheads",
+      "outCount": 15,
+      "group": "Cobalt"
+    },
+    {
+      "id": "smith:cobalt_pickaxe",
+      "skill": "Smithing",
+      "level": 48,
+      "xp": 100,
+      "station": "smith",
+      "in": [
+        {
+          "item": "cobalt_bar",
+          "count": 2
+        }
+      ],
+      "out": "cobalt_pickaxe",
+      "group": "Cobalt"
+    },
+    {
+      "id": "smith:cobalt_sword",
+      "skill": "Smithing",
+      "level": 49,
+      "xp": 100,
+      "station": "smith",
+      "in": [
+        {
+          "item": "cobalt_bar",
+          "count": 2
+        }
+      ],
+      "out": "cobalt_sword",
+      "group": "Cobalt"
+    },
+    {
+      "id": "smith:cobalt_sabre",
+      "skill": "Smithing",
+      "level": 50,
+      "xp": 100,
+      "station": "smith",
+      "in": [
+        {
+          "item": "cobalt_bar",
+          "count": 2
+        }
+      ],
+      "out": "cobalt_sabre",
+      "group": "Cobalt"
+    },
+    {
+      "id": "smith:cobalt_helm",
+      "skill": "Smithing",
+      "level": 51,
+      "xp": 100,
+      "station": "smith",
+      "in": [
+        {
+          "item": "cobalt_bar",
+          "count": 2
+        }
+      ],
+      "out": "cobalt_helm",
+      "group": "Cobalt"
+    },
+    {
+      "id": "smith:cobalt_warhammer",
+      "skill": "Smithing",
+      "level": 53,
+      "xp": 150,
+      "station": "smith",
+      "in": [
+        {
+          "item": "cobalt_bar",
+          "count": 3
+        }
+      ],
+      "out": "cobalt_warhammer",
+      "group": "Cobalt"
+    },
+    {
+      "id": "smith:cobalt_legguards",
+      "skill": "Smithing",
+      "level": 54,
+      "xp": 150,
+      "station": "smith",
+      "in": [
+        {
+          "item": "cobalt_bar",
+          "count": 3
+        }
+      ],
+      "out": "cobalt_legguards",
+      "group": "Cobalt"
+    },
+    {
+      "id": "smith:cobalt_heater",
+      "skill": "Smithing",
+      "level": 55,
+      "xp": 150,
+      "station": "smith",
+      "in": [
+        {
+          "item": "cobalt_bar",
+          "count": 3
+        }
+      ],
+      "out": "cobalt_heater",
+      "group": "Cobalt"
+    },
+    {
+      "id": "smith:cobalt_greatsword",
+      "skill": "Smithing",
+      "level": 56,
+      "xp": 150,
+      "station": "smith",
+      "in": [
+        {
+          "item": "cobalt_bar",
+          "count": 3
+        }
+      ],
+      "out": "cobalt_greatsword",
+      "unlock": "greatswords",
+      "group": "Cobalt"
+    },
+    {
+      "id": "smith:cobalt_chestplate",
+      "skill": "Smithing",
+      "level": 58,
+      "xp": 250,
+      "station": "smith",
+      "in": [
+        {
+          "item": "cobalt_bar",
+          "count": 5
+        }
+      ],
+      "out": "cobalt_chestplate",
+      "group": "Cobalt"
+    },
+    {
+      "id": "smith:verdite_dagger",
+      "skill": "Smithing",
+      "level": 55,
+      "xp": 62.5,
+      "station": "smith",
+      "in": [
+        {
+          "item": "verdite_bar",
+          "count": 1
+        }
+      ],
+      "out": "verdite_dagger",
+      "group": "Verdite"
+    },
+    {
+      "id": "smith:verdite_hatchet",
+      "skill": "Smithing",
+      "level": 56,
+      "xp": 62.5,
+      "station": "smith",
+      "in": [
+        {
+          "item": "verdite_bar",
+          "count": 1
+        }
+      ],
+      "out": "verdite_hatchet",
+      "group": "Verdite"
+    },
+    {
+      "id": "smith:verdite_arrowheads",
+      "skill": "Smithing",
+      "level": 57,
+      "xp": 62.5,
+      "station": "smith",
+      "in": [
+        {
+          "item": "verdite_bar",
+          "count": 1
+        }
+      ],
+      "out": "verdite_arrowheads",
+      "outCount": 15,
+      "group": "Verdite"
+    },
+    {
+      "id": "smith:verdite_pickaxe",
+      "skill": "Smithing",
+      "level": 58,
+      "xp": 125,
+      "station": "smith",
+      "in": [
+        {
+          "item": "verdite_bar",
+          "count": 2
+        }
+      ],
+      "out": "verdite_pickaxe",
+      "group": "Verdite"
+    },
+    {
+      "id": "smith:verdite_sword",
+      "skill": "Smithing",
+      "level": 59,
+      "xp": 125,
+      "station": "smith",
+      "in": [
+        {
+          "item": "verdite_bar",
+          "count": 2
+        }
+      ],
+      "out": "verdite_sword",
+      "group": "Verdite"
+    },
+    {
+      "id": "smith:verdite_sabre",
+      "skill": "Smithing",
+      "level": 60,
+      "xp": 125,
+      "station": "smith",
+      "in": [
+        {
+          "item": "verdite_bar",
+          "count": 2
+        }
+      ],
+      "out": "verdite_sabre",
+      "group": "Verdite"
+    },
+    {
+      "id": "smith:verdite_helm",
+      "skill": "Smithing",
+      "level": 61,
+      "xp": 125,
+      "station": "smith",
+      "in": [
+        {
+          "item": "verdite_bar",
+          "count": 2
+        }
+      ],
+      "out": "verdite_helm",
+      "group": "Verdite"
+    },
+    {
+      "id": "smith:verdite_warhammer",
+      "skill": "Smithing",
+      "level": 63,
+      "xp": 187.5,
+      "station": "smith",
+      "in": [
+        {
+          "item": "verdite_bar",
+          "count": 3
+        }
+      ],
+      "out": "verdite_warhammer",
+      "group": "Verdite"
+    },
+    {
+      "id": "smith:verdite_legguards",
+      "skill": "Smithing",
+      "level": 64,
+      "xp": 187.5,
+      "station": "smith",
+      "in": [
+        {
+          "item": "verdite_bar",
+          "count": 3
+        }
+      ],
+      "out": "verdite_legguards",
+      "group": "Verdite"
+    },
+    {
+      "id": "smith:verdite_heater",
+      "skill": "Smithing",
+      "level": 65,
+      "xp": 187.5,
+      "station": "smith",
+      "in": [
+        {
+          "item": "verdite_bar",
+          "count": 3
+        }
+      ],
+      "out": "verdite_heater",
+      "group": "Verdite"
+    },
+    {
+      "id": "smith:verdite_greatsword",
+      "skill": "Smithing",
+      "level": 66,
+      "xp": 187.5,
+      "station": "smith",
+      "in": [
+        {
+          "item": "verdite_bar",
+          "count": 3
+        }
+      ],
+      "out": "verdite_greatsword",
+      "unlock": "greatswords",
+      "group": "Verdite"
+    },
+    {
+      "id": "smith:verdite_chestplate",
+      "skill": "Smithing",
+      "level": 68,
+      "xp": 312.5,
+      "station": "smith",
+      "in": [
+        {
+          "item": "verdite_bar",
+          "count": 5
+        }
+      ],
+      "out": "verdite_chestplate",
+      "group": "Verdite"
+    },
+    {
+      "id": "smith:azurite_dagger",
+      "skill": "Smithing",
+      "level": 65,
+      "xp": 75,
+      "station": "smith",
+      "in": [
+        {
+          "item": "azurite_bar",
+          "count": 1
+        }
+      ],
+      "out": "azurite_dagger",
+      "unlock": "azurite_smithing",
+      "group": "Azurite"
+    },
+    {
+      "id": "smith:azurite_hatchet",
+      "skill": "Smithing",
+      "level": 66,
+      "xp": 75,
+      "station": "smith",
+      "in": [
+        {
+          "item": "azurite_bar",
+          "count": 1
+        }
+      ],
+      "out": "azurite_hatchet",
+      "unlock": "azurite_smithing",
+      "group": "Azurite"
+    },
+    {
+      "id": "smith:azurite_arrowheads",
+      "skill": "Smithing",
+      "level": 67,
+      "xp": 75,
+      "station": "smith",
+      "in": [
+        {
+          "item": "azurite_bar",
+          "count": 1
+        }
+      ],
+      "out": "azurite_arrowheads",
+      "outCount": 15,
+      "unlock": "azurite_smithing",
+      "group": "Azurite"
+    },
+    {
+      "id": "smith:azurite_pickaxe",
+      "skill": "Smithing",
+      "level": 68,
+      "xp": 150,
+      "station": "smith",
+      "in": [
+        {
+          "item": "azurite_bar",
+          "count": 2
+        }
+      ],
+      "out": "azurite_pickaxe",
+      "unlock": "azurite_smithing",
+      "group": "Azurite"
+    },
+    {
+      "id": "smith:azurite_sword",
+      "skill": "Smithing",
+      "level": 69,
+      "xp": 150,
+      "station": "smith",
+      "in": [
+        {
+          "item": "azurite_bar",
+          "count": 2
+        }
+      ],
+      "out": "azurite_sword",
+      "unlock": "azurite_smithing",
+      "group": "Azurite"
+    },
+    {
+      "id": "smith:azurite_sabre",
+      "skill": "Smithing",
+      "level": 70,
+      "xp": 150,
+      "station": "smith",
+      "in": [
+        {
+          "item": "azurite_bar",
+          "count": 2
+        }
+      ],
+      "out": "azurite_sabre",
+      "unlock": "azurite_smithing",
+      "group": "Azurite"
+    },
+    {
+      "id": "smith:azurite_helm",
+      "skill": "Smithing",
+      "level": 71,
+      "xp": 150,
+      "station": "smith",
+      "in": [
+        {
+          "item": "azurite_bar",
+          "count": 2
+        }
+      ],
+      "out": "azurite_helm",
+      "unlock": "azurite_smithing",
+      "group": "Azurite"
+    },
+    {
+      "id": "smith:azurite_warhammer",
+      "skill": "Smithing",
+      "level": 73,
+      "xp": 225,
+      "station": "smith",
+      "in": [
+        {
+          "item": "azurite_bar",
+          "count": 3
+        }
+      ],
+      "out": "azurite_warhammer",
+      "unlock": "azurite_smithing",
+      "group": "Azurite"
+    },
+    {
+      "id": "smith:azurite_legguards",
+      "skill": "Smithing",
+      "level": 74,
+      "xp": 225,
+      "station": "smith",
+      "in": [
+        {
+          "item": "azurite_bar",
+          "count": 3
+        }
+      ],
+      "out": "azurite_legguards",
+      "unlock": "azurite_smithing",
+      "group": "Azurite"
+    },
+    {
+      "id": "smith:azurite_heater",
+      "skill": "Smithing",
+      "level": 75,
+      "xp": 225,
+      "station": "smith",
+      "in": [
+        {
+          "item": "azurite_bar",
+          "count": 3
+        }
+      ],
+      "out": "azurite_heater",
+      "unlock": "azurite_smithing",
+      "group": "Azurite"
+    },
+    {
+      "id": "smith:azurite_greatsword",
+      "skill": "Smithing",
+      "level": 76,
+      "xp": 225,
+      "station": "smith",
+      "in": [
+        {
+          "item": "azurite_bar",
+          "count": 3
+        }
+      ],
+      "out": "azurite_greatsword",
+      "unlock": "azurite_smithing",
+      "group": "Azurite"
+    },
+    {
+      "id": "smith:azurite_chestplate",
+      "skill": "Smithing",
+      "level": 78,
+      "xp": 375,
+      "station": "smith",
+      "in": [
+        {
+          "item": "azurite_bar",
+          "count": 5
+        }
+      ],
+      "out": "azurite_chestplate",
+      "unlock": "azurite_smithing",
+      "group": "Azurite"
+    },
+    {
+      "id": "smith:emberforged_dagger",
+      "skill": "Smithing",
+      "level": 80,
+      "xp": 100,
+      "station": "smith",
+      "in": [
+        {
+          "item": "emberforged_bar",
+          "count": 1
+        }
+      ],
+      "out": "emberforged_dagger",
+      "unlock": "emberforged_smithing",
+      "group": "Emberforged"
+    },
+    {
+      "id": "smith:emberforged_hatchet",
+      "skill": "Smithing",
+      "level": 81,
+      "xp": 100,
+      "station": "smith",
+      "in": [
+        {
+          "item": "emberforged_bar",
+          "count": 1
+        }
+      ],
+      "out": "emberforged_hatchet",
+      "unlock": "emberforged_smithing",
+      "group": "Emberforged"
+    },
+    {
+      "id": "smith:emberforged_pickaxe",
+      "skill": "Smithing",
+      "level": 83,
+      "xp": 200,
+      "station": "smith",
+      "in": [
+        {
+          "item": "emberforged_bar",
+          "count": 2
+        }
+      ],
+      "out": "emberforged_pickaxe",
+      "unlock": "emberforged_smithing",
+      "group": "Emberforged"
+    },
+    {
+      "id": "smith:emberforged_sword",
+      "skill": "Smithing",
+      "level": 84,
+      "xp": 200,
+      "station": "smith",
+      "in": [
+        {
+          "item": "emberforged_bar",
+          "count": 2
+        }
+      ],
+      "out": "emberforged_sword",
+      "unlock": "emberforged_smithing",
+      "group": "Emberforged"
+    },
+    {
+      "id": "smith:emberforged_sabre",
+      "skill": "Smithing",
+      "level": 85,
+      "xp": 200,
+      "station": "smith",
+      "in": [
+        {
+          "item": "emberforged_bar",
+          "count": 2
+        }
+      ],
+      "out": "emberforged_sabre",
+      "unlock": "emberforged_smithing",
+      "group": "Emberforged"
+    },
+    {
+      "id": "smith:emberforged_helm",
+      "skill": "Smithing",
+      "level": 86,
+      "xp": 200,
+      "station": "smith",
+      "in": [
+        {
+          "item": "emberforged_bar",
+          "count": 2
+        }
+      ],
+      "out": "emberforged_helm",
+      "unlock": "emberforged_smithing",
+      "group": "Emberforged"
+    },
+    {
+      "id": "smith:emberforged_warhammer",
+      "skill": "Smithing",
+      "level": 88,
+      "xp": 300,
+      "station": "smith",
+      "in": [
+        {
+          "item": "emberforged_bar",
+          "count": 3
+        }
+      ],
+      "out": "emberforged_warhammer",
+      "unlock": "emberforged_smithing",
+      "group": "Emberforged"
+    },
+    {
+      "id": "smith:emberforged_legguards",
+      "skill": "Smithing",
+      "level": 89,
+      "xp": 300,
+      "station": "smith",
+      "in": [
+        {
+          "item": "emberforged_bar",
+          "count": 3
+        }
+      ],
+      "out": "emberforged_legguards",
+      "unlock": "emberforged_smithing",
+      "group": "Emberforged"
+    },
+    {
+      "id": "smith:emberforged_heater",
+      "skill": "Smithing",
+      "level": 90,
+      "xp": 300,
+      "station": "smith",
+      "in": [
+        {
+          "item": "emberforged_bar",
+          "count": 3
+        }
+      ],
+      "out": "emberforged_heater",
+      "unlock": "emberforged_smithing",
+      "group": "Emberforged"
+    },
+    {
+      "id": "smith:emberforged_greatsword",
+      "skill": "Smithing",
+      "level": 91,
+      "xp": 300,
+      "station": "smith",
+      "in": [
+        {
+          "item": "emberforged_bar",
+          "count": 3
+        }
+      ],
+      "out": "emberforged_greatsword",
+      "unlock": "emberforged_smithing",
+      "group": "Emberforged"
+    },
+    {
+      "id": "smith:emberforged_chestplate",
+      "skill": "Smithing",
+      "level": 93,
+      "xp": 500,
+      "station": "smith",
+      "in": [
+        {
+          "item": "emberforged_bar",
+          "count": 5
+        }
+      ],
+      "out": "emberforged_chestplate",
+      "unlock": "emberforged_smithing",
+      "group": "Emberforged"
+    },
+    {
+      "id": "cook:roast_perch",
+      "skill": "Cooking",
+      "level": 1,
+      "xp": 30,
+      "station": "cook",
+      "in": [
+        {
+          "item": "raw_perch",
+          "count": 1
+        }
+      ],
+      "out": "roast_perch",
+      "group": "Fish & meat",
+      "burnStop": 34
+    },
+    {
+      "id": "cook:roast_chicken",
+      "skill": "Cooking",
+      "level": 1,
+      "xp": 30,
+      "station": "cook",
+      "in": [
+        {
+          "item": "raw_chicken",
+          "count": 1
+        }
+      ],
+      "out": "roast_chicken",
+      "group": "Fish & meat",
+      "burnStop": 34
+    },
+    {
+      "id": "cook:cooked_meat",
+      "skill": "Cooking",
+      "level": 1,
+      "xp": 30,
+      "station": "cook",
+      "in": [
+        {
+          "item": "raw_meat",
+          "count": 1
+        }
+      ],
+      "out": "cooked_meat",
+      "group": "Fish & meat",
+      "burnStop": 34
+    },
+    {
+      "id": "cook:smoked_herring",
+      "skill": "Cooking",
+      "level": 5,
+      "xp": 40,
+      "station": "cook",
+      "in": [
+        {
+          "item": "raw_herring",
+          "count": 1
+        }
+      ],
+      "out": "smoked_herring",
+      "group": "Fish & meat",
+      "burnStop": 38
+    },
+    {
+      "id": "cook:grilled_trout",
+      "skill": "Cooking",
+      "level": 15,
+      "xp": 70,
+      "station": "cook",
+      "in": [
+        {
+          "item": "raw_trout",
+          "count": 1
+        }
+      ],
+      "out": "grilled_trout",
+      "group": "Fish & meat",
+      "burnStop": 50
+    },
+    {
+      "id": "cook:baked_pike",
+      "skill": "Cooking",
+      "level": 25,
+      "xp": 80,
+      "station": "cook",
+      "in": [
+        {
+          "item": "raw_pike",
+          "count": 1
+        }
+      ],
+      "out": "baked_pike",
+      "group": "Fish & meat",
+      "burnStop": 60
+    },
+    {
+      "id": "cook:salmon_fillet",
+      "skill": "Cooking",
+      "level": 30,
+      "xp": 90,
+      "station": "cook",
+      "in": [
+        {
+          "item": "raw_salmon",
+          "count": 1
+        }
+      ],
+      "out": "salmon_fillet",
+      "group": "Fish & meat",
+      "burnStop": 64
+    },
+    {
+      "id": "cook:swordfish_steak",
+      "skill": "Cooking",
+      "level": 45,
+      "xp": 140,
+      "station": "cook",
+      "in": [
+        {
+          "item": "raw_swordfish",
+          "count": 1
+        }
+      ],
+      "out": "swordfish_steak",
+      "group": "Fish & meat",
+      "burnStop": 86
+    },
+    {
+      "id": "cook:moonfin_steak",
+      "skill": "Cooking",
+      "level": 60,
+      "xp": 210,
+      "station": "cook",
+      "in": [
+        {
+          "item": "raw_moonfin",
+          "count": 1
+        }
+      ],
+      "out": "moonfin_steak",
+      "group": "Fish & meat",
+      "burnStop": 99
+    },
+    {
+      "id": "cook:bread",
+      "skill": "Cooking",
+      "level": 10,
+      "xp": 40,
+      "station": "cook",
+      "in": [
+        {
+          "item": "wheat",
+          "count": 2
+        }
+      ],
+      "out": "bread",
+      "group": "Dishes",
+      "burnStop": 40
+    },
+    {
+      "id": "cook:cabbage_soup",
+      "skill": "Cooking",
+      "level": 12,
+      "xp": 60,
+      "station": "cook",
+      "in": [
+        {
+          "item": "cabbage",
+          "count": 1
+        },
+        {
+          "item": "onion",
+          "count": 1
+        }
+      ],
+      "out": "cabbage_soup",
+      "unlock": "cabbage_soup",
+      "group": "Dishes",
+      "burnStop": 45
+    },
+    {
+      "id": "cook:venison_stew",
+      "skill": "Cooking",
+      "level": 25,
+      "xp": 110,
+      "station": "cook",
+      "in": [
+        {
+          "item": "cooked_meat",
+          "count": 1
+        },
+        {
+          "item": "potato",
+          "count": 1
+        },
+        {
+          "item": "onion",
+          "count": 1
+        }
+      ],
+      "out": "venison_stew",
+      "group": "Dishes",
+      "burnStop": 60
+    },
+    {
+      "id": "cook:berry_pie",
+      "skill": "Cooking",
+      "level": 35,
+      "xp": 130,
+      "station": "cook",
+      "in": [
+        {
+          "item": "wheat",
+          "count": 1
+        },
+        {
+          "item": "strawberry",
+          "count": 3
+        }
+      ],
+      "out": "berry_pie",
+      "group": "Dishes",
+      "burnStop": 70
+    },
+    {
+      "id": "cook:hunters_roast",
+      "skill": "Cooking",
+      "level": 45,
+      "xp": 160,
+      "station": "cook",
+      "in": [
+        {
+          "item": "cooked_meat",
+          "count": 2
+        },
+        {
+          "item": "onion",
+          "count": 1
+        },
+        {
+          "item": "potato",
+          "count": 1
+        }
+      ],
+      "out": "hunters_roast",
+      "unlock": "hunters_roast",
+      "group": "Dishes",
+      "burnStop": 80
+    },
+    {
+      "id": "cook:fishermans_pie",
+      "skill": "Cooking",
+      "level": 50,
+      "xp": 180,
+      "station": "cook",
+      "in": [
+        {
+          "item": "swordfish_steak",
+          "count": 1
+        },
+        {
+          "item": "potato",
+          "count": 1
+        },
+        {
+          "item": "wheat",
+          "count": 1
+        }
+      ],
+      "out": "fishermans_pie",
+      "unlock": "fishermans_pie",
+      "group": "Dishes",
+      "burnStop": 85
+    },
+    {
+      "id": "cook:feast_pie",
+      "skill": "Cooking",
+      "level": 60,
+      "xp": 250,
+      "station": "cook",
+      "in": [
+        {
+          "item": "salmon_fillet",
+          "count": 1
+        },
+        {
+          "item": "cooked_meat",
+          "count": 1
+        },
+        {
+          "item": "cabbage",
+          "count": 1
+        },
+        {
+          "item": "wheat",
+          "count": 1
+        },
+        {
+          "item": "onion",
+          "count": 1
+        }
+      ],
+      "out": "feast_pie",
+      "unlock": "feast_pie",
+      "group": "Dishes",
+      "burnStop": 95
+    },
+    {
+      "id": "workbench:arrow_shafts",
+      "skill": "Woodcutting",
+      "level": 1,
+      "xp": 5,
+      "station": "workbench",
+      "in": [
+        {
+          "item": "pine_log",
+          "count": 1
+        }
+      ],
+      "out": "arrow_shafts",
+      "outCount": 15,
+      "group": "Arrows"
+    },
+    {
+      "id": "workbench:headless_arrow",
+      "skill": "Woodcutting",
+      "level": 1,
+      "xp": 15,
+      "station": "workbench",
+      "in": [
+        {
+          "item": "arrow_shafts",
+          "count": 15
+        },
+        {
+          "item": "feather",
+          "count": 15
+        }
+      ],
+      "out": "headless_arrow",
+      "outCount": 15,
+      "group": "Arrows"
+    },
+    {
+      "id": "workbench:bronze_arrow",
+      "skill": "Woodcutting",
+      "level": 1,
+      "xp": 20,
+      "station": "workbench",
+      "in": [
+        {
+          "item": "headless_arrow",
+          "count": 15
+        },
+        {
+          "item": "bronze_arrowheads",
+          "count": 15
+        }
+      ],
+      "out": "bronze_arrow",
+      "outCount": 15,
+      "group": "Arrows"
+    },
+    {
+      "id": "workbench:iron_arrow",
+      "skill": "Woodcutting",
+      "level": 15,
+      "xp": 45,
+      "station": "workbench",
+      "in": [
+        {
+          "item": "headless_arrow",
+          "count": 15
+        },
+        {
+          "item": "iron_arrowheads",
+          "count": 15
+        }
+      ],
+      "out": "iron_arrow",
+      "outCount": 15,
+      "group": "Arrows"
+    },
+    {
+      "id": "workbench:steel_arrow",
+      "skill": "Woodcutting",
+      "level": 30,
+      "xp": 70,
+      "station": "workbench",
+      "in": [
+        {
+          "item": "headless_arrow",
+          "count": 15
+        },
+        {
+          "item": "steel_arrowheads",
+          "count": 15
+        }
+      ],
+      "out": "steel_arrow",
+      "outCount": 15,
+      "group": "Arrows"
+    },
+    {
+      "id": "workbench:cobalt_arrow",
+      "skill": "Woodcutting",
+      "level": 45,
+      "xp": 95,
+      "station": "workbench",
+      "in": [
+        {
+          "item": "headless_arrow",
+          "count": 15
+        },
+        {
+          "item": "cobalt_arrowheads",
+          "count": 15
+        }
+      ],
+      "out": "cobalt_arrow",
+      "outCount": 15,
+      "group": "Arrows"
+    },
+    {
+      "id": "workbench:verdite_arrow",
+      "skill": "Woodcutting",
+      "level": 55,
+      "xp": 120,
+      "station": "workbench",
+      "in": [
+        {
+          "item": "headless_arrow",
+          "count": 15
+        },
+        {
+          "item": "verdite_arrowheads",
+          "count": 15
+        }
+      ],
+      "out": "verdite_arrow",
+      "outCount": 15,
+      "group": "Arrows"
+    },
+    {
+      "id": "workbench:azurite_arrow",
+      "skill": "Woodcutting",
+      "level": 65,
+      "xp": 145,
+      "station": "workbench",
+      "in": [
+        {
+          "item": "headless_arrow",
+          "count": 15
+        },
+        {
+          "item": "azurite_arrowheads",
+          "count": 15
+        }
+      ],
+      "out": "azurite_arrow",
+      "outCount": 15,
+      "unlock": "azurite_smithing",
+      "group": "Arrows"
+    },
+    {
+      "id": "workbench:shortbow",
+      "skill": "Woodcutting",
+      "level": 5,
+      "xp": 10,
+      "station": "workbench",
+      "in": [
+        {
+          "item": "pine_log",
+          "count": 1
+        },
+        {
+          "item": "silk_thread",
+          "count": 1
+        }
+      ],
+      "out": "shortbow",
+      "group": "Bows & staves"
+    },
+    {
+      "id": "workbench:ash_shortbow",
+      "skill": "Woodcutting",
+      "level": 12,
+      "xp": 25,
+      "station": "workbench",
+      "in": [
+        {
+          "item": "ash_log",
+          "count": 1
+        },
+        {
+          "item": "silk_thread",
+          "count": 1
+        }
+      ],
+      "out": "ash_shortbow",
+      "group": "Bows & staves"
+    },
+    {
+      "id": "workbench:elm_shortbow",
+      "skill": "Woodcutting",
+      "level": 22,
+      "xp": 40,
+      "station": "workbench",
+      "in": [
+        {
+          "item": "elm_log",
+          "count": 1
+        },
+        {
+          "item": "silk_thread",
+          "count": 1
+        }
+      ],
+      "out": "elm_shortbow",
+      "group": "Bows & staves"
+    },
+    {
+      "id": "workbench:staff",
+      "skill": "Woodcutting",
+      "level": 25,
+      "xp": 45,
+      "station": "workbench",
+      "in": [
+        {
+          "item": "willow_log",
+          "count": 1
+        }
+      ],
+      "out": "staff",
+      "group": "Bows & staves"
+    },
+    {
+      "id": "workbench:hornbeam_shortbow",
+      "skill": "Woodcutting",
+      "level": 37,
+      "xp": 60,
+      "station": "workbench",
+      "in": [
+        {
+          "item": "hornbeam_log",
+          "count": 1
+        },
+        {
+          "item": "silk_thread",
+          "count": 1
+        }
+      ],
+      "out": "hornbeam_shortbow",
+      "group": "Bows & staves"
+    },
+    {
+      "id": "workbench:elder_longbow",
+      "skill": "Woodcutting",
+      "level": 47,
+      "xp": 90,
+      "station": "workbench",
+      "in": [
+        {
+          "item": "elder_log",
+          "count": 1
+        },
+        {
+          "item": "silk_thread",
+          "count": 1
+        }
+      ],
+      "out": "elder_longbow",
+      "unlock": "elder_bows",
+      "group": "Bows & staves"
+    },
+    {
+      "id": "workbench:moonwood_longbow",
+      "skill": "Woodcutting",
+      "level": 62,
+      "xp": 150,
+      "station": "workbench",
+      "in": [
+        {
+          "item": "moonwood_log",
+          "count": 1
+        },
+        {
+          "item": "spidersilk_thread",
+          "count": 1
+        }
+      ],
+      "out": "moonwood_longbow",
+      "unlock": "moonwood_bows",
+      "group": "Bows & staves"
+    },
+    {
+      "id": "spin:silk_thread",
+      "skill": "Silkweaving",
+      "level": 1,
+      "xp": 12,
+      "station": "spin",
+      "in": [
+        {
+          "item": "silk_cocoon",
+          "count": 1
+        }
+      ],
+      "out": "silk_thread",
+      "group": "Thread"
+    },
+    {
+      "id": "spin:spidersilk_thread",
+      "skill": "Silkweaving",
+      "level": 40,
+      "xp": 35,
+      "station": "spin",
+      "in": [
+        {
+          "item": "spider_silk",
+          "count": 1
+        }
+      ],
+      "out": "spidersilk_thread",
+      "unlock": "spidersilk",
+      "group": "Thread"
+    },
+    {
+      "id": "spin:moonsilk_thread",
+      "skill": "Silkweaving",
+      "level": 55,
+      "xp": 50,
+      "station": "spin",
+      "in": [
+        {
+          "item": "silk_thread",
+          "count": 1
+        },
+        {
+          "item": "moonpetal",
+          "count": 1
+        }
+      ],
+      "out": "moonsilk_thread",
+      "unlock": "moonsilk",
+      "group": "Thread"
+    },
+    {
+      "id": "weave:silk_cloth",
+      "skill": "Silkweaving",
+      "level": 5,
+      "xp": 40,
+      "station": "weave",
+      "in": [
+        {
+          "item": "silk_thread",
+          "count": 3
+        }
+      ],
+      "out": "silk_cloth",
+      "group": "Cloth"
+    },
+    {
+      "id": "weave:crimson_cloth",
+      "skill": "Silkweaving",
+      "level": 28,
+      "xp": 45,
+      "station": "weave",
+      "in": [
+        {
+          "item": "silk_cloth",
+          "count": 1
+        },
+        {
+          "item": "madder",
+          "count": 1
+        }
+      ],
+      "out": "crimson_cloth",
+      "unlock": "dyeing",
+      "group": "Dyed cloth"
+    },
+    {
+      "id": "weave:azure_cloth",
+      "skill": "Silkweaving",
+      "level": 33,
+      "xp": 50,
+      "station": "weave",
+      "in": [
+        {
+          "item": "silk_cloth",
+          "count": 1
+        },
+        {
+          "item": "woad",
+          "count": 1
+        }
+      ],
+      "out": "azure_cloth",
+      "unlock": "dyeing",
+      "group": "Dyed cloth"
+    },
+    {
+      "id": "weave:spidersilk_cloth",
+      "skill": "Silkweaving",
+      "level": 42,
+      "xp": 110,
+      "station": "weave",
+      "in": [
+        {
+          "item": "spidersilk_thread",
+          "count": 3
+        }
+      ],
+      "out": "spidersilk_cloth",
+      "unlock": "spidersilk",
+      "group": "Cloth"
+    },
+    {
+      "id": "weave:moonsilk_cloth",
+      "skill": "Silkweaving",
+      "level": 57,
+      "xp": 160,
+      "station": "weave",
+      "in": [
+        {
+          "item": "moonsilk_thread",
+          "count": 3
+        }
+      ],
+      "out": "moonsilk_cloth",
+      "unlock": "moonsilk",
+      "group": "Cloth"
+    },
+    {
+      "id": "sew:silk_gloves",
+      "skill": "Silkweaving",
+      "level": 8,
+      "xp": 45,
+      "station": "sew",
+      "in": [
+        {
+          "item": "silk_cloth",
+          "count": 1
+        }
+      ],
+      "out": "silk_gloves",
+      "group": "Silk"
+    },
+    {
+      "id": "sew:silk_hood",
+      "skill": "Silkweaving",
+      "level": 12,
+      "xp": 50,
+      "station": "sew",
+      "in": [
+        {
+          "item": "silk_cloth",
+          "count": 1
+        }
+      ],
+      "out": "silk_hood",
+      "group": "Silk"
+    },
+    {
+      "id": "sew:silk_skirt",
+      "skill": "Silkweaving",
+      "level": 16,
+      "xp": 90,
+      "station": "sew",
+      "in": [
+        {
+          "item": "silk_cloth",
+          "count": 2
+        }
+      ],
+      "out": "silk_skirt",
+      "group": "Silk"
+    },
+    {
+      "id": "sew:silk_robe",
+      "skill": "Silkweaving",
+      "level": 20,
+      "xp": 140,
+      "station": "sew",
+      "in": [
+        {
+          "item": "silk_cloth",
+          "count": 3
+        }
+      ],
+      "out": "silk_robe",
+      "group": "Silk"
+    },
+    {
+      "id": "sew:crimson_hood",
+      "skill": "Silkweaving",
+      "level": 30,
+      "xp": 70,
+      "station": "sew",
+      "in": [
+        {
+          "item": "crimson_cloth",
+          "count": 1
+        }
+      ],
+      "out": "crimson_hood",
+      "group": "Dyed silk"
+    },
+    {
+      "id": "sew:red_cape",
+      "skill": "Silkweaving",
+      "level": 31,
+      "xp": 120,
+      "station": "sew",
+      "in": [
+        {
+          "item": "crimson_cloth",
+          "count": 2
+        }
+      ],
+      "out": "red_cape",
+      "group": "Dyed silk"
+    },
+    {
+      "id": "sew:crimson_robe",
+      "skill": "Silkweaving",
+      "level": 34,
+      "xp": 200,
+      "station": "sew",
+      "in": [
+        {
+          "item": "crimson_cloth",
+          "count": 3
+        }
+      ],
+      "out": "crimson_robe",
+      "group": "Dyed silk"
+    },
+    {
+      "id": "sew:blue_cape",
+      "skill": "Silkweaving",
+      "level": 36,
+      "xp": 130,
+      "station": "sew",
+      "in": [
+        {
+          "item": "azure_cloth",
+          "count": 2
+        }
+      ],
+      "out": "blue_cape",
+      "group": "Dyed silk"
+    },
+    {
+      "id": "sew:azure_cape",
+      "skill": "Silkweaving",
+      "level": 38,
+      "xp": 220,
+      "station": "sew",
+      "in": [
+        {
+          "item": "azure_cloth",
+          "count": 3
+        }
+      ],
+      "out": "azure_cape",
+      "group": "Dyed silk"
+    },
+    {
+      "id": "sew:spidersilk_gloves",
+      "skill": "Silkweaving",
+      "level": 43,
+      "xp": 150,
+      "station": "sew",
+      "in": [
+        {
+          "item": "spidersilk_cloth",
+          "count": 1
+        }
+      ],
+      "out": "spidersilk_gloves",
+      "unlock": "spidersilk",
+      "group": "Spidersilk"
+    },
+    {
+      "id": "sew:spidersilk_hood",
+      "skill": "Silkweaving",
+      "level": 45,
+      "xp": 160,
+      "station": "sew",
+      "in": [
+        {
+          "item": "spidersilk_cloth",
+          "count": 1
+        }
+      ],
+      "out": "spidersilk_hood",
+      "unlock": "spidersilk",
+      "group": "Spidersilk"
+    },
+    {
+      "id": "sew:spidersilk_skirt",
+      "skill": "Silkweaving",
+      "level": 48,
+      "xp": 300,
+      "station": "sew",
+      "in": [
+        {
+          "item": "spidersilk_cloth",
+          "count": 2
+        }
+      ],
+      "out": "spidersilk_skirt",
+      "unlock": "spidersilk",
+      "group": "Spidersilk"
+    },
+    {
+      "id": "sew:spidersilk_robe",
+      "skill": "Silkweaving",
+      "level": 52,
+      "xp": 450,
+      "station": "sew",
+      "in": [
+        {
+          "item": "spidersilk_cloth",
+          "count": 3
+        }
+      ],
+      "out": "spidersilk_robe",
+      "unlock": "spidersilk",
+      "group": "Spidersilk"
+    },
+    {
+      "id": "sew:moonsilk_hat",
+      "skill": "Silkweaving",
+      "level": 58,
+      "xp": 250,
+      "station": "sew",
+      "in": [
+        {
+          "item": "moonsilk_cloth",
+          "count": 1
+        }
+      ],
+      "out": "moonsilk_hat",
+      "unlock": "moonsilk",
+      "group": "Moonsilk"
+    },
+    {
+      "id": "sew:moonsilk_skirt",
+      "skill": "Silkweaving",
+      "level": 61,
+      "xp": 480,
+      "station": "sew",
+      "in": [
+        {
+          "item": "moonsilk_cloth",
+          "count": 2
+        }
+      ],
+      "out": "moonsilk_skirt",
+      "unlock": "moonsilk",
+      "group": "Moonsilk"
+    },
+    {
+      "id": "sew:moonsilk_robe",
+      "skill": "Silkweaving",
+      "level": 65,
+      "xp": 700,
+      "station": "sew",
+      "in": [
+        {
+          "item": "moonsilk_cloth",
+          "count": 3
+        }
+      ],
+      "out": "moonsilk_robe",
+      "unlock": "moonsilk",
+      "group": "Moonsilk"
+    },
+    {
+      "id": "enchant:focus_sigil",
+      "skill": "Enchanting",
+      "level": 1,
+      "xp": 5,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "essence_stone",
+          "count": 1
+        }
+      ],
+      "out": "focus_sigil",
+      "group": "Sigils (per essence)",
+      "sigil": true
+    },
+    {
+      "id": "enchant:gale_sigil",
+      "skill": "Enchanting",
+      "level": 5,
+      "xp": 6,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "essence_stone",
+          "count": 1
+        }
+      ],
+      "out": "gale_sigil",
+      "group": "Sigils (per essence)",
+      "sigil": true
+    },
+    {
+      "id": "enchant:tide_sigil",
+      "skill": "Enchanting",
+      "level": 9,
+      "xp": 7,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "essence_stone",
+          "count": 1
+        }
+      ],
+      "out": "tide_sigil",
+      "group": "Sigils (per essence)",
+      "sigil": true
+    },
+    {
+      "id": "enchant:stone_sigil",
+      "skill": "Enchanting",
+      "level": 14,
+      "xp": 8,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "essence_stone",
+          "count": 1
+        }
+      ],
+      "out": "stone_sigil",
+      "group": "Sigils (per essence)",
+      "sigil": true
+    },
+    {
+      "id": "enchant:ember_sigil",
+      "skill": "Enchanting",
+      "level": 19,
+      "xp": 9,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "essence_stone",
+          "count": 1
+        }
+      ],
+      "out": "ember_sigil",
+      "group": "Sigils (per essence)",
+      "sigil": true
+    },
+    {
+      "id": "enchant:storm_sigil",
+      "skill": "Enchanting",
+      "level": 35,
+      "xp": 12,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "essence_stone",
+          "count": 1
+        }
+      ],
+      "out": "storm_sigil",
+      "unlock": "storm_sigils",
+      "group": "Sigils (per essence)",
+      "sigil": true
+    },
+    {
+      "id": "enchant:void_sigil",
+      "skill": "Enchanting",
+      "level": 50,
+      "xp": 16,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "essence_stone",
+          "count": 1
+        }
+      ],
+      "out": "void_sigil",
+      "unlock": "void_sigils",
+      "group": "Sigils (per essence)",
+      "sigil": true
+    },
+    {
+      "id": "enchant:crimson_sigil",
+      "skill": "Enchanting",
+      "level": 70,
+      "xp": 22,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "essence_stone",
+          "count": 1
+        }
+      ],
+      "out": "crimson_sigil",
+      "unlock": "crimson_sigils",
+      "group": "Sigils (per essence)",
+      "sigil": true
+    },
+    {
+      "id": "enchant:silver_ring",
+      "skill": "Enchanting",
+      "level": 5,
+      "xp": 20,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "silver_bar",
+          "count": 1
+        }
+      ],
+      "out": "silver_ring",
+      "group": "Jewellery"
+    },
+    {
+      "id": "enchant:gold_ring",
+      "skill": "Enchanting",
+      "level": 15,
+      "xp": 30,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "gold_bar",
+          "count": 1
+        }
+      ],
+      "out": "gold_ring",
+      "group": "Jewellery"
+    },
+    {
+      "id": "enchant:sapphire_ring",
+      "skill": "Enchanting",
+      "level": 22,
+      "xp": 50,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "gold_bar",
+          "count": 1
+        },
+        {
+          "item": "sapphire",
+          "count": 1
+        }
+      ],
+      "out": "sapphire_ring",
+      "group": "Jewellery"
+    },
+    {
+      "id": "enchant:sapphire_pendant",
+      "skill": "Enchanting",
+      "level": 25,
+      "xp": 60,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "gold_bar",
+          "count": 1
+        },
+        {
+          "item": "sapphire",
+          "count": 1
+        }
+      ],
+      "out": "sapphire_pendant",
+      "group": "Jewellery"
+    },
+    {
+      "id": "enchant:emerald_ring",
+      "skill": "Enchanting",
+      "level": 30,
+      "xp": 70,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "gold_bar",
+          "count": 1
+        },
+        {
+          "item": "emerald",
+          "count": 1
+        }
+      ],
+      "out": "emerald_ring",
+      "group": "Jewellery"
+    },
+    {
+      "id": "enchant:emerald_pendant",
+      "skill": "Enchanting",
+      "level": 33,
+      "xp": 80,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "gold_bar",
+          "count": 1
+        },
+        {
+          "item": "emerald",
+          "count": 1
+        }
+      ],
+      "out": "emerald_pendant",
+      "group": "Jewellery"
+    },
+    {
+      "id": "enchant:ruby_ring",
+      "skill": "Enchanting",
+      "level": 40,
+      "xp": 90,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "gold_bar",
+          "count": 1
+        },
+        {
+          "item": "ruby",
+          "count": 1
+        }
+      ],
+      "out": "ruby_ring",
+      "group": "Jewellery"
+    },
+    {
+      "id": "enchant:ruby_pendant",
+      "skill": "Enchanting",
+      "level": 43,
+      "xp": 100,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "gold_bar",
+          "count": 1
+        },
+        {
+          "item": "ruby",
+          "count": 1
+        }
+      ],
+      "out": "ruby_pendant",
+      "group": "Jewellery"
+    },
+    {
+      "id": "enchant:diamond_ring",
+      "skill": "Enchanting",
+      "level": 50,
+      "xp": 120,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "gold_bar",
+          "count": 1
+        },
+        {
+          "item": "diamond",
+          "count": 1
+        }
+      ],
+      "out": "diamond_ring",
+      "group": "Jewellery"
+    },
+    {
+      "id": "enchant:diamond_pendant",
+      "skill": "Enchanting",
+      "level": 53,
+      "xp": 140,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "gold_bar",
+          "count": 1
+        },
+        {
+          "item": "diamond",
+          "count": 1
+        }
+      ],
+      "out": "diamond_pendant",
+      "group": "Jewellery"
+    },
+    {
+      "id": "enchant:cooks_band",
+      "skill": "Enchanting",
+      "level": 12,
+      "xp": 40,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "silver_ring",
+          "count": 1
+        },
+        {
+          "item": "focus_sigil",
+          "count": 20
+        }
+      ],
+      "out": "cooks_band",
+      "group": "Enchantments"
+    },
+    {
+      "id": "enchant:ring_of_the_angler",
+      "skill": "Enchanting",
+      "level": 27,
+      "xp": 70,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "sapphire_ring",
+          "count": 1
+        },
+        {
+          "item": "tide_sigil",
+          "count": 10
+        }
+      ],
+      "out": "ring_of_the_angler",
+      "group": "Enchantments"
+    },
+    {
+      "id": "enchant:ring_of_the_forester",
+      "skill": "Enchanting",
+      "level": 34,
+      "xp": 90,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "emerald_ring",
+          "count": 1
+        },
+        {
+          "item": "stone_sigil",
+          "count": 10
+        }
+      ],
+      "out": "ring_of_the_forester",
+      "group": "Enchantments"
+    },
+    {
+      "id": "enchant:pendant_of_the_hunter",
+      "skill": "Enchanting",
+      "level": 37,
+      "xp": 100,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "emerald_pendant",
+          "count": 1
+        },
+        {
+          "item": "gale_sigil",
+          "count": 20
+        }
+      ],
+      "out": "pendant_of_the_hunter",
+      "group": "Enchantments"
+    },
+    {
+      "id": "enchant:ring_of_the_prospector",
+      "skill": "Enchanting",
+      "level": 44,
+      "xp": 110,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "ruby_ring",
+          "count": 1
+        },
+        {
+          "item": "ember_sigil",
+          "count": 10
+        }
+      ],
+      "out": "ring_of_the_prospector",
+      "group": "Enchantments"
+    },
+    {
+      "id": "enchant:pendant_of_sorcery",
+      "skill": "Enchanting",
+      "level": 46,
+      "xp": 120,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "sapphire_pendant",
+          "count": 1
+        },
+        {
+          "item": "storm_sigil",
+          "count": 15
+        }
+      ],
+      "out": "pendant_of_sorcery",
+      "unlock": "storm_sigils",
+      "group": "Enchantments"
+    },
+    {
+      "id": "enchant:pendant_of_fury",
+      "skill": "Enchanting",
+      "level": 49,
+      "xp": 130,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "ruby_pendant",
+          "count": 1
+        },
+        {
+          "item": "ember_sigil",
+          "count": 20
+        },
+        {
+          "item": "emberbloom",
+          "count": 1
+        }
+      ],
+      "out": "pendant_of_fury",
+      "group": "Enchantments"
+    },
+    {
+      "id": "enchant:ring_of_harvest",
+      "skill": "Enchanting",
+      "level": 55,
+      "xp": 150,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "diamond_ring",
+          "count": 1
+        },
+        {
+          "item": "storm_sigil",
+          "count": 5
+        },
+        {
+          "item": "moonpetal",
+          "count": 3
+        }
+      ],
+      "out": "ring_of_harvest",
+      "group": "Enchantments"
+    },
+    {
+      "id": "enchant:ancient_pendant",
+      "skill": "Enchanting",
+      "level": 60,
+      "xp": 200,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "diamond_pendant",
+          "count": 1
+        },
+        {
+          "item": "void_sigil",
+          "count": 10
+        }
+      ],
+      "out": "ancient_pendant",
+      "unlock": "void_sigils",
+      "group": "Enchantments"
+    },
+    {
+      "id": "enchant:gale_staff",
+      "skill": "Enchanting",
+      "level": 25,
+      "xp": 80,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "staff",
+          "count": 1
+        },
+        {
+          "item": "gale_sigil",
+          "count": 30
+        },
+        {
+          "item": "sapphire",
+          "count": 1
+        }
+      ],
+      "out": "gale_staff",
+      "group": "Staves"
+    },
+    {
+      "id": "enchant:tide_staff",
+      "skill": "Enchanting",
+      "level": 28,
+      "xp": 85,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "staff",
+          "count": 1
+        },
+        {
+          "item": "tide_sigil",
+          "count": 30
+        },
+        {
+          "item": "sapphire",
+          "count": 1
+        }
+      ],
+      "out": "tide_staff",
+      "group": "Staves"
+    },
+    {
+      "id": "enchant:stone_staff",
+      "skill": "Enchanting",
+      "level": 31,
+      "xp": 90,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "staff",
+          "count": 1
+        },
+        {
+          "item": "stone_sigil",
+          "count": 30
+        },
+        {
+          "item": "emerald",
+          "count": 1
+        }
+      ],
+      "out": "stone_staff",
+      "group": "Staves"
+    },
+    {
+      "id": "enchant:ember_staff",
+      "skill": "Enchanting",
+      "level": 34,
+      "xp": 95,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "staff",
+          "count": 1
+        },
+        {
+          "item": "ember_sigil",
+          "count": 30
+        },
+        {
+          "item": "ruby",
+          "count": 1
+        }
+      ],
+      "out": "ember_staff",
+      "group": "Staves"
+    },
+    {
+      "id": "enchant:pyromancer_staff",
+      "skill": "Enchanting",
+      "level": 62,
+      "xp": 300,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "ember_staff",
+          "count": 1
+        },
+        {
+          "item": "ember_sigil",
+          "count": 100
+        },
+        {
+          "item": "emberbloom",
+          "count": 3
+        },
+        {
+          "item": "ruby",
+          "count": 1
+        }
+      ],
+      "out": "pyromancer_staff",
+      "unlock": "pyromancy",
+      "group": "Staves"
+    },
+    {
+      "id": "enchant:void_staff",
+      "skill": "Enchanting",
+      "level": 70,
+      "xp": 400,
+      "station": "enchant",
+      "in": [
+        {
+          "item": "staff",
+          "count": 1
+        },
+        {
+          "item": "void_sigil",
+          "count": 50
+        },
+        {
+          "item": "diamond",
+          "count": 1
+        },
+        {
+          "item": "moonpetal",
+          "count": 3
+        }
+      ],
+      "out": "void_staff",
+      "unlock": "void_staff",
+      "group": "Staves"
+    }
+  ]
+}

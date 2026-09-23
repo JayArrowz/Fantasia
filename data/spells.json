@@ -1,0 +1,299 @@
+[
+  {
+    "id": "gale_dart",
+    "name": "Gale Dart",
+    "level": 1,
+    "maxHit": 2,
+    "baseXp": 5.5,
+    "color": "#e8f4ff",
+    "description": "Hurls a dart of compressed wind at a single foe.",
+    "runes": [
+      {
+        "rune": "gale_sigil",
+        "count": 1
+      },
+      {
+        "rune": "focus_sigil",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "id": "tide_dart",
+    "name": "Tide Dart",
+    "level": 5,
+    "maxHit": 4,
+    "baseXp": 7.5,
+    "color": "#4080ff",
+    "description": "Lashes a foe with a bolt of freezing seawater.",
+    "runes": [
+      {
+        "rune": "tide_sigil",
+        "count": 1
+      },
+      {
+        "rune": "gale_sigil",
+        "count": 1
+      },
+      {
+        "rune": "focus_sigil",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "id": "hearth_recall",
+    "name": "Hearth Recall",
+    "level": 7,
+    "baseXp": 20,
+    "color": "#80c0ff",
+    "description": "Opens a shimmering gate home to Aldmoor's fountain square.",
+    "kind": "Teleport",
+    "teleportMap": "overworld",
+    "teleportX": 80,
+    "teleportZ": 104,
+    "cooldownTicks": 50,
+    "runes": [
+      {
+        "rune": "gale_sigil",
+        "count": 3
+      },
+      {
+        "rune": "ember_sigil",
+        "count": 1
+      },
+      {
+        "rune": "focus_sigil",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "id": "stone_dart",
+    "name": "Stone Dart",
+    "level": 9,
+    "maxHit": 6,
+    "baseXp": 9.5,
+    "color": "#a07030",
+    "description": "Flings a jagged shard of stone.",
+    "runes": [
+      {
+        "rune": "stone_sigil",
+        "count": 2
+      },
+      {
+        "rune": "gale_sigil",
+        "count": 1
+      },
+      {
+        "rune": "focus_sigil",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "id": "ember_dart",
+    "name": "Ember Dart",
+    "level": 13,
+    "maxHit": 8,
+    "baseXp": 11.5,
+    "color": "#ff6010",
+    "description": "Spits a searing dart of flame.",
+    "runes": [
+      {
+        "rune": "ember_sigil",
+        "count": 3
+      },
+      {
+        "rune": "gale_sigil",
+        "count": 2
+      },
+      {
+        "rune": "focus_sigil",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "id": "mend",
+    "name": "Mend",
+    "level": 15,
+    "baseXp": 25,
+    "color": "#60ff80",
+    "description": "Knits your wounds, restoring a quarter of your vitality. Can be cast once every 30 seconds.",
+    "kind": "Heal",
+    "healPercent": 25,
+    "cooldownTicks": 50,
+    "runes": [
+      {
+        "rune": "stone_sigil",
+        "count": 2
+      },
+      {
+        "rune": "tide_sigil",
+        "count": 2
+      },
+      {
+        "rune": "focus_sigil",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "id": "gale_lance",
+    "name": "Gale Lance",
+    "level": 17,
+    "maxHit": 9,
+    "baseXp": 13.5,
+    "color": "#e8f4ff",
+    "description": "A piercing spear of wind that bores through armour.",
+    "runes": [
+      {
+        "rune": "gale_sigil",
+        "count": 2
+      },
+      {
+        "rune": "storm_sigil",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "id": "hold_recall",
+    "name": "Hold Recall",
+    "level": 25,
+    "baseXp": 35,
+    "color": "#ffb060",
+    "description": "Opens a gate to the fires of Skarn Hold in the south.",
+    "kind": "Teleport",
+    "teleportMap": "overworld",
+    "teleportX": 81,
+    "teleportZ": 132,
+    "cooldownTicks": 50,
+    "runes": [
+      {
+        "rune": "gale_sigil",
+        "count": 3
+      },
+      {
+        "rune": "stone_sigil",
+        "count": 3
+      },
+      {
+        "rune": "storm_sigil",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "id": "stone_lance",
+    "name": "Stone Lance",
+    "level": 29,
+    "maxHit": 11,
+    "baseXp": 19.5,
+    "color": "#a07030",
+    "description": "Drives a massive stone spike into a foe.",
+    "runes": [
+      {
+        "rune": "stone_sigil",
+        "count": 3
+      },
+      {
+        "rune": "gale_sigil",
+        "count": 2
+      },
+      {
+        "rune": "storm_sigil",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "id": "ember_lance",
+    "name": "Ember Lance",
+    "level": 35,
+    "maxHit": 12,
+    "baseXp": 22.5,
+    "color": "#ff6010",
+    "description": "A roaring lance of fire.",
+    "runes": [
+      {
+        "rune": "ember_sigil",
+        "count": 4
+      },
+      {
+        "rune": "gale_sigil",
+        "count": 3
+      },
+      {
+        "rune": "storm_sigil",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "id": "cyclone",
+    "name": "Cyclone",
+    "level": 41,
+    "maxHit": 13,
+    "baseXp": 25.5,
+    "color": "#e8f4ff",
+    "description": "Engulfs a foe in a howling whirlwind.",
+    "runes": [
+      {
+        "rune": "gale_sigil",
+        "count": 3
+      },
+      {
+        "rune": "void_sigil",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "id": "inferno",
+    "name": "Inferno",
+    "level": 59,
+    "maxHit": 16,
+    "baseXp": 34.5,
+    "color": "#ff6010",
+    "description": "Calls down a pillar of white-hot flame.",
+    "runes": [
+      {
+        "rune": "ember_sigil",
+        "count": 5
+      },
+      {
+        "rune": "gale_sigil",
+        "count": 4
+      },
+      {
+        "rune": "void_sigil",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "id": "soul_rend",
+    "name": "Soul Rend",
+    "level": 75,
+    "maxHit": 20,
+    "baseXp": 42.5,
+    "color": "#c01020",
+    "description": "Tears at the very soul of a foe with crimson claws.",
+    "runes": [
+      {
+        "rune": "crimson_sigil",
+        "count": 1
+      },
+      {
+        "rune": "void_sigil",
+        "count": 2
+      },
+      {
+        "rune": "ember_sigil",
+        "count": 5
+      }
+    ]
+  }
+]
