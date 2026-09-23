@@ -903,7 +903,7 @@ void fragment() {
         TickTool(delta);
         t += (float)delta;
         handR?.Pose(skel, gripR ? 1f : 0f);
-        handL?.Pose(skel, gripL ? 1f : 0f);
+        handL?.Pose(skel, gripL || shieldL ? 1f : 0f);   // a shield hand holds its grip
         float hold = !dead && (action == null || (action == "debug" && debugLoco)) ? 1f : 0f;
         if (holdR != null) holdR.Want = gripR ? hold : 0f;
         if (holdL != null) holdL.Want = gripL || shieldL ? hold : 0f;

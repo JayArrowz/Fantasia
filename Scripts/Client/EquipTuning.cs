@@ -40,7 +40,9 @@ public sealed class EquipTuning
     {
         public float Pull = 0.04f;               // metres armour is drawn towards the camera (wins over clothes)
         public float HemLuminance = 0.55f;       // body texture brighter than this counts as shirt
-        public float ShirtSaturation = 0.25f;    // ...and less saturated than this (skin is more saturated)
+        public float ShirtSaturation = 0.25f;    // shirt texels are less saturated than this (skin is more saturated)...
+        public float ShirtLuminance = 0.4f;      // ...and brighter than this (shaded collar included)
+        public float CollarRise = 0.02f;         // body pieces keep their collar up to the neck bone + this
         public float HemShirtShare = 0.25f;      // a height band is shirt while this share of it is
         public float HemMargin = 0.03f;          // extra below the found hem (fraction of height)
         public float HemFallback = 0.1f;         // hem below the hips when the texture can't tell
@@ -48,7 +50,8 @@ public sealed class EquipTuning
         public float Ankle = 0.12f;              // boots take the shin up to this fraction of leg length
         public float TorsoOverlap = 0.01f;       // body piece reaches this far below the hem
         public float LegsOverlap = 0.005f;
-        public float NeckKeep = 0f;              // body above the shoulders + this (fraction) is never hidden
+        public float NeckKeep = 0f;              // shoulders/trunk above the shoulder bones + this (fraction) are never hidden
+        public float NeckColumnKeep = 0f;        // the neck column above the shoulder bones + this is never hidden
     }
 
     public sealed class WearerDef { public float? Hem, Belt; }

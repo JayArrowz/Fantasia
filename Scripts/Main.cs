@@ -427,6 +427,13 @@ public partial class Main : Node
 		if (OS.GetCmdlineUserArgs().Contains("--heads"))
 		{
 			// One close-up per character, front and side: <path>_<i>f.png / _<i>s.png.
+			// --nobody: hide the wearers' own body meshes, to see only the gear.
+			if (OS.GetCmdlineUserArgs().Contains("--nobody"))
+				foreach (var r in root.GetChildren().OfType<RiggedHumanoid>())
+				{
+					var body = ArmourFit.MainBody(r);
+					if (body != null) body.Visible = false;
+				}
 			var cam = new Camera3D { Current = true, Fov = 30 };
 			root.AddChild(cam);
 			await Wait(1.5);
@@ -436,9 +443,9 @@ public partial class Main : Node
 				float h = r.Height;
 				var head = r.GlobalPosition + Vector3.Up * h * 0.9f;
 				var fwd = r.GlobalTransform.Basis.Z.Normalized();
-				foreach (var (tag, dir) in new[] { ("f", fwd), ("s", fwd.Rotated(Vector3.Up, Mathf.Pi / 2)) })
+				foreach (var (tag, dir) in new[] { ("f", fwd), ("s", fwd.Rotated(Vector3.Up, Mathf.Pi / 2)), ("a", (fwd.Rotated(Vector3.Up, 0.6f) + Vector3.Up * 0.6f).Normalized()) })
 				{
-					cam.LookAtFromPosition(head + dir * 1.3f, head, Vector3.Up);
+					cam.LookAtFromPosition(head + dir * 1.3f, head - Vector3.Up * 0.1f, Vector3.Up);
 					await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw);
 					await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw);
 					GetViewport().GetTexture().GetImage().SavePng(path.Replace(".png", $"_{i}{tag}.png"));

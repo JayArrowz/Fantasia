@@ -194,9 +194,9 @@ public static class ArmourFit
     /// in UV2 (so the hiding shader can split by height), and each skin bind's body group.
     public sealed class Wearer
     {
-        public float Hem, Belt, Ankle, Neck, H;
+        public float Hem, Belt, Ankle, Neck, NeckColumn, Collar, H;
         public ArrayMesh Mesh;       // the body mesh plus UV2.x = rest height
-        public int[] Group;          // per skin bind: 1 trunk, 2 hips, 3 thigh, 4 shin, 5 foot, 6 arms, 0 other
+        public int[] Group;          // per skin bind: 1 trunk, 2 hips, 3 thigh, 4 shin, 5 foot, 6 arms, 7 neck, 0 other
     }
 
     static readonly Dictionary<string, Wearer> wearers = new();
@@ -214,11 +214,16 @@ public static class ArmourFit
         w = new Wearer { H = D.Height, Belt = over?.Belt is float bf ? D.FootUp + bf * D.Height : D.HipsUp + A.Belt * D.Height, Ankle = D.FootUp + A.Ankle * D.Lower, Group = new int[bone.Length] };
         // The neck and collar stay: armour draws over them, and hiding them opens holes under open collars.
         w.Neck = ShoulderUp(skel, D) + A.NeckKeep * D.Height;
+        w.NeckColumn = ShoulderUp(skel, D) + A.NeckColumnKeep * D.Height;
+        // Body pieces keep their collar (gorget, cowl) up to just above the base of the neck.
+        int neckBone = Array.IndexOf(D.Parts, Part.Neck);
+        w.Collar = (neckBone >= 0 ? D.Rest[neckBone].Origin.Dot(D.Up) : w.Neck) + A.CollarRise * D.Height;
         for (int i = 0; i < bone.Length; i++)
             w.Group[i] = bone[i] < 0 ? 0 : D.Parts[bone[i]] switch
             {
                 Part.Spine or Part.Shoulder => 1,
                 Part.UpperArm or Part.ForeArm => 6,
+                Part.Neck => 7,
                 Part.Hips => 2, Part.UpLeg => 3, Part.Leg => 4, Part.Foot => 5, _ => 0,
             };
         // The shirt hem: the lowest light-coloured (shirt) vertex on the hips and thighs, read from the
@@ -258,7 +263,7 @@ public static class ArmourFit
                 {
                     var uv0 = uvs[v];
                     var c0 = img.GetPixel(Mathf.Clamp((int)(uv0.X * img.GetWidth()), 0, img.GetWidth() - 1), Mathf.Clamp((int)(uv0.Y * img.GetHeight()), 0, img.GetHeight() - 1));
-                    if (c0.Luminance > A.HemLuminance && c0.S < A.ShirtSaturation) rest[v].Y = 1;
+                    if (c0.Luminance > A.ShirtLuminance && c0.S < A.ShirtSaturation) rest[v].Y = 1;
                 }
                 if (best >= 0 && w.Group[best] is 2 or 3 && img != null && uvs.Length == verts.Length)
                 {
@@ -288,6 +293,15 @@ public static class ArmourFit
         return w;
     }
 
+    /// Skin texels: warm, fairly saturated and light (armour, cloth and leather are greyer or darker).
+    static bool IsSkin(Image img, Vector2[] uvs, int v)
+    {
+        if (img == null || uvs.Length <= v) return false;
+        var uv = uvs[v];
+        var c = img.GetPixel(Mathf.Clamp((int)(uv.X * img.GetWidth()), 0, img.GetWidth() - 1), Mathf.Clamp((int)(uv.Y * img.GetHeight()), 0, img.GetHeight() - 1));
+        return c.S > 0.2f && c.Luminance > 0.4f && (c.H < 0.12f || c.H > 0.95f);
+    }
+
     static float ShoulderUp(Skeleton3D sk, Rig r)
     {
         var ys = Enumerable.Range(0, r.Parts.Length).Where(i => r.Parts[i] == Part.Shoulder).Select(i => r.Rest[i].Origin.Dot(r.Up)).ToList();
@@ -309,13 +323,17 @@ uniform float belt = 0.0;
 uniform float hem = 0.0;
 uniform float ankle = 0.0;
 uniform float neck = 1e9;
+uniform float neck_column = 1e9;
+uniform float shirt_lum = 0.3;
+uniform float shirt_sat = 0.25;
 varying vec4 g;      // weights: upper body, hips, thigh, shin
 varying float g5;    // foot
 varying float g6;    // arms
+varying float g7;    // neck
 varying float rest_h;
 varying float shirt;
 void vertex() {
-    g = vec4(0.0); g5 = 0.0; g6 = 0.0;
+    g = vec4(0.0); g5 = 0.0; g6 = 0.0; g7 = 0.0;
     for (int i = 0; i < 4; i++) {
         int b = int(BONE_INDICES[i]);
         if (b < group_count) {
@@ -326,20 +344,32 @@ void vertex() {
             else if (k == 4) g.w += BONE_WEIGHTS[i];
             else if (k == 5) g5 += BONE_WEIGHTS[i];
             else if (k == 6) g6 += BONE_WEIGHTS[i];
+            else if (k == 7) g7 += BONE_WEIGHTS[i];
         }
     }
     rest_h = UV2.x;
     shirt = UV2.y;
 }
 void fragment() {
+    vec3 tc = texture(tex, UV).rgb;
     float waist = g.y + g.z;
+    // Shirt, decided per pixel from the texture (pale and unsaturated) near flagged shirt vertices,
+    // so no sliver survives where a triangle straddles the collar.
+    // (thresholds are in sRGB, like the texture file; the sampler hands us linear colour)
+    vec3 sc = pow(tc, vec3(1.0 / 2.2));
+    float mx = max(sc.r, max(sc.g, sc.b)), mn = min(sc.r, min(sc.g, sc.b));
+    float sat = mx > 0.0 ? (mx - mn) / mx : 0.0;
+    float lum = dot(sc, vec3(0.2126, 0.7152, 0.0722));
+    bool shirt_px = (shirt > 0.0 || g.x + g6 + g7 > 0.3) && lum > shirt_lum && sat < shirt_sat;
     bool hide = false;
-    if (torso && ((g.x + g6 > 0.5 && rest_h < neck) || waist > 0.5 && rest_h > hem || shirt > 0.5 && rest_h > hem)) hide = true;
+    // Shoulders and trunk go under the collar up to `neck`; the neck column itself (inside the
+    // collar ring) only below `neck_column`, so no gap opens under the chin.
+    if (torso && ((g.x + g6 > 0.5 && rest_h < neck) || (g7 > 0.5 && rest_h < neck_column) || waist > 0.5 && rest_h > hem || shirt_px && rest_h > hem)) hide = true;
     if (legs && (waist > 0.5 && rest_h <= hem || g.w > 0.5 && rest_h > ankle)) hide = true;
     if (skirt && (waist + g.x > 0.5 && rest_h <= belt || g.w > 0.5 && rest_h > ankle)) hide = true;
     if (feet && (g5 > 0.5 || g.w > 0.5 && rest_h <= ankle)) hide = true;
     if (hide) discard;
-    ALBEDO = texture(tex, UV).rgb * col.rgb;
+    ALBEDO = tc * col.rgb;
     ROUGHNESS = rough;
 }";
     static Shader skinShader;
@@ -373,6 +403,9 @@ void fragment() {
             m.SetShaderParameter("hem", w.Hem);
             m.SetShaderParameter("ankle", w.Ankle);
             m.SetShaderParameter("neck", w.Neck);
+            m.SetShaderParameter("neck_column", w.NeckColumn);
+            m.SetShaderParameter("shirt_lum", EquipTuning.T.Armour.ShirtLuminance);
+            m.SetShaderParameter("shirt_sat", EquipTuning.T.Armour.ShirtSaturation);
             m.SetShaderParameter("skirt", skirt);
             m.SetShaderParameter("belt", w.Belt);
             body.SetSurfaceOverrideMaterial(s, m);
@@ -483,6 +516,9 @@ void fragment() {
                 if (verts.Length == 0 || bones.Length < verts.Length) continue;
                 int per = bones.Length / verts.Length;
 
+                // The outfit's own texture, to tell its collar from the model's bare neck.
+                var srcImg = ((srcMi.GetSurfaceOverrideMaterial(s) ?? srcMi.GetActiveMaterial(s) ?? am.SurfaceGetMaterial(s)) as BaseMaterial3D)?.AlbedoTexture?.GetImage();
+                if (srcImg != null && srcImg.IsCompressed()) { srcImg = (Image)srcImg.Duplicate(); srcImg.Decompress(); }
                 var inRegion = new bool[verts.Length];
                 var outV = new Vector3[verts.Length]; var outN = new Vector3[verts.Length];
                 var outB = new int[verts.Length * 4]; var outW = new float[verts.Length * 4];
@@ -513,6 +549,7 @@ void fragment() {
                     inRegion[v] = region switch
                     {
                         Region.Torso => part is Part.Spine or Part.Shoulder or Part.UpperArm or Part.ForeArm
+                            || part == Part.Neck && hq < W.Collar && !IsSkin(srcImg, uvs, v)
                             || part is Part.Hips or Part.UpLeg && hq > W.Hem - EquipTuning.T.Armour.TorsoOverlap * W.H,
                         Region.Legs => part is Part.Hips or Part.UpLeg && hq <= W.Hem + EquipTuning.T.Armour.LegsOverlap * W.H || part == Part.Leg && hq > W.Ankle,
                         Region.Skirt => part is Part.Hips or Part.UpLeg or Part.Spine && hq <= W.Belt || part == Part.Leg && hq > W.Ankle,
