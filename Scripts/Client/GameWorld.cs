@@ -66,7 +66,7 @@ public partial class GameWorld : Node3D
         itemRoot = new Node3D { Name = "GroundItems" };
         fxRoot = new Node3D { Name = "Fx" };
         AddChild(entityRoot); AddChild(itemRoot); AddChild(fxRoot);
-        Hud = new Hud { Name = "Hud" };
+        Hud = Hud.Create();
         AddChild(Hud);
         Net.I.SnapshotReceived += OnSnapshot;
         Net.I.StateReceived += OnState;

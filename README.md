@@ -78,9 +78,35 @@ Dedicated headless server:
 - `Scripts/Net/` — ENet transport. Clients send small *intents* (`ClientMsg`); the server validates
   ranges, line of sight, ownership, levels, prices and rate-limits every peer.
 - `Scripts/World/` — deterministic map generation shared by server and clients (maps are never sent).
+  Terrain, rivers, roads, buildings and dungeon rooms are generated; the hand-placed content comes from
+  `data/world.json`.
 - `Scripts/Client/` — rendering: terrain splat shader, props (Higgsfield GLBs with procedural fallbacks),
-  rigged characters with retargeted animation clips, projectiles, effects.
-- `Scripts/UI/` — HUD, minimap, world map, inventory/equipment/skills/magic tabs, shop, bank, dialogs.
+  rigged characters with retargeted animation clips, projectiles, effects. `MapView` streams the map in
+  32×32-tile regions around the player (built one per frame, far ones freed), so map size doesn't set
+  memory use or load time.
+- `Scripts/UI/` + `Scenes/UI/` — the interface. Every window is a scene (`Hud`, `SidePanel`, `ChatBox`,
+  `ShopWindow`/`BankWindow`/`CraftWindow` inheriting `GameWindow`, `DialogWindow`, `WorldMapWindow`,
+  `SettingsWindow`, `LoginScreen`, plus the `SkillCell`, `CraftRow` and `Tooltip` pieces). Edit layout
+  and styling in Godot; the scripts only fill in data and handle input, finding nodes by unique name
+  (`%Name`). Styles live in `UI/Theme.tres`: use its named variations (`TitleLabel`, `GoldLabel`,
+  `DimLabel`, `ParchmentPanel`, `InkLabel`, `InkText`, `CraftRow`...) via *Theme Type Variation*.
+
+## Game data
+
+All content is JSON in `data/` and loaded at startup; `--datacheck` validates cross-references.
+
+| File | Contents |
+| --- | --- |
+| `items.json` | every item (stats, requirements, model, tint, tool/skilling fields) |
+| `npcs.json` | NPCs, monsters, drops, dialogue |
+| `shops.json`, `spells.json` | shop stock, spellbook |
+| `recipes.json` | crafting stations, recipe unlocks (scrolls), recipes |
+| `quests.json`, `crops.json`, `resources.json` | quests, farming crops, gathering resources |
+| `world.json` | overworld settings, NPC spawns by anchor, labels, signs/lore, skilling spots, dungeons |
+| `equipment.json` | worn-gear fitting: outfit models, clothes hiding, headgear/shield/pendant/cape fit, held item sizes (hot-reloads in debug builds) |
+| `migrations.json` | renamed item/spell ids applied to old saves |
+
+Colours are `"#rrggbb"` (or `[r, g, b]` floats for over-bright tints); enums are written by name.
 
 ## Assets
 
@@ -98,6 +124,10 @@ Dedicated headless server:
 - `-- --jointest=host:port:name` headless client that joins, walks, chats and attempts cheats.
 - `-- --posetest=<file.png>` renders rigged characters wearing gear.
 - `-- --skilltest=<dir> [--only=mining,fishing,...]` plays through every gathering/crafting skill and a quest.
-- `-- --datacheck` validates every recipe, drop, shop and quest reference and that stations are reachable.
+- `-- --datacheck` validates every recipe, drop, shop and quest reference, the data files' ids and
+  spawn anchors, and that stations are reachable.
+- `-- --exportdata=<dir>` writes the loaded content tables back out (round-trip check for data/).
+- `-- --worldhash` fingerprints each generated map (checks a generator change leaves the world identical).
+- `-- --uishot=<dir>` screenshots the title screen and settings window.
 - A server started with `--dev` accepts `::tele`, `::item`, `::lvl`, `::boss`, `::heal`, `::skills <lvl>`,
   `::unlock <key|all>`, `::grow`, `::frenzy`, `::quest <id> <stage>` from the host only.

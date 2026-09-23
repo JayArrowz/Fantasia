@@ -5,9 +5,31 @@ using Godot;
 
 namespace Fantasia.Client;
 
-/// Renders a MapData: terrain surfaces per ground type, water, dungeon walls, props and atmosphere.
+/// Renders a MapData: terrain, water, dungeon walls, buildings, props and atmosphere. The map is
+/// streamed in regions of RegionSize x RegionSize tiles: only regions near the player exist in the
+/// scene (built one per frame, the player's own neighbourhood at once), and far ones are freed, so
+/// memory and load time depend on the view distance rather than the size of the map.
 public partial class MapView : Node3D
 {
+    public const int RegionSize = 32;
+    /// Regions kept around the player's region (Chebyshev), and the extra ring before unloading.
+    public static int LoadRadius = 2, UnloadSlack = 1;
+
+    /// One loaded region and everything that belongs to it.
+    sealed partial class Region : Node3D
+    {
+        public int RX, RZ;
+        public readonly List<(WorldObject obj, Aabb box)> Pickables = new();
+        public readonly List<BuildingView> Buildings = new();
+        public readonly List<(Node3D node, Aabb box)> WallChunks = new();
+        public readonly List<int> Objects = new();
+    }
+
+    readonly Dictionary<(int, int), Region> regions = new();
+    List<WorldObject>[,] objectsIn;
+    List<Building>[,] buildingsIn;
+    int regionsX, regionsZ;
+
     public MapData Map { get; private set; }
     Godot.Environment env;
     DirectionalLight3D sun;
@@ -29,18 +51,86 @@ public partial class MapView : Node3D
         }
         RenderingServer.DirectionalShadowAtlasSetSize(Settings.Shadows >= 2 ? 4096 : 2048, true);
     }
-    public readonly List<(WorldObject obj, Aabb box)> Pickables = new();
+    /// Clickable objects in the loaded regions.
+    public IEnumerable<(WorldObject obj, Aabb box)> Pickables => regions.Values.SelectMany(r => r.Pickables);
 
+    public int LoadedRegions => regions.Count;
+
+    /// Prepares the map: indexes objects and buildings by region and sets up the sky, skirt and
+    /// materials. Regions are built by Stream() as the player moves.
     public void Build(MapData map)
     {
         Map = map;
-        BuildTerrain();
-        if (!map.Underground) BuildWater();
-        BuildWalls();
-        BuildBuildings();
-        BuildProps();
+        regionsX = (map.W + RegionSize - 1) / RegionSize;
+        regionsZ = (map.H + RegionSize - 1) / RegionSize;
+        objectsIn = new List<WorldObject>[regionsX, regionsZ];
+        buildingsIn = new List<Building>[regionsX, regionsZ];
+        for (int x = 0; x < regionsX; x++) for (int z = 0; z < regionsZ; z++) { objectsIn[x, z] = new(); buildingsIn[x, z] = new(); }
+        foreach (var o in map.Objects) objectsIn[Math.Clamp(o.X / RegionSize, 0, regionsX - 1), Math.Clamp(o.Z / RegionSize, 0, regionsZ - 1)].Add(o);
+        foreach (var b in map.Buildings) buildingsIn[Math.Clamp(b.X / RegionSize, 0, regionsX - 1), Math.Clamp(b.Z / RegionSize, 0, regionsZ - 1)].Add(b);
+        PrepareTerrain();
+        BuildSurroundings();
         BuildEnvironment();
     }
+
+    // ================= streaming =================
+
+    /// Loads regions around `focus` (world position) and frees far ones. Missing regions next to the
+    /// focus are built immediately; the rest one per call.
+    public void Stream(Vector3 focus)
+    {
+        if (Map == null) return;
+        int fx = Math.Clamp((int)(focus.X / RegionSize), 0, regionsX - 1), fz = Math.Clamp((int)(focus.Z / RegionSize), 0, regionsZ - 1);
+        foreach (var key in regions.Keys.Where(k => Math.Max(Math.Abs(k.Item1 - fx), Math.Abs(k.Item2 - fz)) > LoadRadius + UnloadSlack).ToList())
+            Unload(key);
+        (int, int)? next = null; int nextD = int.MaxValue;
+        for (int x = fx - LoadRadius; x <= fx + LoadRadius; x++)
+            for (int z = fz - LoadRadius; z <= fz + LoadRadius; z++)
+            {
+                if (x < 0 || z < 0 || x >= regionsX || z >= regionsZ || regions.ContainsKey((x, z))) continue;
+                int d = Math.Max(Math.Abs(x - fx), Math.Abs(z - fz));
+                if (d <= 1) { Load(x, z); continue; }
+                if (d < nextD) { nextD = d; next = (x, z); }
+            }
+        if (next is var (nx, nz)) Load(nx, nz);
+    }
+
+    void Load(int rx, int rz)
+    {
+        var r = new Region { RX = rx, RZ = rz, Name = $"Region_{rx}_{rz}" };
+        AddChild(r);
+        regions[(rx, rz)] = r;
+        int x0 = rx * RegionSize, z0 = rz * RegionSize;
+        int x1 = Math.Min(x0 + RegionSize, Map.W), z1 = Math.Min(z0 + RegionSize, Map.H);
+        BuildTerrain(r, x0, z0, x1, z1);
+        if (!Map.Underground) BuildWater(r, x0, z0, x1, z1);
+        BuildWalls(r, x0, z0, x1, z1);
+        BuildBuildings(r, buildingsIn[rx, rz]);
+        BuildProps(r, objectsIn[rx, rz]);
+        // Server state that arrived while the region wasn't loaded.
+        foreach (var id in r.Objects)
+        {
+            if (depletedNow.Contains(id)) ShowResource(id, false);
+            if (frenzyNow.Contains(id) && resNodes.TryGetValue(id, out var fn)) Props.SetFrenzy(fn, true);
+        }
+        RefreshCrops();
+    }
+
+    void Unload((int, int) key)
+    {
+        var r = regions[key];
+        regions.Remove(key);
+        foreach (var id in r.Objects)
+        {
+            resInstances.Remove(id); resNodes.Remove(id); stumps.Remove(id); patchNodes.Remove(id);
+            crops.Remove(id);
+        }
+        foreach (var b in r.Buildings) buildingViews.Remove(b);
+        foreach (var w in r.WallChunks) wallChunks.Remove(w);
+        r.QueueFree();
+    }
+
+    Region RegionOf(WorldObject o) => regions.TryGetValue((Math.Clamp(o.X / RegionSize, 0, regionsX - 1), Math.Clamp(o.Z / RegionSize, 0, regionsZ - 1)), out var r) ? r : null;
 
     // ================= terrain =================
 
@@ -87,13 +177,14 @@ uniform sampler2D t_cobble : source_color, filter_linear_mipmap_anisotropic, rep
 uniform sampler2D t_sand : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D t_stone : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D t_wood : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
-uniform vec2 map_size;
+uniform vec2 mask_origin;
+uniform vec2 mask_size;
 varying vec3 wpos;
 
 void vertex() { wpos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
 
 void fragment() {
-    vec2 uv = wpos.xz / map_size;
+    vec2 uv = (wpos.xz - mask_origin) / mask_size;
     vec4 m0 = texture(mask0, uv);
     vec4 m1 = texture(mask1, uv);
     vec4 m2 = texture(mask2, uv);
@@ -141,68 +232,87 @@ void fragment() {
         return ImageTexture.CreateFromImage(img);
     }
 
-    ShaderMaterial TerrainMaterial()
+    Shader terrainShader;
+    readonly Dictionary<string, Texture2D> groundTex = new();
+
+    void PrepareTerrain()
     {
+        terrainShader = new Shader { Code = TerrainShader };
+        groundTex["t_grass"] = TexOr("grass", GroundFallback(Ground.Grass));
+        groundTex["t_dirt"] = TexOr("dirt_path", GroundFallback(Ground.Dirt));
+        groundTex["t_cobble"] = TexOr("cobblestone", GroundFallback(Ground.Cobble));
+        groundTex["t_sand"] = TexOr("sand", GroundFallback(Ground.Sand));
+        groundTex["t_stone"] = TexOr("cave_floor", GroundFallback(Ground.Stone));
+        groundTex["t_wood"] = TexOr("wood_planks", GroundFallback(Ground.Wood));
+    }
+
+    /// Ground-type masks for one region, with a one-tile border so blending is seamless across regions.
+    ShaderMaterial TerrainMaterial(int x0, int z0, int x1, int z1)
+    {
+        int ox = x0 - 1, oz = z0 - 1, w = x1 - x0 + 2, h = z1 - z0 + 2;
         var imgs = new Image[3];
-        for (int i = 0; i < 3; i++) imgs[i] = Image.CreateEmpty(Map.W, Map.H, false, Image.Format.Rgba8);
-        for (int x = 0; x < Map.W; x++)
-            for (int z = 0; z < Map.H; z++)
+        for (int i = 0; i < 3; i++) imgs[i] = Image.CreateEmpty(w, h, false, Image.Format.Rgba8);
+        for (int x = 0; x < w; x++)
+            for (int z = 0; z < h; z++)
             {
-                int idx = MaskIndex(Map.Ground[x, z]);
+                int mx = Math.Clamp(ox + x, 0, Map.W - 1), mz = Math.Clamp(oz + z, 0, Map.H - 1);
+                int idx = MaskIndex(Map.Ground[mx, mz]);
                 var c = new Color(0, 0, 0, 0);
                 c[idx % 4] = 1f;
                 imgs[idx / 4].SetPixel(x, z, c);
             }
-        var mat = new ShaderMaterial { Shader = new Shader { Code = TerrainShader } };
+        var mat = new ShaderMaterial { Shader = terrainShader };
         for (int i = 0; i < 3; i++) mat.SetShaderParameter($"mask{i}", ImageTexture.CreateFromImage(imgs[i]));
-        mat.SetShaderParameter("t_grass", TexOr("grass", GroundFallback(Ground.Grass)));
-        mat.SetShaderParameter("t_dirt", TexOr("dirt_path", GroundFallback(Ground.Dirt)));
-        mat.SetShaderParameter("t_cobble", TexOr("cobblestone", GroundFallback(Ground.Cobble)));
-        mat.SetShaderParameter("t_sand", TexOr("sand", GroundFallback(Ground.Sand)));
-        mat.SetShaderParameter("t_stone", TexOr("cave_floor", GroundFallback(Ground.Stone)));
-        mat.SetShaderParameter("t_wood", TexOr("wood_planks", GroundFallback(Ground.Wood)));
-        mat.SetShaderParameter("map_size", new Vector2(Map.W, Map.H));
+        foreach (var (k, t) in groundTex) mat.SetShaderParameter(k, t);
+        mat.SetShaderParameter("mask_origin", new Vector2(ox, oz));
+        mat.SetShaderParameter("mask_size", new Vector2(w, h));
         return mat;
     }
 
-    void BuildTerrain()
+    void BuildTerrain(Region r, int x0, int z0, int x1, int z1)
     {
-        var mat = TerrainMaterial();
-        const int chunk = 32;
-        for (int cx = 0; cx < Map.W; cx += chunk)
-        for (int cz = 0; cz < Map.H; cz += chunk)
-        {
-            var st = new SurfaceTool();
-            st.Begin(Mesh.PrimitiveType.Triangles);
-            int quads = 0;
-            for (int x = cx; x < Math.Min(cx + chunk, Map.W); x++)
-            for (int z = cz; z < Math.Min(cz + chunk, Map.H); z++)
+        var st = new SurfaceTool();
+        st.Begin(Mesh.PrimitiveType.Triangles);
+        int quads = 0;
+        for (int x = x0; x < x1; x++)
+            for (int z = z0; z < z1; z++)
             {
                 if (Map.Ground[x, z] == Ground.Void) continue;
                 AddQuad(st, x, z);
                 quads++;
             }
-            if (quads == 0) continue;
-            st.SetMaterial(mat);
-            AddChild(new MeshInstance3D { Mesh = st.Commit(), Name = $"Terrain_{cx}_{cz}" });
-        }
+        if (quads == 0) return;
+        st.SetMaterial(TerrainMaterial(x0, z0, x1, z1));
+        r.AddChild(new MeshInstance3D { Mesh = st.Commit(), Name = "Terrain" });
+    }
 
-        if (!Map.Underground)
+    /// Map-wide pieces: the grass skirt beyond the edges (overworld) or the black void (dungeons).
+    void BuildSurroundings()
+    {
+        if (Map.Underground)
         {
-            // Skirt beyond the map edges so the horizon isn't a cliff: a frame of four strips around
-            // the map (a single plane under it would sit above the rivers and lakes).
-            var skirtMat = Assets.TexturedMaterial("grass", GroundFallback(Ground.Grass), 0.22f);
-            ((StandardMaterial3D)skirtMat).AlbedoColor = new Color(0.6f, 0.65f, 0.5f);
-            float m = Map.W * 1.5f;
-            foreach (var (pos, size) in new[]
+            AddChild(new MeshInstance3D
             {
-                (new Vector3(Map.W / 2f, 0.2f, -m / 2f), new Vector2(Map.W + 2 * m, m)),
-                (new Vector3(Map.W / 2f, 0.2f, Map.H + m / 2f), new Vector2(Map.W + 2 * m, m)),
-                (new Vector3(-m / 2f, 0.2f, Map.H / 2f), new Vector2(m, Map.H)),
-                (new Vector3(Map.W + m / 2f, 0.2f, Map.H / 2f), new Vector2(m, Map.H)),
-            })
-                AddChild(new MeshInstance3D { Mesh = new PlaneMesh { Size = size }, Position = pos, MaterialOverride = skirtMat, Name = "Skirt" });
+                Mesh = new PlaneMesh { Size = new Vector2(Map.W + 40, Map.H + 40) },
+                Position = new Vector3(Map.W / 2f, -0.02f, Map.H / 2f),
+                MaterialOverride = new StandardMaterial3D { AlbedoColor = new Color(0.02f, 0.02f, 0.02f) },
+                Name = "Void",
+            });
+            return;
         }
+        // Skirt beyond the map edges so the horizon isn't a cliff: a frame of four strips around
+        // the map (a single plane under it would sit above the rivers and lakes).
+        var skirtMat = Assets.TexturedMaterial("grass", GroundFallback(Ground.Grass), 0.22f);
+        ((StandardMaterial3D)skirtMat).AlbedoColor = new Color(0.6f, 0.65f, 0.5f);
+        float m = Map.W * 1.5f;
+        foreach (var (pos, size) in new[]
+        {
+            (new Vector3(Map.W / 2f, 0.2f, -m / 2f), new Vector2(Map.W + 2 * m, m)),
+            (new Vector3(Map.W / 2f, 0.2f, Map.H + m / 2f), new Vector2(Map.W + 2 * m, m)),
+            (new Vector3(-m / 2f, 0.2f, Map.H / 2f), new Vector2(m, Map.H)),
+            (new Vector3(Map.W + m / 2f, 0.2f, Map.H / 2f), new Vector2(m, Map.H)),
+        })
+            AddChild(new MeshInstance3D { Mesh = new PlaneMesh { Size = size }, Position = pos, MaterialOverride = skirtMat, Name = "Skirt" });
     }
 
     void AddQuad(SurfaceTool st, int x, int z)
@@ -241,14 +351,16 @@ void fragment() {
     NORMAL_MAP = normalize(vec3(0.5 + (w - 0.5) * 0.12, 0.5 + (w2 - 0.5) * 0.12, 1.0));
 }";
 
-    void BuildWater()
+    ShaderMaterial waterMat;
+
+    void BuildWater(Region r, int x0, int z0, int x1, int z1)
     {
         var st = new SurfaceTool();
         st.Begin(Mesh.PrimitiveType.Triangles);
         int count = 0;
         const float y = -0.15f;
-        for (int x = 0; x < Map.W; x++)
-        for (int z = 0; z < Map.H; z++)
+        for (int x = x0; x < x1; x++)
+        for (int z = z0; z < z1; z++)
         {
             bool near = false;
             for (int dx = -1; dx <= 1 && !near; dx++)
@@ -261,18 +373,20 @@ void fragment() {
             count++;
         }
         if (count == 0) return;
-        var mat = new ShaderMaterial { Shader = new Shader { Code = WaterShader } };
-        AddChild(new MeshInstance3D { Mesh = st.Commit(), MaterialOverride = mat, Name = "Water", CastShadow = GeometryInstance3D.ShadowCastingSetting.Off });
+        waterMat ??= new ShaderMaterial { Shader = new Shader { Code = WaterShader } };
+        r.AddChild(new MeshInstance3D { Mesh = st.Commit(), MaterialOverride = waterMat, Name = "Water", CastShadow = GeometryInstance3D.ShadowCastingSetting.Off });
     }
 
     // ================= dungeon walls =================
 
-    void BuildWalls()
+    Material wallMat;
+
+    void BuildWalls(Region r, int x0, int z0, int x1, int z1)
     {
         if (!Map.Underground) return;
         var xforms = new List<Transform3D>();
-        for (int x = 0; x < Map.W; x++)
-        for (int z = 0; z < Map.H; z++)
+        for (int x = x0; x < x1; x++)
+        for (int z = z0; z < z1; z++)
         {
             if (Map.Ground[x, z] != Ground.Void) continue;
             bool edge = false;
@@ -283,37 +397,33 @@ void fragment() {
             float h = 3.2f + Hash.Unit(x, z, 9) * 0.8f;
             xforms.Add(new Transform3D(Basis.Identity.Scaled(new Vector3(1, h, 1)), new Vector3(x + 0.5f, h / 2f, z + 0.5f)));
         }
-        var mat = Assets.TexturedMaterial("dungeon_wall", new Color(0.3f, 0.28f, 0.27f), 0.4f);
+        if (xforms.Count == 0) return;
+        wallMat ??= Assets.TexturedMaterial("dungeon_wall", new Color(0.3f, 0.28f, 0.27f), 0.4f);
         var mm = new MultiMesh { TransformFormat = MultiMesh.TransformFormatEnum.Transform3D, Mesh = new BoxMesh { Size = Vector3.One }, InstanceCount = xforms.Count };
         for (int i = 0; i < xforms.Count; i++) mm.SetInstanceTransform(i, xforms[i]);
-        AddChild(new MultiMeshInstance3D { Multimesh = mm, MaterialOverride = mat, Name = "Walls" });
-        // Black void everywhere else so the dungeon floats in darkness.
-        var floor = new MeshInstance3D
-        {
-            Mesh = new PlaneMesh { Size = new Vector2(Map.W + 40, Map.H + 40) },
-            Position = new Vector3(Map.W / 2f, -0.02f, Map.H / 2f),
-            MaterialOverride = new StandardMaterial3D { AlbedoColor = new Color(0.02f, 0.02f, 0.02f) },
-        };
-        AddChild(floor);
+        r.AddChild(new MultiMeshInstance3D { Multimesh = mm, MaterialOverride = wallMat, Name = "Walls" });
     }
 
     // ================= buildings =================
 
     readonly List<BuildingView> buildingViews = new();
 
-    void BuildBuildings()
+    void BuildBuildings(Region r, List<Building> list)
     {
-        foreach (var b in Map.Buildings)
+        foreach (var b in list)
         {
             var v = new BuildingView { Name = $"Building_{b.Id}" };
-            AddChild(v);
+            r.AddChild(v);
             v.Build(b, Map);
             buildingViews.Add(v);
+            r.Buildings.Add(v);
         }
     }
 
     public override void _Process(double delta)
     {
+        var focus = GameWorld.I?.Me;
+        if (focus != null) Stream(focus.GlobalPosition);
         TickCrops(delta);
         var me = GameWorld.I?.Me;
         var cam = GameWorld.I?.Rig?.Cam;
@@ -379,17 +489,15 @@ void fragment() {
     readonly Dictionary<int, Node3D> resNodes = new();
     readonly Dictionary<int, Node3D> stumps = new();
     readonly HashSet<int> depletedNow = new(), frenzyNow = new();
-    Node3D propHolder;
-
-    void BuildProps()
+    void BuildProps(Region r, List<WorldObject> objects)
     {
         var batches = new Dictionary<(Mesh, Material), List<(Transform3D xf, int obj)>>();
         var holder = new Node3D { Name = "Props" };
-        AddChild(holder);
-        propHolder = holder;
+        r.AddChild(holder);
         var chunks = new Dictionary<(int, int), (Node3D node, Aabb box)>();
-        foreach (var o in Map.Objects)
+        foreach (var o in objects)
         {
+            r.Objects.Add(o.Id);
             if (o.Kind == ObjKind.CastleWall)
             {
                 var key = (o.X / 5, o.Z / 5);
@@ -411,7 +519,7 @@ void fragment() {
             float h = Props.PickHeight(o);
             var basePos = node.Position;
             if (o.Kind != ObjKind.Bridge && o.Kind != ObjKind.WallTorch && o.Kind != ObjKind.BonesPile)
-                Pickables.Add((o, new Aabb(new Vector3(o.X, basePos.Y, o.Z), new Vector3(o.W, h, o.D))));
+                r.Pickables.Add((o, new Aabb(new Vector3(o.X, basePos.Y, o.Z), new Vector3(o.W, h, o.D))));
 
             if (o.Kind == ObjKind.Bridge)
             {
@@ -432,7 +540,7 @@ void fragment() {
             node.Free();
             if (o.Kind == ObjKind.FarmPatch) patchNodes[o.Id] = null;
         }
-        foreach (var c in chunks.Values) wallChunks.Add(c);
+        foreach (var c in chunks.Values) { wallChunks.Add(c); r.WallChunks.Add(c); }
         foreach (var ((mesh, mat), list) in batches)
         {
             var mm = new MultiMesh { TransformFormat = MultiMesh.TransformFormatEnum.Transform3D, Mesh = mesh, InstanceCount = list.Count };
@@ -491,7 +599,7 @@ void fragment() {
     void ShowResource(int id, bool present)
     {
         var o = Map.GetObject(id);
-        if (o == null) return;
+        if (o == null || RegionOf(o) == null) return;   // applied when its region loads
         if (resInstances.TryGetValue(id, out var list))
             foreach (var (mm, i, xf) in list)
                 mm.SetInstanceTransform(i, present ? xf : new Transform3D(xf.Basis.Scaled(Vector3.One * 0.0001f), xf.Origin));
@@ -512,7 +620,7 @@ void fragment() {
         var bark = Props.Mat(new Color(0.35f, 0.24f, 0.14f));
         Props.Cyl(stump, 0.26f * o.Scale, 0.34f * o.Scale, 0.45f, new Vector3(0, 0.22f, 0), bark, 9);
         Props.Cyl(stump, 0.25f * o.Scale, 0.25f * o.Scale, 0.02f, new Vector3(0, 0.46f, 0), Props.Mat(new Color(0.78f, 0.62f, 0.40f)), 9);
-        propHolder.AddChild(stump);
+        (RegionOf(o) ?? (Node)this).AddChild(stump);
         stumps[id] = stump;
     }
 
@@ -541,9 +649,10 @@ void fragment() {
     {
         if (Map == null) return;
         long now = ServerNow;
-        foreach (var o in Map.Objects)
+        foreach (var id in patchNodes.Keys.ToList())
         {
-            if (o.Kind != ObjKind.FarmPatch) continue;
+            var o = Map.GetObject(id);
+            if (o == null) continue;
             var pt = PatchFor(o.Id);
             var (stage, phase, _) = FarmDb.Eval(pt, now);
             string key = phase == PatchPhase.Empty ? "" : $"{pt.Crop}:{stage}:{phase}";
@@ -553,7 +662,7 @@ void fragment() {
             if (key == "") continue;
             var n = CropVisual.Build(FarmDb.Get(pt.Crop), stage, phase, o.W, o.D);
             n.Position = new Vector3(o.X + o.W / 2f, Map.TileHeight(o.X + o.W / 2, o.Z + o.D / 2) + 0.12f, o.Z + o.D / 2f);
-            AddChild(n);
+            (RegionOf(o) ?? (Node)this).AddChild(n);
             crops[o.Id] = (n, key);
         }
     }

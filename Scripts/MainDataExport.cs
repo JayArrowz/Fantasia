@@ -35,7 +35,9 @@ public partial class Main
     {
         foreach (var id in MapGenerator.MapIds)
         {
+            var sw = System.Diagnostics.Stopwatch.StartNew();
             var m = MapGenerator.Get(id);
+            GD.Print($"[WorldHash] {id}: generated in {sw.ElapsedMilliseconds} ms");
             var sb = new System.Text.StringBuilder();
             sb.Append(m.Name).Append(m.Spawn).Append(m.Ambient).Append(m.Fog).Append(m.FogDensity).Append(m.Music);
             for (int x = 0; x < m.W; x++) for (int z = 0; z < m.H; z++) sb.Append((int)m.Ground[x, z]);
@@ -49,3 +51,4 @@ public partial class Main
         GetTree().Quit();
     }
 }
+

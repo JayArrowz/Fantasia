@@ -9,7 +9,6 @@ namespace Fantasia.UI;
 /// The in-game interface: side panel tabs, chat, minimap, orbs, windows, hover text and menus.
 public partial class Hud : CanvasLayer
 {
-    Control root;
     Overlay overlay;
     RichTextLabel hover;
     ChatBox chat;
@@ -29,68 +28,31 @@ public partial class Hud : CanvasLayer
     float levelUpT;
     public PrivateState State { get; private set; }
 
+    /// The HUD scene (Scenes/UI/Hud.tscn): layout and styling live there; this wires it to the game.
+    public static Hud Create() => GD.Load<PackedScene>("res://Scenes/UI/Hud.tscn").Instantiate<Hud>();
+
     public override void _Ready()
     {
-        Layer = 10;
-        root = new Control { Theme = UiTheme.Get(), MouseFilter = Control.MouseFilterEnum.Ignore };
-        root.SetAnchorsPreset(Control.LayoutPreset.FullRect);
-        AddChild(root);
-
-        overlay = new Overlay();
-        root.AddChild(overlay);
-
-        hover = new RichTextLabel { BbcodeEnabled = true, FitContent = true, ScrollActive = false, MouseFilter = Control.MouseFilterEnum.Ignore, Position = new Vector2(10, 8), Size = new Vector2(700, 30) };
-        hover.AddThemeFontSizeOverride("normal_font_size", 16);
-        root.AddChild(hover);
-
-        areaLabel = UiTheme.Title("", 26);
-        UiTheme.Place(areaLabel, Control.LayoutPreset.CenterTop, new Vector2(-300, 60), new Vector2(600, 40));
-        areaLabel.Modulate = new Color(1, 1, 1, 0);
-        root.AddChild(areaLabel);
-
-        minimap = new Minimap();
-        UiTheme.Place(minimap, Control.LayoutPreset.TopRight, new Vector2(-222, 8), new Vector2(214, 214));
-        root.AddChild(minimap);
-
-        side = new SidePanel(this);
-        UiTheme.Place(side, Control.LayoutPreset.BottomRight, new Vector2(-258, -398), new Vector2(250, 390));
-        root.AddChild(side);
-
-        pvpLabel = UiTheme.Lbl("☠ THE BLOODMARCH — PvP zone", 15, new Color(1f, 0.3f, 0.25f));
-        UiTheme.Place(pvpLabel, Control.LayoutPreset.BottomRight, new Vector2(-258, -424), new Vector2(250, 22));
-        pvpLabel.Visible = false;
-        root.AddChild(pvpLabel);
-
-        chat = new ChatBox();
-        UiTheme.Place(chat, Control.LayoutPreset.BottomLeft, new Vector2(8, -198), new Vector2(520, 190));
-        root.AddChild(chat);
-
-        xpDrops = new Control { MouseFilter = Control.MouseFilterEnum.Ignore };
-        UiTheme.Place(xpDrops, Control.LayoutPreset.TopRight, new Vector2(-340, 150), new Vector2(110, 20));
-        root.AddChild(xpDrops);
-
-        levelUp = UiTheme.Title("", 30);
-        UiTheme.Place(levelUp, Control.LayoutPreset.Center, new Vector2(-400, -200), new Vector2(800, 50));
-        levelUp.Visible = false;
-        root.AddChild(levelUp);
-
-        fps = UiTheme.Lbl("", 13, UiTheme.Gold);
-        UiTheme.Place(fps, Control.LayoutPreset.TopLeft, new Vector2(10, 34), new Vector2(120, 20));
-        root.AddChild(fps);
-
-        shop = new ShopWindow(this); root.AddChild(shop);
-        bank = new BankWindow(this); root.AddChild(bank);
-        dialog = new DialogWindow(); root.AddChild(dialog);
-        craft = new CraftWindow(); root.AddChild(craft);
-        banner = UiTheme.Title("", 26);
-        UiTheme.Place(banner, Control.LayoutPreset.CenterTop, new Vector2(-400, 110), new Vector2(800, 40));
-        banner.HorizontalAlignment = HorizontalAlignment.Center;
-        banner.Visible = false;
-        root.AddChild(banner);
-        worldMap = new WorldMapWindow(); root.AddChild(worldMap);
-
-        menu = new ContextMenu();
-        root.AddChild(menu);
+        overlay = GetNode<Overlay>("%Overlay");
+        hover = GetNode<RichTextLabel>("%Hover");
+        areaLabel = GetNode<Label>("%AreaLabel");
+        minimap = GetNode<Minimap>("%Minimap");
+        side = GetNode<SidePanel>("%SidePanel");
+        pvpLabel = GetNode<Label>("%PvpLabel");
+        chat = GetNode<ChatBox>("%Chat");
+        xpDrops = GetNode<Control>("%XpDrops");
+        levelUp = GetNode<Label>("%LevelUp");
+        fps = GetNode<Label>("%Fps");
+        shop = GetNode<ShopWindow>("%Shop");
+        bank = GetNode<BankWindow>("%Bank");
+        dialog = GetNode<DialogWindow>("%Dialog");
+        craft = GetNode<CraftWindow>("%Craft");
+        banner = GetNode<Label>("%Banner");
+        worldMap = GetNode<WorldMapWindow>("%WorldMap");
+        menu = GetNode<ContextMenu>("%Menu");
+        side.Init(this);
+        shop.Init(this);
+        bank.Init(this);
 
         chat.Add("[color=#7a1a00][b]Welcome to Fantasia![/b][/color] Left-click to walk or act, right-click for options. Arrow keys or middle-mouse rotate the camera. Press [b]M[/b] for the world map, [b]Enter[/b] to chat.");
     }
@@ -255,99 +217,5 @@ public partial class Hud : CanvasLayer
         overlay.QueueRedraw();
         fps.Visible = Settings.ShowFps;
         if (fps.Visible) fps.Text = $"{Engine.GetFramesPerSecond():0} FPS";
-    }
-}
-
-// =====================================================================================
-/// Draws HP bars, hitsplats and overhead chat above entities.
-public partial class Overlay : Control
-{
-    public Overlay()
-    {
-        MouseFilter = MouseFilterEnum.Ignore;
-        SetAnchorsPreset(LayoutPreset.FullRect);
-    }
-
-    public override void _Draw()
-    {
-        var gw = GameWorld.I;
-        var cam = gw?.Rig?.Cam;
-        if (cam == null) return;
-        var font = ThemeDB.FallbackFont;
-        foreach (var v in gw.Views.Values)
-        {
-            var head = v.Head;
-            if (cam.IsPositionBehind(head)) continue;
-            var p = cam.UnprojectPosition(head);
-            float y = p.Y;
-            if (v.HpShow > 0 && v.MaxHp > 0 && !v.Dead)
-            {
-                float w = 40, ratio = Mathf.Clamp(v.Hp / (float)v.MaxHp, 0, 1);
-                DrawRect(new Rect2(p.X - w / 2 - 1, y - 1, w + 2, 7), Colors.Black);
-                DrawRect(new Rect2(p.X - w / 2, y, w, 5), new Color(0.8f, 0.05f, 0.05f));
-                DrawRect(new Rect2(p.X - w / 2, y, w * ratio, 5), new Color(0.1f, 0.85f, 0.1f));
-                y -= 8;
-            }
-            if (v.IsPlayer && !v.IsMe)
-            {
-                DrawString(font, new Vector2(p.X - 100, y - 2), v.DisplayName, HorizontalAlignment.Center, 200, 13, Colors.Black);
-                DrawString(font, new Vector2(p.X - 101, y - 3), v.DisplayName, HorizontalAlignment.Center, 200, 13, Colors.White);
-                y -= 14;
-            }
-            if (v.ChatT > 0 && v.Chat != null)
-            {
-                DrawString(font, new Vector2(p.X - 201, y - 3), v.Chat, HorizontalAlignment.Center, 400, 15, Colors.Black);
-                DrawString(font, new Vector2(p.X - 200, y - 4), v.Chat, HorizontalAlignment.Center, 400, 15, new Color(1f, 1f, 0.1f));
-            }
-            var chest = cam.UnprojectPosition(v.Chest);
-            foreach (var s in v.Splats)
-            {
-                float a = Mathf.Clamp(1.3f - s.T, 0, 1);
-                var c = new Vector2(chest.X + s.Offset, chest.Y - s.T * 14);
-                DrawCircle(c, 12, new Color(0, 0, 0, a * 0.8f));
-                DrawCircle(c, 10.5f, new Color(s.Color, a));
-                string txt = s.Damage.ToString();
-                DrawString(font, c + new Vector2(-14, 5), txt, HorizontalAlignment.Center, 28, 14, new Color(1, 1, 1, a));
-            }
-        }
-    }
-}
-
-// =====================================================================================
-public partial class ChatBox : PanelContainer
-{
-    RichTextLabel log;
-    LineEdit input;
-
-    public ChatBox()
-    {
-        AddThemeStyleboxOverride("panel", UiTheme.ParchmentStyle());
-        var v = new VBoxContainer();
-        AddChild(v);
-        log = new RichTextLabel { BbcodeEnabled = true, ScrollFollowing = true, SizeFlagsVertical = SizeFlags.ExpandFill, SelectionEnabled = false };
-        log.AddThemeColorOverride("default_color", new Color(0.1f, 0.07f, 0.04f));
-        log.AddThemeConstantOverride("outline_size", 0);
-        log.AddThemeFontSizeOverride("normal_font_size", 14);
-        v.AddChild(log);
-        input = new LineEdit { PlaceholderText = "Press Enter to chat...", MaxLength = 80 };
-        input.TextSubmitted += OnSubmit;
-        v.AddChild(input);
-    }
-
-    public void Add(string bb)
-    {
-        log.AppendText(bb + "\n");
-        if (log.GetLineCount() > 200) log.RemoveParagraph(0);
-    }
-
-    public void Focus() => input.GrabFocus();
-
-    void OnSubmit(string text)
-    {
-        text = text.Trim();
-        input.Text = "";
-        input.ReleaseFocus();
-        if (text.Length == 0) return;
-        Net.I.Send(new ClientMsg { T = C2S.Chat, S = text });
     }
 }

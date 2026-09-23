@@ -60,6 +60,7 @@ public partial class Main
             UseObj(rock);
             await Wait(9);
             await Shot("s01_mining");
+            Log($"streaming: {GameWorld.I.MapViewNode.LoadedRegions} regions loaded, {Performance.GetMonitor(Performance.Monitor.ObjectNodeCount)} nodes, me at {GameWorld.I.Me?.Tile}");
             Check($"mining copper: ore={Count("copper_ore")} xp+{XpOf(Skill.Mining) - xp0}", Count("copper_ore") > 0);
         }
 

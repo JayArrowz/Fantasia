@@ -1,0 +1,563 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/UI/SidePanel.cs" id="1"]
+[ext_resource type="Script" path="res://Scripts/UI/ItemSlot.cs" id="2"]
+[ext_resource type="Texture2D" path="res://assets/icons/tab_combat.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/icons/tab_skills.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/icons/tab_inventory.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/icons/tab_equipment.png" id="6"]
+[ext_resource type="Texture2D" path="res://assets/icons/tab_spellbook.png" id="7"]
+[ext_resource type="Texture2D" path="res://assets/icons/tab_settings.png" id="8"]
+[ext_resource type="Texture2D" path="res://assets/icons/tab_quests.png" id="9"]
+
+[node name="SidePanel" type="PanelContainer"]
+script = ExtResource("1")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Tabs" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Tab0" type="Button" parent="VBox/Tabs"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(32.0, 34.0)
+tooltip_text = "Combat (F1)"
+toggle_mode = true
+expand_icon = true
+icon_alignment = 1
+icon = ExtResource("3")
+focus_mode = 0
+
+[node name="Tab1" type="Button" parent="VBox/Tabs"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(32.0, 34.0)
+tooltip_text = "Skills (F2)"
+toggle_mode = true
+expand_icon = true
+icon_alignment = 1
+icon = ExtResource("4")
+focus_mode = 0
+
+[node name="Tab2" type="Button" parent="VBox/Tabs"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(32.0, 34.0)
+tooltip_text = "Pack (F3)"
+toggle_mode = true
+expand_icon = true
+icon_alignment = 1
+icon = ExtResource("5")
+focus_mode = 0
+
+[node name="Tab3" type="Button" parent="VBox/Tabs"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(32.0, 34.0)
+tooltip_text = "Equipment (F4)"
+toggle_mode = true
+expand_icon = true
+icon_alignment = 1
+icon = ExtResource("6")
+focus_mode = 0
+
+[node name="Tab4" type="Button" parent="VBox/Tabs"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(32.0, 34.0)
+tooltip_text = "Spellbook (F5)"
+toggle_mode = true
+expand_icon = true
+icon_alignment = 1
+icon = ExtResource("7")
+focus_mode = 0
+
+[node name="Tab5" type="Button" parent="VBox/Tabs"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(32.0, 34.0)
+tooltip_text = "Options (F6)"
+toggle_mode = true
+expand_icon = true
+icon_alignment = 1
+icon = ExtResource("8")
+focus_mode = 0
+
+[node name="Tab6" type="Button" parent="VBox/Tabs"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(32.0, 34.0)
+tooltip_text = "Quests (F7)"
+toggle_mode = true
+expand_icon = true
+icon_alignment = 1
+icon = ExtResource("9")
+focus_mode = 0
+
+[node name="Pages" type="Control" parent="VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(234.0, 330.0)
+size_flags_vertical = 3
+
+[node name="Combat" type="VBoxContainer" parent="VBox/Pages"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+theme_override_constants/separation = 6
+
+[node name="Weapon" type="Label" parent="VBox/Pages/Combat"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Unarmed"
+theme_type_variation = "TitleLabel"
+theme_override_font_sizes/font_size = 17
+horizontal_alignment = 1
+
+[node name="CombatLevel" type="Label" parent="VBox/Pages/Combat"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Combat level: 3"
+theme_type_variation = "GoldLabel"
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+
+[node name="Style0" type="Button" parent="VBox/Pages/Combat"]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+custom_minimum_size = Vector2(0.0, 40.0)
+focus_mode = 0
+
+[node name="Style1" type="Button" parent="VBox/Pages/Combat"]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+custom_minimum_size = Vector2(0.0, 40.0)
+focus_mode = 0
+
+[node name="Style2" type="Button" parent="VBox/Pages/Combat"]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+custom_minimum_size = Vector2(0.0, 40.0)
+focus_mode = 0
+
+[node name="Spell" type="Label" parent="VBox/Pages/Combat"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.8, 1, 1.0)
+theme_override_font_sizes/font_size = 13
+autowrap_mode = 3
+
+[node name="Retaliate" type="CheckBox" parent="VBox/Pages/Combat"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Auto Retaliate"
+focus_mode = 0
+
+[node name="Activity" type="Label" parent="VBox/Pages/Combat"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.95, 0.6, 1.0)
+theme_override_font_sizes/font_size = 13
+autowrap_mode = 3
+
+[node name="Skills" type="VBoxContainer" parent="VBox/Pages"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+theme_override_constants/separation = 4
+
+[node name="SkillGrid" type="GridContainer" parent="VBox/Pages/Skills"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 2
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
+size_flags_horizontal = 3
+
+[node name="Total" type="Label" parent="VBox/Pages/Skills"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = "GoldLabel"
+theme_override_font_sizes/font_size = 13
+
+[node name="Inventory" type="MarginContainer" parent="VBox/Pages"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+
+[node name="InvGrid" type="GridContainer" parent="VBox/Pages/Inventory"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 4
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 4
+
+[node name="Slot0" type="Control" parent="VBox/Pages/Inventory/InvGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Slot1" type="Control" parent="VBox/Pages/Inventory/InvGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Slot2" type="Control" parent="VBox/Pages/Inventory/InvGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Slot3" type="Control" parent="VBox/Pages/Inventory/InvGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Slot4" type="Control" parent="VBox/Pages/Inventory/InvGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Slot5" type="Control" parent="VBox/Pages/Inventory/InvGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Slot6" type="Control" parent="VBox/Pages/Inventory/InvGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Slot7" type="Control" parent="VBox/Pages/Inventory/InvGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Slot8" type="Control" parent="VBox/Pages/Inventory/InvGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Slot9" type="Control" parent="VBox/Pages/Inventory/InvGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Slot10" type="Control" parent="VBox/Pages/Inventory/InvGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Slot11" type="Control" parent="VBox/Pages/Inventory/InvGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Slot12" type="Control" parent="VBox/Pages/Inventory/InvGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Slot13" type="Control" parent="VBox/Pages/Inventory/InvGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Slot14" type="Control" parent="VBox/Pages/Inventory/InvGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Slot15" type="Control" parent="VBox/Pages/Inventory/InvGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Slot16" type="Control" parent="VBox/Pages/Inventory/InvGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Slot17" type="Control" parent="VBox/Pages/Inventory/InvGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Slot18" type="Control" parent="VBox/Pages/Inventory/InvGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Slot19" type="Control" parent="VBox/Pages/Inventory/InvGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Slot20" type="Control" parent="VBox/Pages/Inventory/InvGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Slot21" type="Control" parent="VBox/Pages/Inventory/InvGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Slot22" type="Control" parent="VBox/Pages/Inventory/InvGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Slot23" type="Control" parent="VBox/Pages/Inventory/InvGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Slot24" type="Control" parent="VBox/Pages/Inventory/InvGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Slot25" type="Control" parent="VBox/Pages/Inventory/InvGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Slot26" type="Control" parent="VBox/Pages/Inventory/InvGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Slot27" type="Control" parent="VBox/Pages/Inventory/InvGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Equipment" type="VBoxContainer" parent="VBox/Pages"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+theme_override_constants/separation = 4
+
+[node name="Center" type="CenterContainer" parent="VBox/Pages/Equipment"]
+layout_mode = 2
+
+[node name="EquipGrid" type="GridContainer" parent="VBox/Pages/Equipment/Center"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 3
+theme_override_constants/h_separation = 22
+theme_override_constants/v_separation = 3
+
+[node name="Gap0" type="Control" parent="VBox/Pages/Equipment/Center/EquipGrid"]
+layout_mode = 2
+custom_minimum_size = Vector2(44.0, 40.0)
+
+[node name="Head" type="Control" parent="VBox/Pages/Equipment/Center/EquipGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Gap2" type="Control" parent="VBox/Pages/Equipment/Center/EquipGrid"]
+layout_mode = 2
+custom_minimum_size = Vector2(44.0, 40.0)
+
+[node name="Cape" type="Control" parent="VBox/Pages/Equipment/Center/EquipGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Neck" type="Control" parent="VBox/Pages/Equipment/Center/EquipGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Ammo" type="Control" parent="VBox/Pages/Equipment/Center/EquipGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Weapon" type="Control" parent="VBox/Pages/Equipment/Center/EquipGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Body" type="Control" parent="VBox/Pages/Equipment/Center/EquipGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Shield" type="Control" parent="VBox/Pages/Equipment/Center/EquipGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Gap9" type="Control" parent="VBox/Pages/Equipment/Center/EquipGrid"]
+layout_mode = 2
+custom_minimum_size = Vector2(44.0, 40.0)
+
+[node name="Legs" type="Control" parent="VBox/Pages/Equipment/Center/EquipGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Gap11" type="Control" parent="VBox/Pages/Equipment/Center/EquipGrid"]
+layout_mode = 2
+custom_minimum_size = Vector2(44.0, 40.0)
+
+[node name="Hands" type="Control" parent="VBox/Pages/Equipment/Center/EquipGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Feet" type="Control" parent="VBox/Pages/Equipment/Center/EquipGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Ring" type="Control" parent="VBox/Pages/Equipment/Center/EquipGrid"]
+layout_mode = 2
+tooltip_text = " "
+script = ExtResource("2")
+
+[node name="Bonuses" type="Label" parent="VBox/Pages/Equipment"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+
+[node name="Magic" type="VBoxContainer" parent="VBox/Pages"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+theme_override_constants/separation = 6
+
+[node name="Title" type="Label" parent="VBox/Pages/Magic"]
+layout_mode = 2
+text = "Spellbook"
+theme_type_variation = "TitleLabel"
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+
+[node name="Center" type="CenterContainer" parent="VBox/Pages/Magic"]
+layout_mode = 2
+
+[node name="SpellGrid" type="GridContainer" parent="VBox/Pages/Magic/Center"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 4
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 6
+
+[node name="Hint" type="Label" parent="VBox/Pages/Magic"]
+layout_mode = 2
+text = "Hover a spell for details. Combat spells autocast; recalls and Mend cast instantly."
+theme_type_variation = "DimLabel"
+theme_override_font_sizes/font_size = 11
+autowrap_mode = 3
+
+[node name="Options" type="VBoxContainer" parent="VBox/Pages"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="VBox/Pages/Options"]
+layout_mode = 2
+text = "Options"
+theme_type_variation = "TitleLabel"
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+
+[node name="OpenSettings" type="Button" parent="VBox/Pages/Options"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "All settings…  (O)"
+custom_minimum_size = Vector2(0.0, 40.0)
+
+[node name="RunToggle" type="CheckBox" parent="VBox/Pages/Options"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Run"
+button_pressed = true
+focus_mode = 0
+
+[node name="Logout" type="Button" parent="VBox/Pages/Options"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Logout"
+custom_minimum_size = Vector2(0.0, 36.0)
+
+[node name="Quests" type="VBoxContainer" parent="VBox/Pages"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+theme_override_constants/separation = 4
+
+[node name="QuestCount" type="Label" parent="VBox/Pages/Quests"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quests"
+theme_type_variation = "TitleLabel"
+theme_override_font_sizes/font_size = 17
+horizontal_alignment = 1
+
+[node name="Scroll" type="ScrollContainer" parent="VBox/Pages/Quests"]
+layout_mode = 2
+custom_minimum_size = Vector2(0.0, 140.0)
+horizontal_scroll_mode = 0
+
+[node name="QuestList" type="VBoxContainer" parent="VBox/Pages/Quests/Scroll"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 1
+size_flags_horizontal = 3
+
+[node name="QuestInfo" type="RichTextLabel" parent="VBox/Pages/Quests"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+theme_override_font_sizes/normal_font_size = 12
+size_flags_vertical = 3

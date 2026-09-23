@@ -6,15 +6,14 @@ using Fantasia.Client;
 
 namespace Fantasia.UI;
 
-/// Tabbed side panel: Combat, Skills, Inventory, Equipment, Magic, Settings.
+/// Tabbed side panel (Scenes/UI/SidePanel.tscn): Combat, Skills, Pack, Equipment, Spellbook,
+/// Options, Quests. The layout lives in the scene; this fills it with the player's state.
 public partial class SidePanel : PanelContainer
 {
-    readonly Hud hud;
+    static readonly PackedScene SkillCellScene = GD.Load<PackedScene>("res://Scenes/UI/SkillCell.tscn");
+    Hud hud;
     readonly Control[] pages = new Control[7];
     readonly Button[] tabs = new Button[7];
-    static readonly string[] TabNames = { "⚔", "✦", "🎒", "🛡", "✧", "⚙", "!" };
-    static readonly string[] TabIcons = { "tab_combat", "tab_skills", "tab_inventory", "tab_equipment", "tab_spellbook", "tab_settings", "tab_quests" };
-    static readonly string[] TabTips = { "Combat (F1)", "Skills (F2)", "Pack (F3)", "Equipment (F4)", "Spellbook (F5)", "Options (F6)", "Quests (F7)" };
 
     readonly ItemSlot[] inv = new ItemSlot[GameConst.InventorySize];
     readonly ItemSlot[] equip = new ItemSlot[11];
@@ -30,38 +29,114 @@ public partial class SidePanel : PanelContainer
     string questSel;
     PrivateState st;
 
-    public SidePanel(Hud h)
+    public void Init(Hud h) => hud = h;
+
+    public override void _Ready()
     {
-        hud = h;
-        var v = new VBoxContainer();
-        v.AddThemeConstantOverride("separation", 4);
-        AddChild(v);
-        var bar = new HBoxContainer();
-        bar.AddThemeConstantOverride("separation", 2);
-        v.AddChild(bar);
+        string[] pageNames = { "Combat", "Skills", "Inventory", "Equipment", "Magic", "Options", "Quests" };
         for (int i = 0; i < pages.Length; i++)
         {
             int idx = i;
-            var icon = UiIcons.Get(TabIcons[i]);
-            var b = new Button { Text = icon == null ? TabNames[i] : "", Icon = icon, ExpandIcon = true, IconAlignment = HorizontalAlignment.Center, TooltipText = TabTips[i], CustomMinimumSize = new Vector2(32, 34), ToggleMode = true, FocusMode = FocusModeEnum.None };
-            b.Pressed += () => ShowTab(idx);
-            bar.AddChild(b);
-            tabs[i] = b;
+            pages[i] = GetNode<Control>("%" + pageNames[i]);
+            tabs[i] = GetNode<Button>($"%Tab{i}");
+            tabs[i].Pressed += () => ShowTab(idx);
         }
-        var stack = new Control { SizeFlagsVertical = SizeFlags.ExpandFill, CustomMinimumSize = new Vector2(234, 330) };
-        v.AddChild(stack);
-        pages[0] = BuildCombat();
-        pages[1] = BuildSkills();
-        pages[2] = BuildInventory();
-        pages[3] = BuildEquipment();
-        pages[4] = BuildMagic();
-        pages[5] = BuildSettings();
-        pages[6] = BuildQuests();
-        foreach (var p in pages)
+
+        // Combat
+        weaponLabel = GetNode<Label>("%Weapon");
+        combatLvl = GetNode<Label>("%CombatLevel");
+        for (int i = 0; i < 3; i++)
         {
-            p.SetAnchorsPreset(LayoutPreset.FullRect);
-            stack.AddChild(p);
+            int idx = i;
+            styleButtons[i] = GetNode<Button>($"%Style{i}");
+            styleButtons[i].Pressed += () => Send(new ClientMsg { T = C2S.Style, A = idx });
         }
+        spellLabel = GetNode<Label>("%Spell");
+        retaliate = GetNode<CheckBox>("%Retaliate");
+        retaliate.Toggled += on => Send(new ClientMsg { T = C2S.Retaliate, A = on ? 1 : 0 });
+        activityLabel = GetNode<Label>("%Activity");
+
+        // Skills: one cell per skill (the skill list is game data, so cells are made here).
+        var grid = GetNode<GridContainer>("%SkillGrid");
+        foreach (var sk in Skills.All)
+        {
+            int i = (int)sk;
+            var cell = SkillCellScene.Instantiate<Control>();
+            grid.AddChild(cell);
+            var ic = UiIcons.Get("skill_" + sk.ToString().ToLowerInvariant());
+            cell.GetNode<TextureRect>("%Icon").Texture = ic;
+            cell.GetNode<TextureRect>("%Icon").Visible = ic != null;
+            skillLabels[i] = cell.GetNode<Label>("%Name");
+            skillLabels[i].Text = sk.ToString();
+            skillBars[i] = cell.GetNode<ProgressBar>("%Bar");
+            skillBars[i].AddThemeStyleboxOverride("fill", UiTheme.Box(SkillColor(sk), SkillColor(sk), 0, 2, 0));
+            skillCells[i] = cell;
+        }
+        totalLabel = GetNode<Label>("%Total");
+
+        // Pack
+        var invGrid = GetNode<GridContainer>("%InvGrid");
+        for (int i = 0; i < inv.Length; i++)
+        {
+            var sl = invGrid.GetNode<ItemSlot>($"Slot{i}");
+            sl.Index = i;
+            sl.LeftClick = InvLeft;
+            sl.RightClick = InvRight;
+            sl.CanDrag = _ => !hud.BankOpen && !hud.ShopOpen;
+            sl.Dropped = (a, b) =>
+            {
+                (a.Stack, b.Stack) = (b.Stack, a.Stack);
+                Send(new ClientMsg { T = C2S.Swap, A = a.Index, B = b.Index });
+            };
+            inv[i] = sl;
+        }
+
+        // Equipment: slot nodes are named after their EquipSlot.
+        foreach (var node in GetNode("%EquipGrid").GetChildren())
+        {
+            if (node is not ItemSlot sl || !Enum.TryParse<EquipSlot>(sl.Name, out var es)) continue;
+            sl.Index = (int)es;
+            sl.Placeholder = es.ToString();
+            sl.LeftClick = x => { if (x.Stack != null) Send(new ClientMsg { T = C2S.Unequip, A = x.Index }); };
+            sl.RightClick = (x, pos) =>
+            {
+                if (x.Stack == null) return;
+                var d = ItemDb.Get(x.Stack.Id);
+                hud.ShowMenu(pos, new List<MenuOption>
+                {
+                    new() { Verb = "Remove", Target = d.Name, TargetColor = new Color(1f, 0.6f, 0.25f), Run = () => Send(new ClientMsg { T = C2S.Unequip, A = x.Index }) },
+                    new() { Verb = "Inspect", Target = d.Name, TargetColor = new Color(1f, 0.6f, 0.25f), Run = () => hud.GameMessage(d.Examine) },
+                });
+            };
+            equip[(int)es] = sl;
+        }
+        bonusLabel = GetNode<Label>("%Bonuses");
+
+        // Spellbook: one button per spell in spells.json.
+        var spells = GetNode<GridContainer>("%SpellGrid");
+        foreach (var sp in SpellDb.List)
+        {
+            var btn = new SpellButton { Spell = sp, State = () => st };
+            btn.Clicked = b =>
+            {
+                var spell = b.Spell;
+                if (spell.Kind == SpellKind.Combat)
+                    Send(new ClientMsg { T = C2S.Spell, S = st?.Spell == spell.Id ? "" : spell.Id });
+                else Send(new ClientMsg { T = C2S.Spell, S = spell.Id });
+            };
+            spells.AddChild(btn);
+        }
+
+        // Options
+        GetNode<Button>("%OpenSettings").Pressed += () => Main.I?.SettingsUi.Open();
+        GetNode<CheckBox>("%RunToggle").Toggled += on => Send(new ClientMsg { T = C2S.Run, A = on ? 1 : 0 });
+        GetNode<Button>("%Logout").Pressed += () => Main.I?.Logout();
+
+        // Quests
+        questCount = GetNode<Label>("%QuestCount");
+        questList = GetNode<VBoxContainer>("%QuestList");
+        questInfo = GetNode<RichTextLabel>("%QuestInfo");
+
         ShowTab(2);
     }
 
@@ -76,36 +151,6 @@ public partial class SidePanel : PanelContainer
 
     void Send(ClientMsg m) => Net.I.Send(m);
 
-    // ================= combat =================
-    Control BuildCombat()
-    {
-        var v = new VBoxContainer();
-        v.AddThemeConstantOverride("separation", 6);
-        weaponLabel = UiTheme.Title("Unarmed", 17);
-        v.AddChild(weaponLabel);
-        combatLvl = UiTheme.Lbl("Combat level: 3", 14, UiTheme.Gold);
-        combatLvl.HorizontalAlignment = HorizontalAlignment.Center;
-        v.AddChild(combatLvl);
-        for (int i = 0; i < 3; i++)
-        {
-            int idx = i;
-            var b = new Button { ToggleMode = true, CustomMinimumSize = new Vector2(0, 40), FocusMode = FocusModeEnum.None };
-            b.Pressed += () => Send(new ClientMsg { T = C2S.Style, A = idx });
-            v.AddChild(b);
-            styleButtons[i] = b;
-        }
-        spellLabel = UiTheme.Lbl("", 13, new Color(0.6f, 0.8f, 1f));
-        spellLabel.AutowrapMode = TextServer.AutowrapMode.WordSmart;
-        v.AddChild(spellLabel);
-        retaliate = new CheckBox { Text = "Auto Retaliate", FocusMode = FocusModeEnum.None };
-        retaliate.Toggled += on => Send(new ClientMsg { T = C2S.Retaliate, A = on ? 1 : 0 });
-        v.AddChild(retaliate);
-        activityLabel = UiTheme.Lbl("", 13, new Color(0.7f, 0.95f, 0.6f));
-        activityLabel.AutowrapMode = TextServer.AutowrapMode.WordSmart;
-        v.AddChild(activityLabel);
-        return v;
-    }
-
     // ================= skills =================
     static Color SkillColor(Skill s) => s switch
     {
@@ -116,66 +161,7 @@ public partial class SidePanel : PanelContainer
         Skill.Silkweaving => new Color(0.95f, 0.75f, 0.9f), _ => new Color(0.65f, 0.45f, 1f),
     };
 
-    Control BuildSkills()
-    {
-        var v = new VBoxContainer();
-        v.AddThemeConstantOverride("separation", 4);
-        var grid = new GridContainer { Columns = 2, SizeFlagsHorizontal = SizeFlags.ExpandFill };
-        grid.AddThemeConstantOverride("h_separation", 4);
-        grid.AddThemeConstantOverride("v_separation", 4);
-        v.AddChild(grid);
-        foreach (var sk in Skills.All)
-        {
-            int i = (int)sk;
-            var cell = new PanelContainer { CustomMinimumSize = new Vector2(112, 38), SizeFlagsHorizontal = SizeFlags.ExpandFill, MouseFilter = MouseFilterEnum.Stop, TooltipText = " ", ClipContents = true };
-            cell.AddThemeStyleboxOverride("panel", UiTheme.Box(new Color(0.12f, 0.1f, 0.07f, 0.9f), UiTheme.PanelBorder, 1, 3, 3));
-            var h = new HBoxContainer();
-            h.AddThemeConstantOverride("separation", 4);
-            h.MouseFilter = MouseFilterEnum.Ignore;
-            cell.AddChild(h);
-            var ic = UiIcons.Get("skill_" + sk.ToString().ToLowerInvariant());
-            if (ic != null) h.AddChild(new TextureRect { Texture = ic, ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize, StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered, CustomMinimumSize = new Vector2(24, 24), MouseFilter = MouseFilterEnum.Ignore });
-            var col = new VBoxContainer { SizeFlagsHorizontal = SizeFlags.ExpandFill, MouseFilter = MouseFilterEnum.Ignore };
-            col.AddThemeConstantOverride("separation", 1);
-            h.AddChild(col);
-            var l = UiTheme.Lbl(sk.ToString(), 11);
-            l.MouseFilter = MouseFilterEnum.Ignore;
-            l.ClipText = true;
-            l.TextOverrunBehavior = TextServer.OverrunBehavior.TrimEllipsis;
-            l.CustomMinimumSize = new Vector2(10, 0);
-            col.AddChild(l);
-            var bar = new ProgressBar { MinValue = 0, MaxValue = 1, CustomMinimumSize = new Vector2(0, 6), ShowPercentage = false, MouseFilter = MouseFilterEnum.Ignore };
-            bar.AddThemeStyleboxOverride("background", UiTheme.Box(new Color(0.08f, 0.06f, 0.04f), UiTheme.PanelBorder, 1, 2, 0));
-            bar.AddThemeStyleboxOverride("fill", UiTheme.Box(SkillColor(sk), SkillColor(sk), 0, 2, 0));
-            col.AddChild(bar);
-            grid.AddChild(cell);
-            skillLabels[i] = l;
-            skillBars[i] = bar;
-            skillCells[i] = cell;
-        }
-        totalLabel = UiTheme.Lbl("", 13, UiTheme.Gold);
-        v.AddChild(totalLabel);
-        return v;
-    }
-
     // ================= quests =================
-    Control BuildQuests()
-    {
-        var v = new VBoxContainer();
-        v.AddThemeConstantOverride("separation", 4);
-        questCount = UiTheme.Title("Quests", 17);
-        v.AddChild(questCount);
-        var scroll = new ScrollContainer { CustomMinimumSize = new Vector2(0, 140), HorizontalScrollMode = ScrollContainer.ScrollMode.Disabled };
-        questList = new VBoxContainer { SizeFlagsHorizontal = SizeFlags.ExpandFill };
-        questList.AddThemeConstantOverride("separation", 1);
-        scroll.AddChild(questList);
-        v.AddChild(scroll);
-        questInfo = new RichTextLabel { BbcodeEnabled = true, SizeFlagsVertical = SizeFlags.ExpandFill, ScrollActive = true };
-        questInfo.AddThemeFontSizeOverride("normal_font_size", 12);
-        v.AddChild(questInfo);
-        return v;
-    }
-
     void RefreshQuests(PrivateState s)
     {
         foreach (var c in questList.GetChildren()) c.QueueFree();
@@ -227,33 +213,6 @@ public partial class SidePanel : PanelContainer
         questInfo.Text = t;
     }
 
-    // ================= inventory =================
-    Control BuildInventory()
-    {
-        var g = new GridContainer { Columns = 4 };
-        g.AddThemeConstantOverride("h_separation", 12);
-        g.AddThemeConstantOverride("v_separation", 4);
-        for (int i = 0; i < inv.Length; i++)
-        {
-            var s = new ItemSlot { Index = i, TooltipText = " " };
-            s.LeftClick = InvLeft;
-            s.RightClick = InvRight;
-            s.CanDrag = _ => !hud.BankOpen && !hud.ShopOpen;
-            s.Dropped = (a, b) =>
-            {
-                (a.Stack, b.Stack) = (b.Stack, a.Stack);
-                Send(new ClientMsg { T = C2S.Swap, A = a.Index, B = b.Index });
-            };
-            g.AddChild(s);
-            inv[i] = s;
-        }
-        var m = new MarginContainer();
-        m.AddThemeConstantOverride("margin_left", 4);
-        m.AddThemeConstantOverride("margin_top", 4);
-        m.AddChild(g);
-        return m;
-    }
-
     static string WearVerb(ItemDef d) => "Equip";
 
     void InvLeft(ItemSlot s)
@@ -295,96 +254,6 @@ public partial class SidePanel : PanelContainer
         }
         opts.Add(new MenuOption { Verb = "Inspect", Target = d.Name, TargetColor = col, Run = () => hud.GameMessage(d.Examine + (s.Stack != null && s.Stack.Count > 1 ? $" ({s.Stack.Count:N0})" : "")) });
         hud.ShowMenu(pos, opts);
-    }
-
-    // ================= equipment =================
-    Control BuildEquipment()
-    {
-        var v = new VBoxContainer();
-        v.AddThemeConstantOverride("separation", 4);
-        var g = new GridContainer { Columns = 3 };
-        g.AddThemeConstantOverride("h_separation", 22);
-        g.AddThemeConstantOverride("v_separation", 3);
-        EquipSlot?[] layout =
-        {
-            null, EquipSlot.Head, null,
-            EquipSlot.Cape, EquipSlot.Neck, EquipSlot.Ammo,
-            EquipSlot.Weapon, EquipSlot.Body, EquipSlot.Shield,
-            null, EquipSlot.Legs, null,
-            EquipSlot.Hands, EquipSlot.Feet, EquipSlot.Ring,
-        };
-        foreach (var es in layout)
-        {
-            if (es == null) { g.AddChild(new Control { CustomMinimumSize = new Vector2(44, 40) }); continue; }
-            var s = new ItemSlot { Index = (int)es.Value, Placeholder = es.Value.ToString(), TooltipText = " " };
-            s.LeftClick = sl => { if (sl.Stack != null) Send(new ClientMsg { T = C2S.Unequip, A = sl.Index }); };
-            s.RightClick = (sl, pos) =>
-            {
-                if (sl.Stack == null) return;
-                var d = ItemDb.Get(sl.Stack.Id);
-                hud.ShowMenu(pos, new List<MenuOption>
-                {
-                    new() { Verb = "Remove", Target = d.Name, TargetColor = new Color(1f, 0.6f, 0.25f), Run = () => Send(new ClientMsg { T = C2S.Unequip, A = sl.Index }) },
-                    new() { Verb = "Inspect", Target = d.Name, TargetColor = new Color(1f, 0.6f, 0.25f), Run = () => hud.GameMessage(d.Examine) },
-                });
-            };
-            equip[(int)es.Value] = s;
-            g.AddChild(s);
-        }
-        var c = new CenterContainer();
-        c.AddChild(g);
-        v.AddChild(c);
-        bonusLabel = UiTheme.Lbl("", 12);
-        v.AddChild(bonusLabel);
-        return v;
-    }
-
-    // ================= magic =================
-    Control BuildMagic()
-    {
-        var v = new VBoxContainer();
-        v.AddThemeConstantOverride("separation", 6);
-        v.AddChild(UiTheme.Title("Spellbook", 18));
-        var g = new GridContainer { Columns = 4 };
-        g.AddThemeConstantOverride("h_separation", 6);
-        g.AddThemeConstantOverride("v_separation", 6);
-        foreach (var sp in SpellDb.List)
-        {
-            var btn = new SpellButton { Spell = sp, State = () => st };
-            btn.Clicked = b =>
-            {
-                var spell = b.Spell;
-                if (spell.Kind == SpellKind.Combat)
-                    Send(new ClientMsg { T = C2S.Spell, S = st?.Spell == spell.Id ? "" : spell.Id });
-                else Send(new ClientMsg { T = C2S.Spell, S = spell.Id });
-            };
-            g.AddChild(btn);
-        }
-        var c = new CenterContainer();
-        c.AddChild(g);
-        v.AddChild(c);
-        var hint = UiTheme.Lbl("Hover a spell for details. Combat spells autocast; recalls and Mend cast instantly.", 11, UiTheme.Dim);
-        hint.AutowrapMode = TextServer.AutowrapMode.WordSmart;
-        v.AddChild(hint);
-        return v;
-    }
-
-    // ================= settings =================
-    Control BuildSettings()
-    {
-        var v = new VBoxContainer();
-        v.AddThemeConstantOverride("separation", 8);
-        v.AddChild(UiTheme.Title("Options", 18));
-        var open = new Button { Text = "All settings…  (O)", CustomMinimumSize = new Vector2(0, 40) };
-        open.Pressed += () => Main.I?.SettingsUi.Open();
-        v.AddChild(open);
-        var run = new CheckBox { Text = "Run", ButtonPressed = true, FocusMode = FocusModeEnum.None };
-        run.Toggled += on => Send(new ClientMsg { T = C2S.Run, A = on ? 1 : 0 });
-        v.AddChild(run);
-        var logout = new Button { Text = "Logout", CustomMinimumSize = new Vector2(0, 36) };
-        logout.Pressed += () => Main.I?.Logout();
-        v.AddChild(logout);
-        return v;
     }
 
     // ================= refresh =================

@@ -1,0 +1,47 @@
+[gd_scene format=3]
+
+
+[node name="SkillCell" type="PanelContainer"]
+custom_minimum_size = Vector2(112.0, 38.0)
+size_flags_horizontal = 3
+mouse_filter = 0
+tooltip_text = " "
+clip_contents = true
+theme_type_variation = "SkillCell"
+
+[node name="HBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 4
+mouse_filter = 2
+
+[node name="Icon" type="TextureRect" parent="HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(24.0, 24.0)
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="Col" type="VBoxContainer" parent="HBox"]
+layout_mode = 2
+theme_override_constants/separation = 1
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Name" type="Label" parent="HBox/Col"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+clip_text = true
+text_overrun_behavior = 3
+custom_minimum_size = Vector2(10.0, 0.0)
+mouse_filter = 2
+
+[node name="Bar" type="ProgressBar" parent="HBox/Col"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0.0, 6.0)
+theme_type_variation = "SkillBar"
+max_value = 1.0
+show_percentage = false
+mouse_filter = 2

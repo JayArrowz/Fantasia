@@ -1,0 +1,492 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/UI/SettingsWindow.cs" id="1"]
+[ext_resource type="Theme" path="res://UI/Theme.tres" id="2"]
+
+[node name="SettingsWindow" type="CanvasLayer"]
+layer = 50
+visible = false
+script = ExtResource("1")
+
+[node name="Root" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2")
+
+[node name="Dim" type="ColorRect" parent="Root"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.45)
+
+[node name="Panel" type="PanelContainer" parent="Root"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -250.0
+offset_right = 300.0
+offset_bottom = 250.0
+
+[node name="VBox" type="VBoxContainer" parent="Root/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Top" type="HBoxContainer" parent="Root/Panel/VBox"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Root/Panel/VBox/Top"]
+layout_mode = 2
+text = "Settings"
+theme_type_variation = "TitleLabel"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 24
+size_flags_horizontal = 3
+
+[node name="Close" type="Button" parent="Root/Panel/VBox/Top"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "✕"
+custom_minimum_size = Vector2(34.0, 34.0)
+focus_mode = 0
+
+[node name="Tabs" type="TabContainer" parent="Root/Panel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+current_tab = 0
+size_flags_vertical = 3
+
+[node name="Display" type="VBoxContainer" parent="Root/Panel/VBox/Tabs"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="UiScaleRow" type="HBoxContainer" parent="Root/Panel/VBox/Tabs/Display"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="Root/Panel/VBox/Tabs/Display/UiScaleRow"]
+layout_mode = 2
+text = "Interface scale"
+theme_override_font_sizes/font_size = 15
+custom_minimum_size = Vector2(190.0, 0.0)
+mouse_filter = 1
+tooltip_text = "Size of all menus, icons and text. Auto scales with your window size (2× at 4K)."
+
+[node name="UiScale" type="HSlider" parent="Root/Panel/VBox/Tabs/Display/UiScaleRow"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 0.0
+max_value = 3.0
+step = 0.25
+custom_minimum_size = Vector2(200.0, 24.0)
+size_flags_horizontal = 3
+
+[node name="UiScaleValue" type="Label" parent="Root/Panel/VBox/Tabs/Display/UiScaleRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = "GoldLabel"
+theme_override_font_sizes/font_size = 14
+custom_minimum_size = Vector2(70.0, 0.0)
+
+[node name="ScaleHint" type="Label" parent="Root/Panel/VBox/Tabs/Display"]
+layout_mode = 2
+text = "Slide to the far left for automatic scaling."
+theme_type_variation = "DimLabel"
+theme_override_font_sizes/font_size = 12
+
+[node name="FullscreenRow" type="HBoxContainer" parent="Root/Panel/VBox/Tabs/Display"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="Root/Panel/VBox/Tabs/Display/FullscreenRow"]
+layout_mode = 2
+text = "Fullscreen"
+theme_override_font_sizes/font_size = 15
+custom_minimum_size = Vector2(190.0, 0.0)
+mouse_filter = 1
+
+[node name="Fullscreen" type="CheckButton" parent="Root/Panel/VBox/Tabs/Display/FullscreenRow"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+
+[node name="VSyncRow" type="HBoxContainer" parent="Root/Panel/VBox/Tabs/Display"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="Root/Panel/VBox/Tabs/Display/VSyncRow"]
+layout_mode = 2
+text = "Vertical sync"
+theme_override_font_sizes/font_size = 15
+custom_minimum_size = Vector2(190.0, 0.0)
+mouse_filter = 1
+tooltip_text = "Prevents screen tearing."
+
+[node name="VSync" type="CheckButton" parent="Root/Panel/VBox/Tabs/Display/VSyncRow"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+
+[node name="MaxFpsRow" type="HBoxContainer" parent="Root/Panel/VBox/Tabs/Display"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="Root/Panel/VBox/Tabs/Display/MaxFpsRow"]
+layout_mode = 2
+text = "Frame rate limit"
+theme_override_font_sizes/font_size = 15
+custom_minimum_size = Vector2(190.0, 0.0)
+mouse_filter = 1
+
+[node name="MaxFps" type="OptionButton" parent="Root/Panel/VBox/Tabs/Display/MaxFpsRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(180.0, 0.0)
+item_count = 6
+focus_mode = 0
+popup/item_0/text = "Unlimited"
+popup/item_0/id = 0
+popup/item_1/text = "30"
+popup/item_1/id = 1
+popup/item_2/text = "60"
+popup/item_2/id = 2
+popup/item_3/text = "120"
+popup/item_3/id = 3
+popup/item_4/text = "144"
+popup/item_4/id = 4
+popup/item_5/text = "240"
+popup/item_5/id = 5
+
+[node name="ShowFpsRow" type="HBoxContainer" parent="Root/Panel/VBox/Tabs/Display"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="Root/Panel/VBox/Tabs/Display/ShowFpsRow"]
+layout_mode = 2
+text = "Show FPS counter"
+theme_override_font_sizes/font_size = 15
+custom_minimum_size = Vector2(190.0, 0.0)
+mouse_filter = 1
+
+[node name="ShowFps" type="CheckButton" parent="Root/Panel/VBox/Tabs/Display/ShowFpsRow"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+
+[node name="Graphics" type="VBoxContainer" parent="Root/Panel/VBox/Tabs"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="RenderScaleRow" type="HBoxContainer" parent="Root/Panel/VBox/Tabs/Graphics"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="Root/Panel/VBox/Tabs/Graphics/RenderScaleRow"]
+layout_mode = 2
+text = "3D resolution"
+theme_override_font_sizes/font_size = 15
+custom_minimum_size = Vector2(190.0, 0.0)
+mouse_filter = 1
+tooltip_text = "Renders the world at a lower resolution and upscales it (FSR) for more speed."
+
+[node name="RenderScale" type="HSlider" parent="Root/Panel/VBox/Tabs/Graphics/RenderScaleRow"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 0.5
+max_value = 1.0
+step = 0.05
+custom_minimum_size = Vector2(200.0, 24.0)
+size_flags_horizontal = 3
+
+[node name="RenderScaleValue" type="Label" parent="Root/Panel/VBox/Tabs/Graphics/RenderScaleRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = "GoldLabel"
+theme_override_font_sizes/font_size = 14
+custom_minimum_size = Vector2(70.0, 0.0)
+
+[node name="ShadowsRow" type="HBoxContainer" parent="Root/Panel/VBox/Tabs/Graphics"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="Root/Panel/VBox/Tabs/Graphics/ShadowsRow"]
+layout_mode = 2
+text = "Shadows"
+theme_override_font_sizes/font_size = 15
+custom_minimum_size = Vector2(190.0, 0.0)
+mouse_filter = 1
+
+[node name="Shadows" type="OptionButton" parent="Root/Panel/VBox/Tabs/Graphics/ShadowsRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(180.0, 0.0)
+item_count = 3
+focus_mode = 0
+popup/item_0/text = "Off"
+popup/item_0/id = 0
+popup/item_1/text = "Low"
+popup/item_1/id = 1
+popup/item_2/text = "High"
+popup/item_2/id = 2
+
+[node name="MsaaRow" type="HBoxContainer" parent="Root/Panel/VBox/Tabs/Graphics"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="Root/Panel/VBox/Tabs/Graphics/MsaaRow"]
+layout_mode = 2
+text = "Anti-aliasing"
+theme_override_font_sizes/font_size = 15
+custom_minimum_size = Vector2(190.0, 0.0)
+mouse_filter = 1
+
+[node name="Msaa" type="OptionButton" parent="Root/Panel/VBox/Tabs/Graphics/MsaaRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(180.0, 0.0)
+item_count = 3
+focus_mode = 0
+popup/item_0/text = "Off"
+popup/item_0/id = 0
+popup/item_1/text = "MSAA 2×"
+popup/item_1/id = 1
+popup/item_2/text = "MSAA 4×"
+popup/item_2/id = 2
+
+[node name="SsaoRow" type="HBoxContainer" parent="Root/Panel/VBox/Tabs/Graphics"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="Root/Panel/VBox/Tabs/Graphics/SsaoRow"]
+layout_mode = 2
+text = "Ambient occlusion"
+theme_override_font_sizes/font_size = 15
+custom_minimum_size = Vector2(190.0, 0.0)
+mouse_filter = 1
+
+[node name="Ssao" type="CheckButton" parent="Root/Panel/VBox/Tabs/Graphics/SsaoRow"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+
+[node name="GlowRow" type="HBoxContainer" parent="Root/Panel/VBox/Tabs/Graphics"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="Root/Panel/VBox/Tabs/Graphics/GlowRow"]
+layout_mode = 2
+text = "Glow & bloom"
+theme_override_font_sizes/font_size = 15
+custom_minimum_size = Vector2(190.0, 0.0)
+mouse_filter = 1
+
+[node name="Glow" type="CheckButton" parent="Root/Panel/VBox/Tabs/Graphics/GlowRow"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+
+[node name="ViewDistanceRow" type="HBoxContainer" parent="Root/Panel/VBox/Tabs/Graphics"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="Root/Panel/VBox/Tabs/Graphics/ViewDistanceRow"]
+layout_mode = 2
+text = "View distance"
+theme_override_font_sizes/font_size = 15
+custom_minimum_size = Vector2(190.0, 0.0)
+mouse_filter = 1
+tooltip_text = "How far you can see before the haze."
+
+[node name="ViewDistance" type="HSlider" parent="Root/Panel/VBox/Tabs/Graphics/ViewDistanceRow"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 0.5
+max_value = 2.0
+step = 0.1
+custom_minimum_size = Vector2(200.0, 24.0)
+size_flags_horizontal = 3
+
+[node name="ViewDistanceValue" type="Label" parent="Root/Panel/VBox/Tabs/Graphics/ViewDistanceRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = "GoldLabel"
+theme_override_font_sizes/font_size = 14
+custom_minimum_size = Vector2(70.0, 0.0)
+
+[node name="GeneratedCharactersRow" type="HBoxContainer" parent="Root/Panel/VBox/Tabs/Graphics"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="Root/Panel/VBox/Tabs/Graphics/GeneratedCharactersRow"]
+layout_mode = 2
+text = "Generated character models"
+theme_override_font_sizes/font_size = 15
+custom_minimum_size = Vector2(190.0, 0.0)
+mouse_filter = 1
+tooltip_text = "Use the detailed rigged character models. Applies to characters as they come into view."
+
+[node name="GeneratedCharacters" type="CheckButton" parent="Root/Panel/VBox/Tabs/Graphics/GeneratedCharactersRow"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+
+[node name="Audio" type="VBoxContainer" parent="Root/Panel/VBox/Tabs"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MusicVolumeRow" type="HBoxContainer" parent="Root/Panel/VBox/Tabs/Audio"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="Root/Panel/VBox/Tabs/Audio/MusicVolumeRow"]
+layout_mode = 2
+text = "Music volume"
+theme_override_font_sizes/font_size = 15
+custom_minimum_size = Vector2(190.0, 0.0)
+mouse_filter = 1
+
+[node name="MusicVolume" type="HSlider" parent="Root/Panel/VBox/Tabs/Audio/MusicVolumeRow"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 0.0
+max_value = 1.0
+step = 0.05
+custom_minimum_size = Vector2(200.0, 24.0)
+size_flags_horizontal = 3
+
+[node name="MusicVolumeValue" type="Label" parent="Root/Panel/VBox/Tabs/Audio/MusicVolumeRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = "GoldLabel"
+theme_override_font_sizes/font_size = 14
+custom_minimum_size = Vector2(70.0, 0.0)
+
+[node name="SfxVolumeRow" type="HBoxContainer" parent="Root/Panel/VBox/Tabs/Audio"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="Root/Panel/VBox/Tabs/Audio/SfxVolumeRow"]
+layout_mode = 2
+text = "Effects volume"
+theme_override_font_sizes/font_size = 15
+custom_minimum_size = Vector2(190.0, 0.0)
+mouse_filter = 1
+
+[node name="SfxVolume" type="HSlider" parent="Root/Panel/VBox/Tabs/Audio/SfxVolumeRow"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 0.0
+max_value = 1.0
+step = 0.05
+custom_minimum_size = Vector2(200.0, 24.0)
+size_flags_horizontal = 3
+
+[node name="SfxVolumeValue" type="Label" parent="Root/Panel/VBox/Tabs/Audio/SfxVolumeRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = "GoldLabel"
+theme_override_font_sizes/font_size = 14
+custom_minimum_size = Vector2(70.0, 0.0)
+
+[node name="AudioHint" type="Label" parent="Root/Panel/VBox/Tabs/Audio"]
+layout_mode = 2
+text = "Place music_*.ogg and sfx_*.ogg files in assets/audio to add sound."
+theme_type_variation = "DimLabel"
+theme_override_font_sizes/font_size = 12
+
+[node name="Controls" type="VBoxContainer" parent="Root/Panel/VBox/Tabs"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CameraSpeedRow" type="HBoxContainer" parent="Root/Panel/VBox/Tabs/Controls"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="Root/Panel/VBox/Tabs/Controls/CameraSpeedRow"]
+layout_mode = 2
+text = "Camera rotate speed"
+theme_override_font_sizes/font_size = 15
+custom_minimum_size = Vector2(190.0, 0.0)
+mouse_filter = 1
+
+[node name="CameraSpeed" type="HSlider" parent="Root/Panel/VBox/Tabs/Controls/CameraSpeedRow"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 0.25
+max_value = 3.0
+step = 0.05
+custom_minimum_size = Vector2(200.0, 24.0)
+size_flags_horizontal = 3
+
+[node name="CameraSpeedValue" type="Label" parent="Root/Panel/VBox/Tabs/Controls/CameraSpeedRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = "GoldLabel"
+theme_override_font_sizes/font_size = 14
+custom_minimum_size = Vector2(70.0, 0.0)
+
+[node name="ZoomSpeedRow" type="HBoxContainer" parent="Root/Panel/VBox/Tabs/Controls"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="Root/Panel/VBox/Tabs/Controls/ZoomSpeedRow"]
+layout_mode = 2
+text = "Camera zoom speed"
+theme_override_font_sizes/font_size = 15
+custom_minimum_size = Vector2(190.0, 0.0)
+mouse_filter = 1
+
+[node name="ZoomSpeed" type="HSlider" parent="Root/Panel/VBox/Tabs/Controls/ZoomSpeedRow"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 0.25
+max_value = 3.0
+step = 0.05
+custom_minimum_size = Vector2(200.0, 24.0)
+size_flags_horizontal = 3
+
+[node name="ZoomSpeedValue" type="Label" parent="Root/Panel/VBox/Tabs/Controls/ZoomSpeedRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = "GoldLabel"
+theme_override_font_sizes/font_size = 14
+custom_minimum_size = Vector2(70.0, 0.0)
+
+[node name="InvertCameraRow" type="HBoxContainer" parent="Root/Panel/VBox/Tabs/Controls"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="Root/Panel/VBox/Tabs/Controls/InvertCameraRow"]
+layout_mode = 2
+text = "Invert camera drag"
+theme_override_font_sizes/font_size = 15
+custom_minimum_size = Vector2(190.0, 0.0)
+mouse_filter = 1
+
+[node name="InvertCamera" type="CheckButton" parent="Root/Panel/VBox/Tabs/Controls/InvertCameraRow"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+
+[node name="Help" type="Label" parent="Root/Panel/VBox/Tabs/Controls"]
+layout_mode = 2
+text = "Left click: move / default action\nRight click: all actions\nArrow keys or middle-drag: rotate camera\nMouse wheel: zoom\nEnter: chat    M: world map    Esc: close\nF1–F6: side panel tabs    O: settings"
+theme_override_font_sizes/font_size = 13
+
+[node name="Done" type="Button" parent="Root/Panel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Done"
+custom_minimum_size = Vector2(0.0, 38.0)

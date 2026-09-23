@@ -38,7 +38,7 @@ public partial class Main : Node
 		AddChild(new IconCache { Name = "IconCache" });
 		Settings.Apply(GetTree());
 		GetTree().Root.SizeChanged += () => { if (Settings.UiScale <= 0) Settings.Apply(GetTree()); };
-		SettingsUi = new SettingsWindow { Name = "Settings" };
+		SettingsUi = SettingsWindow.Create();
 		AddChild(SettingsUi);
 
 		Net.I.MessageReceived += OnServerMessage;
@@ -142,8 +142,8 @@ public partial class Main : Node
 		if (pose != null) { _ = PoseTest(pose[11..]); return; }
 
 		BuildLogin();
-		var ls = args.FirstOrDefault(a => a.StartsWith("--loginshot="));
-		if (ls != null) { _ = LoginShot(ls[12..]); return; }
+		var uishot = args.FirstOrDefault(a => a.StartsWith("--uishot="));
+		if (uishot != null) _ = UiShots(uishot[9..]);
 		var join = args.FirstOrDefault(a => a.StartsWith("--jointest="));
 		if (join != null) { _ = JoinTest(join[11..]); return; }
 		var export = args.FirstOrDefault(a => a.StartsWith("--exportdata="));
@@ -175,81 +175,38 @@ public partial class Main : Node
 
 	// ================= login screen =================
 
-	void BuildLogin()
+	/// `--uishot=<dir>`: screenshots of the title screen and the settings window.
+	async Task UiShots(string dir)
 	{
-		login = new Control { Theme = UiTheme.Get() };
-		login.SetAnchorsPreset(Control.LayoutPreset.FullRect);
-		AddChild(login);
-
-		var bg = new ColorRect { Color = new Color(0.05f, 0.04f, 0.03f) };
-		bg.SetAnchorsPreset(Control.LayoutPreset.FullRect);
-		login.AddChild(bg);
-		var splash = Assets.Tex("splash");
-		if (splash != null)
-		{
-			var tr = new TextureRect { Texture = splash, ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize, StretchMode = TextureRect.StretchModeEnum.KeepAspectCovered };
-			tr.SetAnchorsPreset(Control.LayoutPreset.FullRect);
-			login.AddChild(tr);
-		}
-		var vignette = new ColorRect { Color = new Color(0, 0, 0, 0.35f) };
-		vignette.SetAnchorsPreset(Control.LayoutPreset.FullRect);
-		login.AddChild(vignette);
-
-		var title = UiTheme.Title("FANTASIA", 84);
-		title.AddThemeConstantOverride("outline_size", 10);
-		title.AddThemeColorOverride("font_outline_color", new Color(0.1f, 0.05f, 0f));
-		UiTheme.Place(title, Control.LayoutPreset.CenterTop, new Vector2(-400, 40), new Vector2(800, 110));
-		login.AddChild(title);
-		var sub = UiTheme.Title("~ A Realm of Blades & Sorcery ~", 22);
-		sub.AddThemeColorOverride("font_color", UiTheme.Parchment);
-		UiTheme.Place(sub, Control.LayoutPreset.CenterTop, new Vector2(-400, 145), new Vector2(800, 40));
-		login.AddChild(sub);
-
-		var panel = new PanelContainer();
-		UiTheme.Place(panel, Control.LayoutPreset.Center, new Vector2(-200, -110), new Vector2(400, 300));
-		login.AddChild(panel);
-		var v = new VBoxContainer();
-		v.AddThemeConstantOverride("separation", 8);
-		panel.AddChild(v);
-		v.AddChild(UiTheme.Title("Enter the Realm", 22));
-		nameEdit = Field(v, "Adventurer name", Settings.LastName, false);
-		passEdit = Field(v, "Password", "", true);
-		var hostRow = new HBoxContainer();
-		v.AddChild(hostRow);
-		hostEdit = new LineEdit { Text = Settings.LastHost, PlaceholderText = "Server address", SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
-		portEdit = new LineEdit { Text = Settings.LastPort.ToString(), PlaceholderText = "Port", CustomMinimumSize = new Vector2(80, 0) };
-		hostRow.AddChild(hostEdit);
-		hostRow.AddChild(portEdit);
-		var btns = new HBoxContainer();
-		btns.AddThemeConstantOverride("separation", 8);
-		v.AddChild(btns);
-		hostBtn = new Button { Text = "Play (Host World)", SizeFlagsHorizontal = Control.SizeFlags.ExpandFill, CustomMinimumSize = new Vector2(0, 42), TooltipText = "Start a world on this machine. Friends can join using your IP address." };
-		joinBtn = new Button { Text = "Join Server", SizeFlagsHorizontal = Control.SizeFlags.ExpandFill, CustomMinimumSize = new Vector2(0, 42) };
-		hostBtn.Pressed += OnHost;
-		joinBtn.Pressed += OnJoin;
-		btns.AddChild(hostBtn);
-		btns.AddChild(joinBtn);
-		var opts = new Button { Text = "Settings", CustomMinimumSize = new Vector2(0, 34) };
-		opts.Pressed += () => SettingsUi.Open();
-		v.AddChild(opts);
-		status = UiTheme.Lbl("New names create a new account.", 13, UiTheme.Dim);
-		status.AutowrapMode = TextServer.AutowrapMode.WordSmart;
-		status.HorizontalAlignment = HorizontalAlignment.Center;
-		v.AddChild(status);
-		passEdit.TextSubmitted += _ => OnHost();
-
-		var foot = UiTheme.Lbl("Melee • Ranged • Magic   —   Explore Aldmoor, delve the Goblin Caves and the Crypt of the Fallen King, and brave the Bloodmarch.", 14, UiTheme.Parchment);
-		foot.HorizontalAlignment = HorizontalAlignment.Center;
-		UiTheme.Place(foot, Control.LayoutPreset.CenterBottom, new Vector2(-500, -44), new Vector2(1000, 30));
-		login.AddChild(foot);
-		Music.I?.Play("title");
+		autotestDir = dir;
+		await Wait(1.5);
+		await Shot("ui_login");
+		SettingsUi.Open();
+		await Wait(0.5);
+		await Shot("ui_settings");
+		GetTree().Quit();
 	}
 
-	static LineEdit Field(VBoxContainer v, string placeholder, string text, bool secret)
+	/// The title / login screen (Scenes/UI/LoginScreen.tscn).
+	void BuildLogin()
 	{
-		var e = new LineEdit { PlaceholderText = placeholder, Text = text, Secret = secret, CustomMinimumSize = new Vector2(0, 36), MaxLength = secret ? 64 : 12 };
-		v.AddChild(e);
-		return e;
+		login = GD.Load<PackedScene>("res://Scenes/UI/LoginScreen.tscn").Instantiate<Control>();
+		AddChild(login);
+		nameEdit = login.GetNode<LineEdit>("%NameEdit");
+		passEdit = login.GetNode<LineEdit>("%PassEdit");
+		hostEdit = login.GetNode<LineEdit>("%HostEdit");
+		portEdit = login.GetNode<LineEdit>("%PortEdit");
+		hostBtn = login.GetNode<Button>("%HostButton");
+		joinBtn = login.GetNode<Button>("%JoinButton");
+		status = login.GetNode<Label>("%Status");
+		nameEdit.Text = Settings.LastName;
+		hostEdit.Text = Settings.LastHost;
+		portEdit.Text = Settings.LastPort.ToString();
+		hostBtn.Pressed += OnHost;
+		joinBtn.Pressed += OnJoin;
+		login.GetNode<Button>("%SettingsButton").Pressed += () => SettingsUi.Open();
+		passEdit.TextSubmitted += _ => OnHost();
+		Music.I?.Play("title");
 	}
 
 	void SetBusy(bool busy)
@@ -662,14 +619,6 @@ public partial class Main : Node
 			camNode.GlobalPosition = hand + new Vector3(0.4f, 0.5f, 1.8f);
 			camNode.LookAt(hand, Vector3.Up);
 		}
-		await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw);
-		GetViewport().GetTexture().GetImage().SavePng(path);
-		GetTree().Quit();
-	}
-
-	async Task LoginShot(string path)
-	{
-		await Wait(1.5);
 		await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw);
 		GetViewport().GetTexture().GetImage().SavePng(path);
 		GetTree().Quit();
